@@ -8,6 +8,8 @@ package Presentation;
 import Domain.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -71,6 +73,15 @@ public class Servlet extends HttpServlet {
                     break;
                     
                 case "login":
+                    
+                    //skriv et authCheck som kaldes igennem controlleren
+                    
+                    String username = request.getParameter("username");
+                    
+                    request.getSession().setAttribute("message", "Welcome" + username + "!");
+                    
+                    response.sendRedirect("dashboard.jsp");
+                    
                     
                     return;
                     
