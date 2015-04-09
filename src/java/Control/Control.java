@@ -37,11 +37,15 @@ public class Control extends HttpServlet {
 
             AuthService auth = new AuthService();
             
+            //origin parameteret kommer fra den side du kommer fra, og smider dig ind i switchen,
+            //og finder så det sted i switchen, som passer på det du beder om.
             String origin = request.getParameter("origin");
             
             switch (origin) {
                 case "registration":
                     
+                    //Her gemmes teksten fra registration-formen, ned i strings, som så bliver tilføjet
+                    //til et userobjekt.
                     String partnername = request.getParameter("partnername");
                     String address = request.getParameter("address");
                     int zipcode = Integer.parseInt(request.getParameter("zipcode"));
@@ -52,9 +56,12 @@ public class Control extends HttpServlet {
 
                     auth.addUser(partnername, address, zipcode, city, phone, partnerid, password);
                     
+                    //"message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
+                    //partnername er afhængig af, hvad der blev tastet ind i formularen
                     request.getSession().setAttribute("message", "You have succesfully created " + partnername + " as a new partner.");
                    
-
+                    //response objektet sender dig videre til dashboardet, hvor den ovenstående "message" vises, afhængig af
+                    //hvilken side du kommer fra.
                     response.sendRedirect("dashboard.jsp");
                     break;
                     
