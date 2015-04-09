@@ -18,24 +18,21 @@
     </head>
     <body>
         <h1> <img src="dell round logo.png" width="150" height="150" alt="dell-logo"/>
-            <p>The power to do more</p>
+            <p><%=session.getAttribute("message")%></p>
         </h1>
        
         <%-- Action skal være den side du vil over til når knappen trykkes--%>
-        <form action="NæsteSide">
-            <input class="Button" type="submit" value="Anmodninger" name="Anmodninger" />
-        </form>
-        <form action="NæsteSide">
-            <input class="Button" type="submit" value="Igangværende kampagner" name="IK" />
-        </form>
-        <form action="NæsteSide">
-            <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" />
-        </form>
-        <form action="NæsteSide">
-            <input class="Button" type="submit" value="Rediger/Slet partner" name="RDP" />
-        </form>
-        
-        <%--<h1><%=session.getAttribute("message")%></h1>--%>
+        <div>
+        <input class="Button" type="submit" value="Anmodninger" name="Anmodninger" onclick="location.href='NæsteSide'"/>
+    
+        <input class="Button" type="submit" value="Igangværende kampagner" name="IK" onclick="location.href='NæsteSide'" />
+       
+        <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href='NæsteSide'" />
+             
+        <input class="Button" type="submit" value="Rediger/Slet partner" name="RDP" onclick="location.href='NæsteSide'" />
+        </div>
+      
+        <%----%>
         
         
     </body>
