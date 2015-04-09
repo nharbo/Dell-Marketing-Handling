@@ -16,6 +16,6 @@ public interface AuthInterface {
     
     boolean authCheck(String partnerid, String password);
     Partner getUser(String id);
-    boolean addUser(String partnername, String address, int zipcode, String city, int phone, int partnerid, String password);
+    boolean addUser(String userid, String partnerid, String partnername, String address, int zip, String city, int cvr, int phone, int budget, String password, String re_password);
     
 }
