@@ -16,6 +16,14 @@
             <table border="0" width="1" cellspacing="1">
                 <tbody>
                     <tr>
+                        <td><label>UserID</label></td>
+                        <td><input type="text" name="userid"></td>
+                    </tr>
+                    <tr>
+                        <td><label>PartnerID</label></td>
+                        <td><input type="text" name="partnerid"></td>
+                    </tr>
+                    <tr>
                         <td><label>Partner name</label></td>
                         <td><input type="text" name="partnername"></td>
                     </tr>
@@ -24,20 +32,24 @@
                         <td><input type="text" name="address"></td>
                     </tr>
                     <tr>
-                        <td><label>Zipcode</label></td>
-                        <td><input type="text" name="zipcode"></td>
+                        <td><label>Zip</label></td>
+                        <td><input type="text" name="zip"></td>
                     </tr>
-                    <tr>
+                     <tr>
                         <td><label>City</label></td>
                         <td><input type="text" name="city"></td>
                     </tr>
                     <tr>
-                        <td><label>Phone</label></td>
+                        <td><label>CVR-number</label></td>
+                        <td><input type="text" name="cvr"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Phone number</label></td>
                         <td><input type="text" name="phone"></td>
                     </tr>
                     <tr>
-                        <td><label>Partner ID</label></td>
-                        <td><input type="text" name="partnerid"></td>
+                        <td><label>Partner budget</label></td>
+                        <td><input type="text" name="budget"></td>
                     </tr>
                     <tr>
                         <td><label>Password</label></td>
