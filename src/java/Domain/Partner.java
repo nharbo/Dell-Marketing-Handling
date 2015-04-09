@@ -19,9 +19,7 @@ public class Partner {
     int cvr;
     int phone;
 
-    public void addPartner(int partnerid, String partnername, String address, int zip, String city, int cvr, int phone) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
 
 

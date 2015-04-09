@@ -15,38 +15,41 @@ import java.sql.ResultSet;
  * @author nicolaiharbo
  */
 public class DBMapper {
+    
+    static boolean testRun = true;
 
     //======  Methods to read from DB =======================================================
     // Retrieve a specific order and related order details
     // Returns the Order-object
-    public DBMapper getCampaigns(int campaignId, Connection conn) {
+    public Campaign getCampaigns(int campaignId, Connection con) {
         Campaign c = null;
 
         // get campaign
-        String SQLString1 = "select * " + "from orders " + "where ono = ?";
-
-        // get campaign details
-        String SQLString2 = "select * " + "from odetails od " + "where ono = ? ";
+        String SQLString1 = "select * " + "from campaign " + "where status = ongoing";
 
         PreparedStatement statement = null;
 
         try {
             //=== get order
-            statement = conn.prepareStatement(SQLString1);
+            statement = con.prepareStatement(SQLString1);
             statement.setInt(1, campaignId);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                c = new Campaign(campaignId,
-                        rs.getInt(2),
-                        rs.getInt(3),
-                        rs.getInt(4),
-                        rs.getString(5));
+                c = new Campaign(campaignId, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5));
             }
 
         } catch (Exception e) {
             System.out.println("Fail in OrderMapper - getOrder");
             System.out.println(e.getMessage());
         }
+                if (testRun)
+        {
+            System.out.println("Retrieved Order: " + c);
+        }
+        return c;
+    }
+        
+    
     }
 
-}
+

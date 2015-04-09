@@ -11,4 +11,8 @@ package Interface;
  */
 public interface ControllerInterface {
     
+    public void addPartner(int partnerid, String partnername, String address, int zip, String city, int cvr, int phone);
+    
+    public void addUser(String userid, String password, String re_password);
+    
 }

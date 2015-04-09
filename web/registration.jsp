@@ -48,10 +48,6 @@
                         <td><input type="text" name="phone"></td>
                     </tr>
                     <tr>
-                        <td><label>Partner budget</label></td>
-                        <td><input type="text" name="budget"></td>
-                    </tr>
-                    <tr>
                         <td><label>Password</label></td>
                         <td><input type="password" name="password"></td>
                     </tr>

@@ -25,7 +25,7 @@
         <div>
         <input class="Button" type="submit" value="Anmodninger" name="Anmodninger" onclick="location.href='NæsteSide'"/>
     
-        <input class="Button" type="submit" value="Igangværende kampagner" name="IK" onclick="location.href='NæsteSide'" />
+        <input class="Button" type="submit" value="Igangværende kampagner" name="IK" onclick="location.href='activeCampaigns.jsp'" />
        
         <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href='registration.jsp'" />
              

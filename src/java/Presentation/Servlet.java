@@ -5,8 +5,7 @@
  */
 package Presentation;
 
-import Domain.Partner;
-import Domain.User;
+import Domain.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,8 +35,7 @@ public class Servlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            User user = new User();
-            Partner partner = new Partner();
+            Controller control = new Controller();
             
             //origin parameteret kommer fra den side du kommer fra, og smider dig ind i switchen,
             //og finder så det sted i switchen, som passer på det du beder om.
@@ -59,8 +57,8 @@ public class Servlet extends HttpServlet {
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
 
-                    partner.addPartner(partnerid, partnername, address, zip, city, cvr, phone);
-                    user.addUser(userid, password, re_password);
+                    control.addPartner(partnerid, partnername, address, zip, city, cvr, phone);
+                    control.addUser(userid, password, re_password);
                     
                     
                     // "message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
