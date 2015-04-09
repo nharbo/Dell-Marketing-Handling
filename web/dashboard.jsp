@@ -21,13 +21,13 @@
             <p><%=session.getAttribute("message")%></p>
         </h1>
        
-        <%-- Action skal være den side du vil over til når knappen trykkes--%>
+        <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
         <div>
         <input class="Button" type="submit" value="Anmodninger" name="Anmodninger" onclick="location.href='NæsteSide'"/>
     
         <input class="Button" type="submit" value="Igangværende kampagner" name="IK" onclick="location.href='NæsteSide'" />
        
-        <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href='NæsteSide'" />
+        <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href='registration.jsp'" />
              
         <input class="Button" type="submit" value="Rediger/Slet partner" name="RDP" onclick="location.href='NæsteSide'" />
         </div>
