@@ -78,10 +78,15 @@ public class Servlet extends HttpServlet {
                     
                     String username = request.getParameter("username");
                     
-                    request.getSession().setAttribute("message", "Welcome" + username + "!");
+                    //Nedenstående afgør om det er Dell eller Partner dashboard som vises ved login. Dette skal nok skrivs ind i en auth i stedet
+                    if(username.equalsIgnoreCase("Dell")){
+                        response.sendRedirect("dashboardDell.jsp");
+                    } else response.sendRedirect("dashboardPartner.jsp");
                     
-                    response.sendRedirect("dashboard.jsp");
+                    request.getSession().setAttribute("message", "Welcome " + username + "!");
                     
+                    
+                                       
                     
                     return;
                     
