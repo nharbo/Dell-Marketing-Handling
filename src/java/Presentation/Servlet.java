@@ -46,30 +46,29 @@ public class Servlet extends HttpServlet {
             switch (origin) {
                 case "registration":
                     
-                    //Her gemmes teksten fra registration-formen, ned i strings, som så bliver tilføjet
-                    //til et userobjekt.
+                    // Her gemmes teksten fra registration-formen, ned i strings, som så bliver tilføjet
+                    // til et userobjekt.
                     String userid = request.getParameter("userid");
-                    String partnerid = request.getParameter("partnerid");
+                    int partnerid = Integer.parseInt(request.getParameter("partnerid"));
                     String partnername = request.getParameter("partnername");
                     String address = request.getParameter("address");
                     int zip = Integer.parseInt(request.getParameter("zip"));
                     String city = request.getParameter("city");
                     int cvr = Integer.parseInt(request.getParameter("cvr"));
                     int phone = Integer.parseInt(request.getParameter("phone"));
-                    int budget = Integer.parseInt(request.getParameter("budget"));
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
 
-                    partner.addPartner(partnerid, partnername, address, zip, city, cvr, phone, budget);
+                    partner.addPartner(partnerid, partnername, address, zip, city, cvr, phone);
                     user.addUser(userid, password, re_password);
                     
                     
-                    //"message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
-                    //partnername er afhængig af, hvad der blev tastet ind i formularen
+                    // "message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
+                    // partnername er afhængig af, hvad der blev tastet ind i formularen
                     request.getSession().setAttribute("message", "You have succesfully created " + userid + " as a new partner.");
                    
-                    //response objektet sender dig videre til dashboardet, hvor den ovenstående "message" vises, afhængig af
-                    //hvilken side du kommer fra.
+                    // response objektet sender dig videre til dashboardet, hvor den ovenstående "message" vises, afhængig af
+                    // hvilken side du kommer fra.
                     response.sendRedirect("dashboard.jsp");
                     break;
                     
