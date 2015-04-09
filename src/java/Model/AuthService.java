@@ -13,7 +13,7 @@ import Interface.AuthInterface;
  */
 public class AuthService implements AuthInterface {
     
-    public boolean addUser(String partnername, String address, int zipcode, String city, int phone, int partnerid, String password){
+    public boolean addUser(String userid, String partnerid, String partnername, String address, int zip, String city, int cvr, int phone, int budget, String password, String re_password){
         
         //Somehow connect to the database, and add the user.
         
