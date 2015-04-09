@@ -20,17 +20,21 @@ img{
 
 .Button{
     
+    float: left;
     width: 200px;
     height: 30px;
+    margin-bottom: 5px;
+    margin-left: 300px;
+    margin-right: 1000px;
     
 }
 
-form{
+div{
     
-    margin-bottom: 5px;
-    margin-left: 300px;
+    
     
 }
+
 
 h1{
     
