@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Control;
+package Presentation;
 
-import Model.AuthService;
+import Domain.Partner;
+import Domain.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author nicolaiharbo
  */
 @WebServlet(name = "Control", urlPatterns = {"/Control"})
-public class Control extends HttpServlet {
+public class Servlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,7 +36,8 @@ public class Control extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            AuthService auth = new AuthService();
+            User user = new User();
+            Partner partner = new Partner();
             
             //origin parameteret kommer fra den side du kommer fra, og smider dig ind i switchen,
             //og finder så det sted i switchen, som passer på det du beder om.
@@ -58,7 +60,9 @@ public class Control extends HttpServlet {
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
 
-                    auth.addUser(userid, partnerid, partnername, address, zip, city, cvr, phone, budget, password, re_password);
+                    partner.addPartner(partnerid, partnername, address, zip, city, cvr, phone, budget);
+                    user.addUser(userid, password, re_password);
+                    
                     
                     //"message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
                     //partnername er afhængig af, hvad der blev tastet ind i formularen

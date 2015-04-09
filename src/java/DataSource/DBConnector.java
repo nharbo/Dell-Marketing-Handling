@@ -1,18 +1,17 @@
-package Model;
+package DataSource;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-// Encapsulates code to connect to DB
-// Implemented as a Singleton to ensure max one connection
-// hau
+// Enkapsuleret kode, så databasen kun kan tilgåes via denne "private" metode.
+// Lavet som en singleton, så der kun kan oprettes en connection af gangen.
 public class DBConnector
 {
 
     private static String driver = "oracle.jdbc.driver.OracleDriver";
-    private static String URL = "";
-    private static String id = "";			//Insert Your ORACLE id and password
-    private static String pw = "";
+    private static String URL = "jdbc:oracle:thin:@datdb.cphbusiness.dk:1521:dat";
+    private static String id = "cphnh127";
+    private static String pw = "cphnh127";
     
     private Connection con;
 
