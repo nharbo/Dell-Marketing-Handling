@@ -5,13 +5,17 @@
  */
 package Domain;
 
+import DataSource.DBMapper;
 import Interface.ControllerInterface;
+import java.util.List;
 
 /**
  *
  * @author nicolaiharbo
  */
 public class Controller implements ControllerInterface {
+    
+    DBMapper db = new DBMapper();
 
     @Override
     public void addPartner(int partnerid, String partnername, String address, int zip, String city, int cvr, int phone) {
@@ -39,8 +43,11 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void getCampaign(int campaignId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Campaign> getCampaigns(String status) {
+        
+       List<Campaign> data = db.getCampaigns(status);
+       return data;
+       
     }
     
 }

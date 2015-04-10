@@ -15,7 +15,7 @@ public class DBConnector
     
     private Connection con;
 
-    //-- Singleton ---- 
+    //-- Singleton, så der kun oprettes 1 forbindelse ---- 
     private static DBConnector instance;
     private DBConnector()
     {

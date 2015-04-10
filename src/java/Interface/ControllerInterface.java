@@ -5,6 +5,9 @@
  */
 package Interface;
 
+import Domain.Campaign;
+import java.util.List;
+
 /**
  *
  * @author nicolaiharbo
@@ -21,7 +24,7 @@ public interface ControllerInterface {
     
     public void addCampaign(int campaignId, int startDate, int stopDate, int budget, String status);
     
-    public void getCampaign(int campaignId);
+    public List<Campaign> getCampaigns(String status);
     
     
 }
