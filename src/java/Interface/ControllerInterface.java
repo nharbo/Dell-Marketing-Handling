@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import Domain.Campaign;
+
 /**
  *
  * @author nicolaiharbo
@@ -21,7 +23,7 @@ public interface ControllerInterface {
     
     public void addCampaign(int campaignId, int startDate, int stopDate, int budget, String status);
     
-    public void getCampaign(int campaignId);
+    public Campaign getCampaign(int campaignId);
     
     
 }
