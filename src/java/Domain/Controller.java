@@ -43,9 +43,9 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<Campaign> getCampaigns(int campaignId) {
+    public List<Campaign> getCampaigns(String status) {
         
-       List<Campaign> data = db.getCampaigns(campaignId);
+       List<Campaign> data = db.getCampaigns(status);
        return data;
        
     }
