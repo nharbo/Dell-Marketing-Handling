@@ -26,9 +26,9 @@ public class DBMapper {
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
     // så der kun oprettes 1 forbindelse til DB-serveren.
     public DBMapper() {
-       
+
         con = DBConnector.getInstance().getConnection();
-        
+
     }
 
     static boolean testRun = true;
@@ -36,27 +36,28 @@ public class DBMapper {
     //======  Methods to read from DB ======
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public Map<String, Campaign> getCampaigns() {
-        
+
         campaigns = null;
         String status = "ongoing";
-        
+
         // SQLString hiver alle elementer ud med status "ongoing"
-        String SQLString1 = "select * " + "from campaign " + "where status = ongoing";
+        String SQLString1 = "select * " + "from campaign " + "where status = 'ongoing'";
 
         PreparedStatement statement = null;
 
         try {
             // 
             statement = con.prepareStatement(SQLString1);
-            statement.setString(1, status);
+            //statement.setString(1, status);
             ResultSet rs = statement.executeQuery();
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
+
             if (rs.next()) {
-                campaigns.put(String.valueOf(rs.getInt(1)), new Campaign(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), status));
+                campaigns.put(String.valueOf(rs.getInt(1)), new Campaign(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getDate(4), rs.getInt(5), rs.getString(6)));
             }
 
         } catch (Exception e) {
-            System.out.println("Fail in OrderMapper - getOrder");
+            System.out.println("Fail in DBMapper - getCampaign");
             System.out.println(e.getMessage());
         }
         if (testRun) {
@@ -65,7 +66,5 @@ public class DBMapper {
         // Listen med objekter returneres.
         return campaigns;
     }
-    
-    
 
 }
