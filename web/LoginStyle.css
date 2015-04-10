@@ -28,6 +28,7 @@ h1 {
 
 
 #login {
+    margin-top: 5em;
     margin-bottom: 5em;
 }
 
@@ -37,6 +38,11 @@ h1 {
 
 #password {
     margin: 1em;
+}
+
+.Button {
+    width: 12.5em;
+    height: 1.875em;
 }
 
 
