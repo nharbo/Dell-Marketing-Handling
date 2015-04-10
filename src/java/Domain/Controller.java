@@ -49,7 +49,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public Map<String, Campaign> getAllCampaigns() {
-        return new Map<String, Campaign>(campaigns.values());
+        return db.getCampaigns();
        
     }
     

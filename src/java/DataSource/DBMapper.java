@@ -52,7 +52,7 @@ public class DBMapper {
             ResultSet rs = statement.executeQuery();
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
             if (rs.next()) {
-                campaigns.put(rs.getString("ongoing"), new Campaign(rs.getInt(2), rs.getInt(2), rs.getInt(3), rs.getInt(4), status));
+                campaigns.put(String.valueOf(rs.getInt(1)), new Campaign(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), status));
             }
 
         } catch (Exception e) {
@@ -65,5 +65,7 @@ public class DBMapper {
         // Listen med objekter returneres.
         return campaigns;
     }
+    
+    
 
 }
