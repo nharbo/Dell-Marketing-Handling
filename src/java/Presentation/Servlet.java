@@ -38,14 +38,14 @@ public class Servlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             Controller control = new Controller();
-            
+
             //origin parameteret kommer fra den side du kommer fra, og smider dig ind i switchen,
             //og finder så det sted i switchen, som passer på det du beder om.
             String origin = request.getParameter("origin");
-            
+
             switch (origin) {
                 case "registration":
-                    
+
                     // Her gemmes teksten fra registration-formen, ned i strings, som så bliver tilføjet
                     // til et userobjekt.
                     String userid = request.getParameter("userid");
@@ -61,39 +61,40 @@ public class Servlet extends HttpServlet {
 
                     control.addPartner(partnerid, partnername, address, zip, city, cvr, phone);
                     control.addUser(userid, password, re_password);
-                    
-                    
+
                     // "message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
                     // partnername er afhængig af, hvad der blev tastet ind i formularen
                     request.getSession().setAttribute("message", "You have succesfully created " + userid + " as a new partner.");
-                   
+
                     // response objektet sender dig videre til dashboardet, hvor den ovenstående "message" vises, afhængig af
                     // hvilken side du kommer fra.
                     response.sendRedirect("dashboard.jsp");
                     break;
-                    
+
                 case "login":
-                    
+
                     //skriv et authCheck som kaldes igennem controlleren
-                    
                     String username = request.getParameter("username");
-                    
+
                     //Nedenstående afgør om det er Dell eller Partner dashboard som vises ved login. Dette skal nok skrivs ind i en auth i stedet
-                    if(username.equalsIgnoreCase("Dell")){
+                    if (username.equalsIgnoreCase("Dell")) {
                         response.sendRedirect("dashboardDell.jsp");
-                    } else response.sendRedirect("dashboardPartner.jsp");
-                    
+                    } else {
+                        response.sendRedirect("dashboardPartner.jsp");
+                    }
+
                     request.getSession().setAttribute("message", "Welcome " + username + "!");
-                    
-                    
-                                       
-                    
+
                     return;
-                    
-                
-                    
+
+                case "showCampaigns":
+                    request.getSession().setAttribute("campaignList", control.getCampaign(campaignId));
+                    response.sendRedirect("activeCampaigns.jsp");
+                    return;
+
+            }
+
         }
-    }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
