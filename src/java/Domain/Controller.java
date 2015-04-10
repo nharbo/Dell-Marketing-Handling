@@ -7,6 +7,7 @@ package Domain;
 
 import DataSource.DBMapper;
 import Interface.ControllerInterface;
+import java.util.List;
 
 /**
  *
@@ -42,10 +43,11 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public Campaign getCampaign(int campaignId) {
+    public List<Campaign> getCampaigns(int campaignId) {
         
-       Campaign data = db.getCampaigns(campaignId, null);
+       List<Campaign> data = db.getCampaigns(campaignId);
        return data;
+       
     }
     
 }
