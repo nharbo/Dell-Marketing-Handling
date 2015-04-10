@@ -73,7 +73,8 @@ public class Servlet extends HttpServlet {
 
                 case "login":
 
-                    //skriv et authCheck som kaldes igennem controlleren
+                    //skriv et authCheck som kaldes igennem controlleren her.
+                    
                     String username = request.getParameter("username");
 
                     //Nedenstående afgør om det er Dell eller Partner dashboard som vises ved login. Dette skal nok skrivs ind i en auth i stedet
@@ -87,8 +88,8 @@ public class Servlet extends HttpServlet {
 
                     return;
 
-                case "showCampaigns":
-                    request.getSession().setAttribute("campaignList", control.getCampaign(campaignId));
+                case "showActiveCampaigns":
+                    request.getSession().setAttribute("campaignList", control.getCampaigns(campaignId));
                     response.sendRedirect("activeCampaigns.jsp");
                     return;
 
