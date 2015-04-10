@@ -32,7 +32,7 @@ public class DBMapper {
 
     //======  Methods to read from DB ======
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
-    public List<Campaign> getCampaigns(int campaignId) {
+    public List<Campaign> getCampaigns(String status) {
         List<Campaign> c = null;
         
         // SQLString hiver alle elementer ud med status "ongoing"
@@ -43,11 +43,11 @@ public class DBMapper {
         try {
             // 
             statement = con.prepareStatement(SQLString1);
-            statement.setInt(1, campaignId);
+            statement.setString(1, status);
             ResultSet rs = statement.executeQuery();
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
             if (rs.next()) {
-                c.add(new Campaign(campaignId, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5)));
+                c.add(new Campaign(rs.getInt(2), rs.getInt(2), rs.getInt(3), rs.getInt(4), status));
             }
 
         } catch (Exception e) {
