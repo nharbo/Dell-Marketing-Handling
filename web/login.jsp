@@ -9,6 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <%-- Link til CSS style filen. --%>
         <link type="text/css" rel="stylesheet" href="LoginStyle.css"/>
 
         <title>Dell login</title>
@@ -20,19 +22,17 @@
         </div>
         <div id="middle">
             <form action="Control" method="POST">
-                Username:
-                <br><input type="text" name="username" >               
-
-                Password:
-                <br><input type="password" name="password" >            
-
-                <button class="Button" name="login" value="" id="login">
-                    Login
-                </button>
-
+                <div id="username">
+                    Username:
+                    <br><input type="text" name="username">
+                </div>
+                <div id="password">
+                    Password:
+                    <br><input type="password" name="password" >
+                </div>
+                <button class="Button" name="login" value="" id="login">Login</button>
                 <input type="hidden" name="origin" value="login">
             </form>
-
         </div>
         <div id="bottom">
 
