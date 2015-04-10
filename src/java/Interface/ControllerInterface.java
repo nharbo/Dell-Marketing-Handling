@@ -13,6 +13,15 @@ public interface ControllerInterface {
     
     public void addPartner(int partnerid, String partnername, String address, int zip, String city, int cvr, int phone);
     
+    public void getPartner(int partnerid);
+    
     public void addUser(String userid, String password, String re_password);
+    
+    public void getUser(String userid);
+    
+    public void addCampaign(int campaignId, int startDate, int stopDate, int budget, String status);
+    
+    public void getCampaign(int campaignId);
+    
     
 }
