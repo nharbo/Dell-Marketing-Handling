@@ -22,6 +22,8 @@ import java.util.Map;
  */
 public class DBMapper {
 
+    public static final boolean inDebugMode = false;
+    
     private Connection con = null;
     private ResultSet rs;
     private Statement statement = null;
@@ -37,7 +39,6 @@ public class DBMapper {
 
     }
 
-    static boolean testRun = true;
 
     //======  Methods to read from DB ======
     
@@ -58,7 +59,7 @@ public class DBMapper {
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public Map<String, Campaign> getCampaigns() {
 
-        campaigns = null;
+        campaigns.clear(); 
 
         try {
             // SQLString hiver alle elementer ud med status "ongoing"
@@ -72,7 +73,9 @@ public class DBMapper {
 
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
             while (rs.next()) {
-                campaigns.put(String.valueOf(rs.getInt("c_id")), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status")));
+                if(inDebugMode) { System.out.println("ResultSet: " + rs.getString("c_id"));}
+                
+                campaigns.put(rs.getString("c_id"), new Campaign (rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status")));
             }
             rs.close();
             statement.close();
@@ -82,11 +85,11 @@ public class DBMapper {
             System.out.println("Fail in DBMapper - getCampaign");
             System.out.println(e.getMessage());
         }
-        if (testRun) {
+        if (inDebugMode) {
             System.out.println("Retrieved campaign: " + campaigns);
         }
-        // Listen med objekter returneres.
-        return campaigns;
-    }
+        // Mappet med campaign-objekter returneres.
+        return campaigns; 
+   }
 
 }

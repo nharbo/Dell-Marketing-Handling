@@ -77,4 +77,11 @@ public class Campaign {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return "Campaign{" + "campaignId=" + campaignId + ", partnerId=" + partnerId + ", startDate=" + startDate + ", stopDate=" + stopDate + ", budget=" + budget + ", status=" + status + '}';
+    }
+
+    
+    
 }
