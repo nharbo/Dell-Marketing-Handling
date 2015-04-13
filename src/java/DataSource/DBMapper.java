@@ -23,10 +23,9 @@ public class DBMapper {
 
     private Connection con = null;
     private ResultSet rs;
-    private Statement statement;
+    private Statement statement = null;
     private Map<String, Campaign> campaigns = new HashMap();
     private Map<String, User> users = new HashMap();
-    private Statement statement;
 
     // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
@@ -46,7 +45,8 @@ public class DBMapper {
             String sqlAdd = "insert into cphnh127.partners values ("+partnerid+", '"+partnername+"', '"+adress+"', "+zip+", '"+city+"', "+cvr+", "+phone+")";
             statement.executeUpdate(sqlAdd);
         } catch (Exception e) {
-            return false;
+            System.out.println("Fail in DBMapper - addUser");
+            System.out.println(e.getMessage());
         }
         return true;
     }
@@ -71,6 +71,9 @@ public class DBMapper {
             while (rs.next()) {
                 campaigns.put(String.valueOf(rs.getInt(1)), new Campaign(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getDate(4), rs.getInt(5), rs.getString(6)));
             }
+            rs.close();
+            statement.close();
+            con.close();
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getCampaign");
