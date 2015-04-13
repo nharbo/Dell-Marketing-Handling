@@ -18,7 +18,6 @@
 
     </body>
     <body> 
-        <a href="Control?origin=showActiveCampaigns">Klik her tak</a>
 
         <h1><c:out value="Campaign"></c:out></h1>
         

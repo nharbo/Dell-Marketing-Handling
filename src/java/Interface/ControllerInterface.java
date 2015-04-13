@@ -26,7 +26,7 @@ public interface ControllerInterface {
     
     public void addCampaign(int campaignId, int startDate, int stopDate, int budget, String status);
     
-    public Map<String, Campaign> getAllCampaigns();
+    public List<Campaign> getAllCampaigns();
     
     
 }

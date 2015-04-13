@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +42,7 @@ public class DBMapper {
 
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
-    public Map<String, Campaign> getCampaigns() {
+    public List<Campaign> getCampaigns() {
 
         campaigns.clear();
 
@@ -74,8 +75,8 @@ public class DBMapper {
         if (inDebugMode) {
             System.out.println("Retrieved campaign: " + campaigns);
         }
-        // Mappet med campaign-objekter returneres.
-        return campaigns;
+        // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
+        return new ArrayList<Campaign>(campaigns.values());
     }
 
     public void addUser(String userid, String password) {

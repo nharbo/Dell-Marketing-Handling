@@ -19,14 +19,12 @@ public class Campaign {
     Date stopDate;
     int budget;
     String status;
+    
+    // Denne klasse er en "bean", så vi kan få fat i den og bruge dataen på jsp-siden.
+    // En bean har en tom konstruktør, getters og setters på alle input-parametrene og en toString.
 
     public Campaign(int campaignId, int partnerId, Date startDate, Date stopDate, int budget, String status) {
-        this.campaignId = campaignId;
-        this.partnerId = partnerId;
-        this.startDate = startDate;
-        this.stopDate = stopDate;
-        this.budget = budget;
-        this.status = status;
+      // tom, grundet bean-princip
     }
 
     public int getCampaignId() {
