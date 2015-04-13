@@ -13,11 +13,32 @@ public class User {
     
     String userId;
     String password;
-    String re_password;
+    //String re_password;
 
-    public void addUser(String userid, String password, String re_password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public User(String userId, String password) {
+        this.userId = userId;
+        this.password = password;
     }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    
+
+
 
 
     

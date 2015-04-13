@@ -15,19 +15,18 @@ public class Partner {
     int partnerid;
     String partnername;
     String address;
-    int zip;
-    String city;
     int cvr;
     int phone;
+    int zip;
 
-    public Partner(String userid, int partnerid, String partnername, String address, int zip, int cvr, int phone) {
+    public Partner(String userid, int partnerid, String partnername, String address, int cvr, int phone, int zip) {
         this.userid = userid;
         this.partnerid = partnerid;
         this.partnername = partnername;
         this.address = address;
-        this.zip = zip;
         this.cvr = cvr;
         this.phone = phone;
+        this.zip = zip;
     }
 
     public String getUserid() {

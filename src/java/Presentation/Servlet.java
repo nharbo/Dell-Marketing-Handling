@@ -49,19 +49,19 @@ public class Servlet extends HttpServlet {
                     // Her gemmes teksten fra registration-formen, ned i strings, som så bliver tilføjet
                     // til et userobjekt.
                     System.out.println("Inside processRequest() switch origin - > registration!");
-                    
+
                     String userid = request.getParameter("userid");
                     int partnerid = Integer.parseInt(request.getParameter("partnerid"));
                     String partnername = request.getParameter("partnername");
                     String address = request.getParameter("address");
-                    int zip = Integer.parseInt(request.getParameter("zip"));
                     int cvr = Integer.parseInt(request.getParameter("cvr"));
                     int phone = Integer.parseInt(request.getParameter("phone"));
+                    int zip = Integer.parseInt(request.getParameter("zip"));
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
 
-                    control.addPartner(userid, partnerid, partnername, address, zip, cvr, phone);
-                    //control.addUser(userid, password, re_password);
+                    control.addUser(userid, password);
+                    control.addPartner(userid, partnerid, partnername, address, cvr, phone, zip);
 
                     // "message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
                     // partnername er afhængig af, hvad der blev tastet ind i formularen
@@ -75,7 +75,6 @@ public class Servlet extends HttpServlet {
                 case "login":
 
                     //skriv et authCheck som kaldes igennem controlleren her.
-                    
                     String username = request.getParameter("username");
 
                     //Nedenstående afgør om det er Dell eller Partner dashboard som vises ved login. Dette skal nok skrivs ind i en auth i stedet

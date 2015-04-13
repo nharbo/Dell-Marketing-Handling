@@ -23,14 +23,15 @@ public class Controller implements ControllerInterface {
     
 
     @Override
-    public void addPartner(String userid, int partnerid, String partnername, String address, int zip, int cvr, int phone) {
-        
-        db.addPartner(userid, partnerid, partnername, address, zip, cvr, phone);
+    public void addPartner(String userid, int partnerid, String partnername, String address, int cvr, int phone, int zip) {
+        System.out.println("now in addPartner");
+        db.addPartner(userid, partnerid, partnername, address, cvr, phone, zip);
     }
 
     @Override
-    public void addUser(String userid, String password, String re_password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addUser(String userid, String password) {
+        System.out.println("now in addUser");
+        db.addUser(userid, password);
     }
 
     @Override

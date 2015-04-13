@@ -20,7 +20,7 @@ public interface ControllerInterface {
     
     public void getPartner(int partnerid);
     
-    public void addUser(String userid, String password, String re_password);
+    public void addUser(String userid, String password);
     
     public void getUser(String userid);
     
