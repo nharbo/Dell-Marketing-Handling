@@ -35,19 +35,19 @@ public class DBMapper {
     static boolean testRun = true;
 
     //======  Methods to read from DB ======
+    
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public Map<String, Campaign> getCampaigns() {
 
         campaigns = null;
-        String status = "ongoing";
 
         // SQLString hiver alle elementer ud med status "ongoing"
-        String SQLString1 = "select * " + "from campaign " + "where status = 'ongoing'";
+        String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
 
         PreparedStatement statement = null;
 
         try {
-            // 
+            // Gør SQL-strengen klar
             statement = con.prepareStatement(SQLString1);
             //statement.setString(1, status);
             rs = statement.executeQuery();
@@ -55,6 +55,13 @@ public class DBMapper {
 
             while(rs.next()) {
                 campaigns.put(String.valueOf(rs.getInt("c_id")), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status")));
+            // Eksikverer de SQL-statements som er sat op under prepare, og gemmer dem i en rs-variabel af typen ResultSet
+            ResultSet rs = statement.executeQuery();
+            rs.get
+            
+            // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i "campaigns", som er et map med kampagnerne i.
+            if (rs.next()) {
+                campaigns.put(String.valueOf(rs.getInt(1)), new Campaign(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getDate(4), rs.getInt(5), rs.getString(6)));
             }
 
         } catch (Exception e) {
@@ -62,7 +69,7 @@ public class DBMapper {
             System.out.println(e.getMessage());
         }
         if (testRun) {
-            System.out.println("Retrieved Order: " + campaigns);
+            System.out.println("Retrieved campaign: " + campaigns);
         }
         // Listen med objekter returneres.
         return campaigns;

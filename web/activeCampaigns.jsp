@@ -19,9 +19,8 @@
     </body>
     <body> 
         <a href="Control?origin=showActiveCampaigns">Klik her tak</a>
-        <h1>Heres a list of active campaigns
-        </h1>
-        <h1><c:out value="Campaigns"></c:out></h1>
+
+        <h1><c:out value="Active Campaigns"></c:out></h1>
             <table style="border: 1px solid #0066cc">
 
                 <thead>
@@ -49,12 +48,12 @@
 
         <c:forEach var="Campaigns" items="${campaignList}">
             <tr>
-                <td style="border: 1px solid #0066CC">${Campaigns.c_id}</td>
-                <td style="border: 1px solid #0066CC">${Campaigns.c_id}</td>
-                <td style="border: 1px solid #0066CC">${Campaigns.c_id}</td>
-                <td style="border: 1px solid #0066CC">${Campaigns.c_id}</td>
-                <td style="border: 1px solid #0066CC">${Campaigns.c_id}</td>
-                <td style="border: 1px solid #0066CC">${Campaigns.c_id}</td>
+                <td style="border: 1px solid #0066CC">${Campaign.campaignId}</td>
+                <td style="border: 1px solid #0066CC">${Campaign.campaignId}</td>
+                <td style="border: 1px solid #0066CC">${Campaign.campaignId}</td>
+                <td style="border: 1px solid #0066CC">${Campaign.campaignId}</td>
+                <td style="border: 1px solid #0066CC">${Campaign.campaignId}</td>
+                <td style="border: 1px solid #0066CC">${Campaign.campaignId}</td>
             </tr>
 
         </c:forEach>
