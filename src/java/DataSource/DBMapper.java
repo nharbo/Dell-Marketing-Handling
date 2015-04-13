@@ -47,7 +47,7 @@ public class DBMapper {
             String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
 
             // Gør connection klar til at modtage et statement.
-            statement = con.prepareStatement(SQLString1);
+            statement = con.createStatement();
 
             // Eksikverer de SQL-statements som er gjort klar, og gemmer dem i en rs-variabel af typen ResultSet
             rs = statement.executeQuery(SQLString1);
