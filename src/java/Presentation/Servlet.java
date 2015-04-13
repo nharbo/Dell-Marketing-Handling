@@ -53,13 +53,12 @@ public class Servlet extends HttpServlet {
                     String partnername = request.getParameter("partnername");
                     String address = request.getParameter("address");
                     int zip = Integer.parseInt(request.getParameter("zip"));
-                    String city = request.getParameter("city");
                     int cvr = Integer.parseInt(request.getParameter("cvr"));
                     int phone = Integer.parseInt(request.getParameter("phone"));
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
 
-                    control.addPartner(partnerid, partnername, address, zip, city, cvr, phone);
+                    control.addPartner(userid, partnerid, partnername, address, zip, cvr, phone);
                     control.addUser(userid, password, re_password);
 
                     // "message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
@@ -68,7 +67,7 @@ public class Servlet extends HttpServlet {
 
                     // response objektet sender dig videre til dashboardet, hvor den ovenstående "message" vises, afhængig af
                     // hvilken side du kommer fra.
-                    response.sendRedirect("dashboard.jsp");
+                    response.sendRedirect("dashboardDell.jsp");
                     break;
 
                 case "login":

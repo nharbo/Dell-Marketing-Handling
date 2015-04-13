@@ -37,7 +37,7 @@ public class AuthServiceWithDB implements AuthenticationIF{
         try{
         Class.forName(driver);
         connection = java.sql.DriverManager.getConnection(URL, username, password);
-        
+
         
         statement = connection.createStatement();
         String sql = "SELECT * FROM users";
@@ -89,5 +89,5 @@ public class AuthServiceWithDB implements AuthenticationIF{
         }
     return true;
     }
-    
+  
 }

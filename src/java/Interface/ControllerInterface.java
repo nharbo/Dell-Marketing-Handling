@@ -6,6 +6,7 @@
 package Interface;
 
 import Domain.Campaign;
+import Domain.Partner;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ import java.util.Map;
  */
 public interface ControllerInterface {
     
-    public void addPartner(int partnerid, String partnername, String address, int zip, String city, int cvr, int phone);
+    public void addPartner(String userid, int partnerid, String partnername, String address, int zip, int cvr, int phone);
     
     public void getPartner(int partnerid);
     

@@ -61,9 +61,7 @@
 
                 </tbody>
             </table>
-
             <input type="hidden" name="origin" value="registration">         
-
         </form>
     </body>
 </html>
