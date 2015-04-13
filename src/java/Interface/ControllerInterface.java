@@ -7,6 +7,7 @@ package Interface;
 
 import Domain.Campaign;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -24,7 +25,7 @@ public interface ControllerInterface {
     
     public void addCampaign(int campaignId, int startDate, int stopDate, int budget, String status);
     
-    public List<Campaign> getCampaigns(String status);
+    public Map<String, Campaign> getAllCampaigns();
     
     
 }

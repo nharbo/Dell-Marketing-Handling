@@ -7,7 +7,10 @@ package Domain;
 
 import DataSource.DBMapper;
 import Interface.ControllerInterface;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -16,6 +19,8 @@ import java.util.List;
 public class Controller implements ControllerInterface {
     
     DBMapper db = new DBMapper();
+    private Map<String, Campaign> campaigns = new HashMap();
+    
 
     @Override
     public void addPartner(int partnerid, String partnername, String address, int zip, String city, int cvr, int phone) {
@@ -43,10 +48,8 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<Campaign> getCampaigns(String status) {
-        
-       List<Campaign> data = db.getCampaigns(status);
-       return data;
+    public Map<String, Campaign> getAllCampaigns() {
+        return db.getCampaigns();
        
     }
     

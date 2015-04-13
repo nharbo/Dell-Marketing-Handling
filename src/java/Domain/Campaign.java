@@ -5,26 +5,29 @@
  */
 package Domain;
 
+import java.sql.Date;
+
 /**
  *
  * @author nicolaiharbo
  */
 public class Campaign {
-    
+
     int campaignId;
-    int startDate;
-    int stopDate;
+    int partnerId;
+    Date startDate;
+    Date stopDate;
     int budget;
     String status;
 
-    public Campaign(int campaignId, int startDate, int stopDate, int budget, String status) {
+    public Campaign(int campaignId, int partnerId, Date startDate, Date stopDate, int budget, String status) {
         this.campaignId = campaignId;
+        this.partnerId = partnerId;
         this.startDate = startDate;
         this.stopDate = stopDate;
         this.budget = budget;
         this.status = status;
     }
-    
 
     public int getCampaignId() {
         return campaignId;
@@ -34,19 +37,27 @@ public class Campaign {
         this.campaignId = campaignId;
     }
 
-    public int getStartDate() {
+    public int getPartnerId() {
+        return partnerId;
+    }
+
+    public void setPartnerId(int partnerId) {
+        this.partnerId = partnerId;
+    }
+
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(int startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public int getStopDate() {
+    public Date getStopDate() {
         return stopDate;
     }
 
-    public void setStopDate(int stopDate) {
+    public void setStopDate(Date stopDate) {
         this.stopDate = stopDate;
     }
 
@@ -65,7 +76,5 @@ public class Campaign {
     public void setStatus(String status) {
         this.status = status;
     }
-    
-    
-    
+
 }

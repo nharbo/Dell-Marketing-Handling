@@ -89,7 +89,9 @@ public class Servlet extends HttpServlet {
                     return;
 
                 case "showActiveCampaigns":
-                    request.getSession().setAttribute("campaignList", control.getCampaigns(status));
+
+                    
+                    request.getSession().setAttribute("campaignList", control.getAllCampaigns());
                     response.sendRedirect("activeCampaigns.jsp");
                     return;
 
