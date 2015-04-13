@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class DBMapper {
 
-    public static final boolean inDebugMode = true;
+    public static final boolean inDebugMode = false;
     
     private Connection con = null;
     private ResultSet rs;
@@ -39,7 +39,6 @@ public class DBMapper {
 
     }
 
-    static boolean testRun = true;
 
     //======  Methods to read from DB ======
     
@@ -76,10 +75,7 @@ public class DBMapper {
             while (rs.next()) {
                 if(inDebugMode) { System.out.println("ResultSet: " + rs.getString("c_id"));}
                 
-                Campaign camp = new Campaign (rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"));
-                System.out.println("Printing capm: " + camp.toString()  );
-                
-                campaigns.put(rs.getString("c_id"), camp);
+                campaigns.put(rs.getString("c_id"), new Campaign (rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status")));
             }
             rs.close();
             statement.close();
@@ -89,7 +85,7 @@ public class DBMapper {
             System.out.println("Fail in DBMapper - getCampaign");
             System.out.println(e.getMessage());
         }
-        if (testRun) {
+        if (inDebugMode) {
             System.out.println("Retrieved campaign: " + campaigns);
         }
         // Mappet med campaign-objekter returneres.
