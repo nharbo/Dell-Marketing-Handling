@@ -6,6 +6,7 @@
 package DataSource;
 
 import Domain.Campaign;
+import Domain.Partner;
 import Domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +26,7 @@ public class DBMapper {
     private ResultSet rs;
     private Statement statement = null;
     private Map<String, Campaign> campaigns = new HashMap();
-    private Map<String, User> users = new HashMap();
+    private Map<String, Partner> partners = new HashMap();
 
     // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
@@ -40,16 +41,17 @@ public class DBMapper {
 
     //======  Methods to read from DB ======
     
-    public boolean addUser (int partnerid, String partnername, String adress, int zip, String city, int cvr, int phone) {
+    public void addPartner (String userid, int partnerid, String partnername, String adress, int zip, int cvr, int phone) {
         try {
             statement = con.createStatement();
-            String sqlAdd = "insert into cphnh127.partners values ("+partnerid+", '"+partnername+"', '"+adress+"', "+zip+", '"+city+"', "+cvr+", "+phone+")";
+            String sqlAdd = "insert into cphnh127.partners values ('"+userid+"', "+partnerid+", '"+partnername+"', '"+adress+"', "+zip+", "+cvr+", "+phone+")";
             statement.executeUpdate(sqlAdd);
+          //  partners.put(userid, new Partner(userid, partnerid, partnername, adress, zip, city, cvr, phone));
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addUser");
             System.out.println(e.getMessage());
         }
-        return true;
+
     }
     
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.

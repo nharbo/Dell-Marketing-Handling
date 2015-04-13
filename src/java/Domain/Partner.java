@@ -11,6 +11,7 @@ package Domain;
  */
 public class Partner {
     
+    String userid;
     int partnerid;
     String partnername;
     String address;
@@ -19,14 +20,22 @@ public class Partner {
     int cvr;
     int phone;
 
-    public Partner(int partnerid, String partnername, String address, int zip, String city, int cvr, int phone) {
+    public Partner(String userid, int partnerid, String partnername, String address, int zip, int cvr, int phone) {
+        this.userid = userid;
         this.partnerid = partnerid;
         this.partnername = partnername;
         this.address = address;
         this.zip = zip;
-        this.city = city;
         this.cvr = cvr;
         this.phone = phone;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
     }
 
     public int getPartnerid() {
@@ -61,14 +70,6 @@ public class Partner {
         this.zip = zip;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
     public int getCvr() {
         return cvr;
     }
@@ -84,10 +85,8 @@ public class Partner {
     public void setPhone(int phone) {
         this.phone = phone;
     }
-
-
-
-
+    
+    
 
     
 }
