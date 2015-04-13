@@ -17,13 +17,14 @@ public class DBConnector
 
     //-- Singleton, så der kun oprettes 1 forbindelse ---- 
     private static DBConnector instance;
+    
     private DBConnector()
     {
         try
         {
             Class.forName(driver);
-            con = DriverManager.getConnection(URL, id, pw);   // The connection will be released upon program 
-		  					      // termination by the garbage collector	
+            con = java.sql.DriverManager.getConnection(URL, id, pw);   // The connection will be released upon program 
+                                                                       // termination by the garbage collector	
         } catch (Exception e)
         {
             System.out.println("\n*** Remember to insert your Oracle ID and PW in the DBConnector class! ***\n");
@@ -31,13 +32,14 @@ public class DBConnector
             System.out.println(e);
         }
     }
+    
+    // Giver mulighed for at hente en instans af objektet, så der ikke oprettes et nyt, men bare en instans.
     public static DBConnector getInstance()
     {
         if (instance == null)
             instance = new DBConnector();
         return instance;
     }
-    //------------------
     
     public Connection getConnection()
     {
