@@ -23,12 +23,12 @@ public class DBConnector
         try
         {
             Class.forName(driver);
-            con = java.sql.DriverManager.getConnection(URL, id, pw);   // The connection will be released upon program 
-                                                                       // termination by the garbage collector	
+            con = DriverManager.getConnection(URL, id, pw); 
+                                                                       	
         } catch (Exception e)
         {
-            System.out.println("\n*** Remember to insert your Oracle ID and PW in the DBConnector class! ***\n");
-            System.out.println("error in DBConnector.getConnection()");
+            System.out.println("\n*** Er brugenavn og password korrekt? ***\n");
+            System.out.println("Fejl i DBConnector.getConnection()");
             System.out.println(e);
         }
     }
