@@ -20,6 +20,7 @@ import java.util.Map;
 public class DBMapper {
 
     Connection con = null;
+    private ResultSet rs;
     private Map<String, Campaign> campaigns = new HashMap();
 
     // Constructor som holder forbindelsen til databasen, via DBConnector.
@@ -49,11 +50,11 @@ public class DBMapper {
             // 
             statement = con.prepareStatement(SQLString1);
             //statement.setString(1, status);
-            ResultSet rs = statement.executeQuery();
+            rs = statement.executeQuery();
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
 
-            if (rs.next()) {
-                campaigns.put(String.valueOf(rs.getInt(1)), new Campaign(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getDate(4), rs.getInt(5), rs.getString(6)));
+            while(rs.next()) {
+                campaigns.put(String.valueOf(rs.getInt("c_id")), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status")));
             }
 
         } catch (Exception e) {
