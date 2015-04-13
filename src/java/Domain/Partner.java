@@ -29,6 +29,62 @@ public class Partner {
         this.phone = phone;
     }
 
+    public int getPartnerid() {
+        return partnerid;
+    }
+
+    public void setPartnerid(int partnerid) {
+        this.partnerid = partnerid;
+    }
+
+    public String getPartnername() {
+        return partnername;
+    }
+
+    public void setPartnername(String partnername) {
+        this.partnername = partnername;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public void setZip(int zip) {
+        this.zip = zip;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getCvr() {
+        return cvr;
+    }
+
+    public void setCvr(int cvr) {
+        this.cvr = cvr;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
 
 
 

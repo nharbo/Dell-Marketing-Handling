@@ -42,6 +42,7 @@ public class DBMapper {
     
     public boolean addUser (int partnerid, String partnername, String adress, int zip, String city, int cvr, int phone) {
         try {
+            statement = con.createStatement();
             String sqlAdd = "insert into cphnh127.partners values ("+partnerid+", '"+partnername+"', '"+adress+"', "+zip+", '"+city+"', "+cvr+", "+phone+")";
             statement.executeUpdate(sqlAdd);
         } catch (Exception e) {
