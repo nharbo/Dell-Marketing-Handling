@@ -9,6 +9,7 @@ import Domain.Campaign;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +20,9 @@ import java.util.Map;
  */
 public class DBMapper {
 
-    Connection con = null;
+    private Connection con = null;
     private ResultSet rs;
+    private Statement statement;
     private Map<String, Campaign> campaigns = new HashMap();
 
     // Constructor som holder forbindelsen til databasen, via DBConnector.
@@ -35,30 +37,25 @@ public class DBMapper {
     static boolean testRun = true;
 
     //======  Methods to read from DB ======
-    
-    // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
+    // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public Map<String, Campaign> getCampaigns() {
 
         campaigns = null;
 
-        // SQLString hiver alle elementer ud med status "ongoing"
-        String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
-
-        PreparedStatement statement = null;
-
         try {
-            // Gør SQL-strengen klar
+            // SQLString hiver alle elementer ud med status "ongoing"
+            String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
+
+            // Gør connection klar til at modtage et statement.
             statement = con.prepareStatement(SQLString1);
 
-            rs = statement.executeQuery();
-            
+            // Eksikverer de SQL-statements som er gjort klar, og gemmer dem i en rs-variabel af typen ResultSet
+            rs = statement.executeQuery(SQLString1);
+
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
-            while(rs.next()) {
-                campaigns.put(String.valueOf(rs.getInt("c_id")), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status")));
+            while (rs.next()) {
+                campaigns.put(String.valueOf(rs.getInt(1)), new Campaign(rs.getInt(1), rs.getInt(2), rs.getDate(3), rs.getDate(4), rs.getInt(5), rs.getString(6)));
             }
-            
-            // Eksikverer de SQL-statements som er sat op under prepare, og gemmer dem i en rs-variabel af typen ResultSet
-            rs = statement.executeQuery();
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getCampaign");
