@@ -48,6 +48,8 @@ public class Servlet extends HttpServlet {
 
                     // Her gemmes teksten fra registration-formen, ned i strings, som så bliver tilføjet
                     // til et userobjekt.
+                    System.out.println("Inside processRequest() switch origin - > registration!");
+                    
                     String userid = request.getParameter("userid");
                     int partnerid = Integer.parseInt(request.getParameter("partnerid"));
                     String partnername = request.getParameter("partnername");
@@ -59,7 +61,7 @@ public class Servlet extends HttpServlet {
                     String re_password = request.getParameter("re_password");
 
                     control.addPartner(userid, partnerid, partnername, address, zip, cvr, phone);
-                    control.addUser(userid, password, re_password);
+                    //control.addUser(userid, password, re_password);
 
                     // "message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
                     // partnername er afhængig af, hvad der blev tastet ind i formularen
