@@ -6,9 +6,11 @@
 package DataSource;
 
 import Domain.Campaign;
+import Domain.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +24,8 @@ public class DBMapper {
     Connection con = null;
     private ResultSet rs;
     private Map<String, Campaign> campaigns = new HashMap();
+    private Map<String, User> users = new HashMap();
+    private Statement statement;
 
     // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
@@ -35,6 +39,16 @@ public class DBMapper {
     static boolean testRun = true;
 
     //======  Methods to read from DB ======
+    
+    public boolean addUser (int partnerid, String partnername, String adress, int zip, String city, int cvr, int phone) {
+        try {
+            String sqlAdd = "insert into cphnh127.partners values ("+partnerid+", '"+partnername+"', '"+adress+"', "+zip+", '"+city+"', "+cvr+", "+phone+")";
+            statement.executeUpdate(sqlAdd);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
     
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public Map<String, Campaign> getCampaigns() {
