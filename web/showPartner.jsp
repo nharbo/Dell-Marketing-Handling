@@ -13,7 +13,7 @@
         <title>Partners</title>
     </head>
     <body>
-        <a href="Control?origin=showActiveCampaigns"></a>
+        <a href="Control?origin=showPartners"></a>
 
         <h1><c:out value="Partner"></c:out></h1>
 

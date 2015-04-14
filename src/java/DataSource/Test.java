@@ -16,8 +16,9 @@ import java.util.Map;
 public class Test {
     public static void main(String[] args) {
         DBMapper dbm = new DBMapper();
+        Controller ctrl = new Controller();
         
-        for (int i = 0; i < dbm.getCampaigns().size(); i++) {
+        for (int i = 0; i < ctrl.getAllPartners().size(); i++) {
             
             System.out.println("liste " + i);
             

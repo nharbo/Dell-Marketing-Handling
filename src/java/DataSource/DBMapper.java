@@ -44,7 +44,7 @@ public class DBMapper {
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public List<Campaign> getCampaigns() {
 
-        campaigns.clear();
+        //campaigns.clear();
 
         try {
             // SQLString hiver alle elementer ud med status "ongoing"
@@ -104,7 +104,7 @@ public class DBMapper {
     }
 
     public List<Partner> getPartners() {
-        partners.clear();
+        //partners.clear();
 
         try {
             // SQLString hiver alle elementer ud med status "ongoing"
@@ -135,7 +135,7 @@ public class DBMapper {
         if (inDebugMode) {
             System.out.println("Retrieved partners: " + partners);
         }
-        // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
+        // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med partner-objekter returneres.
         return new ArrayList<Partner>(partners.values());
     }
 
