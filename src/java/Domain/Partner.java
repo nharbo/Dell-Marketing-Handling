@@ -19,6 +19,12 @@ public class Partner {
     int phone;
     int zip;
 
+    public Partner() {
+        // Tom konstruktør, for at lave klassen til en bean, så den kan fanges i jsp'en.
+    }
+    
+    
+    // Konstruktør som bruges til at oprette objekter med.
     public Partner(String userid, int partnerid, String partnername, String address, int cvr, int phone, int zip) {
         this.userid = userid;
         this.partnerid = partnerid;
@@ -83,6 +89,11 @@ public class Partner {
 
     public void setPhone(int phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Partner{" + "userid=" + userid + ", partnerid=" + partnerid + ", partnername=" + partnername + ", address=" + address + ", cvr=" + cvr + ", phone=" + phone + ", zip=" + zip + '}';
     }
     
     

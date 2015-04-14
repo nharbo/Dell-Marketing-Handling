@@ -23,8 +23,19 @@ public class Campaign {
     // Denne klasse er en "bean", så vi kan få fat i den og bruge dataen på jsp-siden.
     // En bean har en tom konstruktør, getters og setters på alle input-parametrene og en toString.
 
-    public Campaign(int campaignId, int partnerId, Date startDate, Date stopDate, int budget, String status) {
+    public Campaign() {
       // tom, grundet bean-princip
+    }
+
+    
+    // Constructor til at "fange" data og lave det om til objekter, fra DBMapperen.
+    public Campaign(int campaignId, int partnerId, Date startDate, Date stopDate, int budget, String status) {
+        this.campaignId = campaignId;
+        this.partnerId = partnerId;
+        this.startDate = startDate;
+        this.stopDate = stopDate;
+        this.budget = budget;
+        this.status = status;
     }
 
     public int getCampaignId() {
