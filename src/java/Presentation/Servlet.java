@@ -115,7 +115,8 @@ public class Servlet extends HttpServlet {
                 
                 case "deletePartner":
                     String user_id = request.getParameter("user_id");
-                    request.getSession().setAttribute("deletePartner", control.deletePartner(user_id));
+                    // lav som boolean, så der kan gives feedback på, om det er gået godt eller ej.
+                    control.deletePartner(user_id);
                     request.getSession().setAttribute("message", "You have succesfully deleted " + user_id + " as a partner.");
                     response.sendRedirect("dashboardDell.jsp");
 

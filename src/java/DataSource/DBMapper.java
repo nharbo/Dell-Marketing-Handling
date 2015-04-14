@@ -137,6 +137,7 @@ public class DBMapper {
         return new ArrayList<Partner>(partners.values());
     }
 
+    //Lav som boolean, så der kan returners om det er gået godt eller ej.
     public void deletePartner(String userid) {
         try {
             statement = con.createStatement();
