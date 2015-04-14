@@ -31,7 +31,9 @@
             
             <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href = 'registration.jsp'" />
 
+            <form action="Control" metohd="POST">
             <input class="Button" type="submit" value="Rediger/Slet partner" name="RDP" onclick="location.href = 'showPartner.jsp'" />
+            <input type="hidden" name="origin" value="showPartners">
         </div>
 
         <%----%>
