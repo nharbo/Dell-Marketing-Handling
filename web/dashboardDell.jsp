@@ -25,15 +25,16 @@
             <input class="Button" type="submit" value="Anmodninger" name="Anmodninger" onclick="location.href = 'NæsteSide'"/>
 
             <form action="Control" method="POST">
-               <input class="Button" type="submit" value="Igangværende kampagner" name="IK" onclick="location.href = 'activeCampaigns.jsp'" />
-               <input type="hidden" name="origin" value="showActiveCampaigns">
+                <input class="Button" type="submit" value="Igangværende kampagner" name="IK"/>
+                <input type="hidden" name="origin" value="showActiveCampaigns">
             </form>
-            
+
             <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href = 'registration.jsp'" />
 
             <form action="Control" metohd="POST">
-            <input class="Button" type="submit" value="Rediger/Slet partner" name="RDP" onclick="location.href = 'showPartner.jsp'" />
-            <input type="hidden" name="origin" value="showPartners">
+                <input class="Button" type="submit" value="Rediger/Slet partner" name="RDP"/>
+                <input type="hidden" name="origin" value="showPartners">
+            </form>
         </div>
 
         <%----%>

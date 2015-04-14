@@ -47,6 +47,8 @@ public class DBMapper {
         //campaigns.clear();
 
         try {
+            con = DBConnector.getInstance().getConnection();
+            
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
 
@@ -66,7 +68,8 @@ public class DBMapper {
             }
             rs.close();
             statement.close();
-            con.close();
+            
+            //con.close();
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getCampaign");

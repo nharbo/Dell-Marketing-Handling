@@ -35,9 +35,23 @@ public class Servlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        //Nedenstående opretter en session, hvis der ikke allerede findes en.
+        request.getSession(true);
+        Controller control;
+        
+        //Hvis control-attributten er tom, oprettes en ny controller,
+        // hvis der findes en controller i forvejen (else), bruges denne.
+        // Dette er for at der ikke oprettes flere controllere under samme session,
+        // da der ellers vil gå data tabt, hver gang der oprettes en ny controller.
+        if(request.getSession().getAttribute("control") == null){
+          control = new Controller();
+          request.getSession().setAttribute("control", control);
+        } else {
+           control = (Controller) request.getSession().getAttribute("control");
+        }
+        
         try (PrintWriter out = response.getWriter()) {
-
-            Controller control = new Controller();
 
             //origin parameteret kommer fra den side du kommer fra, og smider dig ind i switchen,
             //og finder så det sted i switchen, som passer på det du beder om.
@@ -89,6 +103,7 @@ public class Servlet extends HttpServlet {
                     return;
 
                 case "showActiveCampaigns":
+                    
                     request.getSession().setAttribute("campaignList", control.getAllCampaigns());
                     response.sendRedirect("activeCampaigns.jsp");
                     return;

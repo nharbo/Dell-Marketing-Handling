@@ -18,7 +18,7 @@
 
     </body>
     <body> 
-        <a href="Control?origin=showActiveCampaigns"></a>
+     
 
         <h1><c:out value="Campaign"></c:out></h1>
         
