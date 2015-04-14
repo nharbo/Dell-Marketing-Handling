@@ -53,9 +53,9 @@ h1 {
     font: 14px/1 MuseoLight, Verdana, sans-serif;
 }
 
-table {
-    margin: 0 auto;
-    font: 14px/1 MuseoLight, Verdana, sans-serif;
+th {
+    color: white;
+    background-color: #0066cc;
 }
 
 

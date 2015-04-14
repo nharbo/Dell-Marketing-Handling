@@ -11,54 +11,55 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
         <title>Active campaigns</title>
     </head>
-    <body>
-        <div id="container">
-
-    </body>
     <body> 
-     
+        <div id="header">
+            <h1>Active campaigns</h1>
+            <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>          
+        </div>
+        <div id="middle">
+            <h1><c:out value=""></c:out></h1>
+                <table>
+                    <thead>
+                    <th>
+                        Campaign id
+                    </th>
+                    <th>
+                        Partner id
+                    </th>
+                    <th>
+                        Startdate
+                    </th>
+                    <th>
+                        Stopdate
+                    </th>
+                    <th>
+                        Campaignbudget
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    </thead>
 
-        <h1><c:out value="Campaign"></c:out></h1>
-        
-            <table style="border: 1px solid #0066cc">
 
-                <thead>
-                <th>
-                    Campaign id
-                </th>
-                <th>
-                    Partner id
-                </th>
-                <th>
-                    Startdate
-                </th>
-                <th>
-                    Stopdate
-                </th>
-                <th>
-                    Campaignbudget
-                </th>
-                <th>
-                    Status
-                </th>
-            </thead>
+                <c:forEach var="campaign" items="${campaignList}">
+                    <tr>
+                        <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.partnerId}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.startDate}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.stopDate}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.budget}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.status}</td>
+                    </tr>
 
+                </c:forEach>
+            </table>
+        </div>
+        <div id="bottom">
 
-
-        <c:forEach var="campaign" items="${campaignList}">
-            <tr>
-                <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
-                <td style="border: 1px solid #0066CC">${campaign.partnerId}</td>
-                <td style="border: 1px solid #0066CC">${campaign.startDate}</td>
-                <td style="border: 1px solid #0066CC">${campaign.stopDate}</td>
-                <td style="border: 1px solid #0066CC">${campaign.budget}</td>
-                <td style="border: 1px solid #0066CC">${campaign.status}</td>
-            </tr>
-
-        </c:forEach>
-    </table>
-
-</body>
+        </div>
+    </body>
 </html>
