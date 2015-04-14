@@ -60,5 +60,24 @@
 
         </c:forEach>
     </table>
+        <form action="Control" method="POST">
+            <table border="0">
+                <thead>
+                    <tr>
+                        <th> <input type="text" name="Userid" value="" />
+                        </th>
+                        <th><input class="DButton" type="submit" value="Slet Partner" name="slet"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            
+        </form>
 </body>
 </html>
