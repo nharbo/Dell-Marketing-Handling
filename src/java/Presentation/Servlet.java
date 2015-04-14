@@ -112,6 +112,12 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("partnerList", control.getAllPartners());
                     response.sendRedirect("showPartner.jsp");
                     return;
+                
+                case "deletePartner":
+                    String user_id = request.getParameter("user_id");
+                    request.getSession().setAttribute("deletePartner", control.deletePartner(user_id));
+                    request.getSession().setAttribute("message", "You have succesfully deleted " + user_id + " as a partner.");
+                    response.sendRedirect("dashboardDell.jsp");
 
             }
 

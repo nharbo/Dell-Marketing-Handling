@@ -44,10 +44,9 @@ public class DBMapper {
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public List<Campaign> getCampaigns() {
 
-
         try {
             con = DBConnector.getInstance().getConnection();
-            
+
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
 
@@ -67,8 +66,6 @@ public class DBMapper {
             }
             rs.close();
             statement.close();
-            
-          
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getCampaign");
@@ -138,6 +135,20 @@ public class DBMapper {
         }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med partner-objekter returneres.
         return new ArrayList<Partner>(partners.values());
+    }
+
+    public void deletePartner(String userid) {
+        try {
+            statement = con.createStatement();
+            String sqlDelete1 = "DELETE FROM users WHERE user_id = " + userid;
+            statement.executeQuery(sqlDelete1);
+            String sqlDelete2 = "DELETE FROM partners WHERE user_id = " + userid;
+            statement.executeQuery(sqlDelete2);
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - deletePartner");
+            System.out.println(e.getMessage());
+        }
+        
     }
 
 }
