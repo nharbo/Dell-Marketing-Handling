@@ -92,6 +92,11 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("campaignList", control.getAllCampaigns());
                     response.sendRedirect("activeCampaigns.jsp");
                     return;
+                    
+                case "showPartners":
+                    request.getSession().setAttribute("partnerList", control.getAllPartners());
+                    response.sendRedirect("showPartner.jsp");
+                    return;
 
             }
 

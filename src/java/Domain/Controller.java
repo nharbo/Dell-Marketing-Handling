@@ -35,8 +35,8 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void getPartner(int partnerid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Partner> getAllPartners() {
+        return db.getPartners();
     }
 
     @Override

@@ -18,7 +18,7 @@ public interface ControllerInterface {
     
     public void addPartner(String userid, int partnerid, String partnername, String address, int zip, int cvr, int phone);
     
-    public void getPartner(int partnerid);
+    public List<Partner> getAllPartners();
     
     public void addUser(String userid, String password);
     

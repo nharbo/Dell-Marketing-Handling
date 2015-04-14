@@ -84,13 +84,13 @@ public class DBMapper {
             statement = con.createStatement();
             String sqlAdd = "insert into cphnh127.users values ('" + userid + "', '" + password + "')";
             statement.executeQuery(sqlAdd);
-            
+
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addUser");
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip) {
         try {
             statement = con.createStatement();
@@ -101,6 +101,42 @@ public class DBMapper {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public List<Partner> getPartners() {
+        partners.clear();
+
+        try {
+            // SQLString hiver alle elementer ud med status "ongoing"
+            String SQLString1 = "SELECT * FROM partners";
+
+            // Gør connection klar til at modtage et statement.
+            statement = con.createStatement();
+
+            // Eksikverer de SQL-statements som er gjort klar, og gemmer dem i en rs-variabel af typen ResultSet
+            rs = statement.executeQuery(SQLString1);
+
+            // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
+            while (rs.next()) {
+                if (inDebugMode) {
+                    System.out.println("ResultSet: " + rs.getString("c_id"));
+                }
+
+                partners.put(rs.getString("user_id"), new Partner(rs.getString("user_id"), rs.getInt("p_id"), rs.getString("p_name"), rs.getString("address"), rs.getInt("cvr"), rs.getInt("phone"), rs.getInt("zip")));
+            }
+            rs.close();
+            statement.close();
+            con.close();
+
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - getPartner");
+            System.out.println(e.getMessage());
+        }
+        if (inDebugMode) {
+            System.out.println("Retrieved partners: " + partners);
+        }
+        // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
+        return new ArrayList<Partner>(partners.values());
     }
 
 }
