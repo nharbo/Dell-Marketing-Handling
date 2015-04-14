@@ -29,6 +29,7 @@
                 <input type="hidden" name="origin" value="showActiveCampaigns">
             </form>
 
+            
             <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href = 'registration.jsp'" />
 
             <form action="Control" metohd="POST">
