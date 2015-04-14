@@ -18,6 +18,7 @@
 
     </body>
     <body> 
+        <a href="Control?origin=showActiveCampaigns">TRYK HER</a>
 
         <h1><c:out value="Campaign"></c:out></h1>
         
