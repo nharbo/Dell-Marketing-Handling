@@ -44,7 +44,6 @@ public class DBMapper {
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public List<Campaign> getCampaigns() {
 
-        //campaigns.clear();
 
         try {
             con = DBConnector.getInstance().getConnection();
@@ -69,7 +68,7 @@ public class DBMapper {
             rs.close();
             statement.close();
             
-            //con.close();
+          
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getCampaign");
@@ -107,7 +106,7 @@ public class DBMapper {
     }
 
     public List<Partner> getPartners() {
-        //partners.clear();
+        // partners.clear();
 
         try {
             // SQLString hiver alle elementer ud med status "ongoing"
@@ -129,7 +128,6 @@ public class DBMapper {
             }
             rs.close();
             statement.close();
-            con.close();
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getPartner");
