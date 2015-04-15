@@ -94,10 +94,10 @@ public class DBMapper {
     }
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
-    public void addCampaign() {
+    public void addCampaign(int c_id, int p_id, String startdate, String stopdate, int c_budget) {
         try {
             statement = con.createStatement();
-            String sqlAddCampaign = "insert into cphnh127.campaign values ()";
+            String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", '" + p_id + ",'" + startdate + "', '" + stopdate + "', " + c_budget + ")";
             statement.executeQuery(sqlAddCampaign);
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addCampaign");
@@ -193,7 +193,7 @@ public class DBMapper {
 
     // Denne metode opdaterer partnerinformationen i partner-tabellen i databasen.
     public void editPartner(Partner partner) {
-        
+
         try {
             statement = con.createStatement();
             String sqlEdit = "UPDATE partners SET user_id = '" + partner.getUserid() + "', p_id = '" + partner.getPartnerid() + "', p_name = '" + partner.getPartnername() + "', address = '" + partner.getAddress() + "', cvr = '" + partner.getCvr() + "', phone = '" + partner.getPhone() + "', zip = '" + partner.getZip() + "' WHERE user_id = '" + partner.getUserid() + "'";
