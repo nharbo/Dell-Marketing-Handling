@@ -13,11 +13,11 @@
 
         <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
 
-        <title>Partner registration</title>
+        <title>Partner edit</title>
     </head>
     <body>
         <div id="header">
-            <h1>Partner registration</h1>
+            <h1>Partner edit</h1>
             <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>
         </div>
         <div id="middle">
@@ -75,7 +75,7 @@
 
                     </tbody>
                 </table>
-                <input type="hidden" name="origin" value="editPartner">         
+                <input type="hidden" name="origin" value="editPartnerDB">         
             </form>
         </div>
         <div id="bottom">

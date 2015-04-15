@@ -6,6 +6,7 @@
 package Presentation;
 
 import Domain.Controller;
+import Domain.Partner;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashSet;
@@ -35,22 +36,22 @@ public class Servlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         //Nedenstående opretter en session, hvis der ikke allerede findes en.
         request.getSession(true);
         Controller control;
-        
+
         //Hvis control-attributten er tom, oprettes en ny controller,
         // hvis der findes en controller i forvejen (else), bruges denne.
         // Dette er for at der ikke oprettes flere controllere under samme session,
         // da der ellers vil gå data tabt, hver gang der oprettes en ny controller.
-        if(request.getSession().getAttribute("control") == null){
-          control = new Controller();
-          request.getSession().setAttribute("control", control);
+        if (request.getSession().getAttribute("control") == null) {
+            control = new Controller();
+            request.getSession().setAttribute("control", control);
         } else {
-           control = (Controller) request.getSession().getAttribute("control");
+            control = (Controller) request.getSession().getAttribute("control");
         }
-        
+
         try (PrintWriter out = response.getWriter()) {
 
             //origin parameteret kommer fra den side du kommer fra, og smider dig ind i switchen,
@@ -103,16 +104,16 @@ public class Servlet extends HttpServlet {
                     return;
 
                 case "showActiveCampaigns":
-                    
+
                     request.getSession().setAttribute("campaignList", control.getAllCampaigns());
                     response.sendRedirect("activeCampaigns.jsp");
                     return;
-                    
+
                 case "showPartners":
                     request.getSession().setAttribute("partnerList", control.getAllPartners());
                     response.sendRedirect("showPartner.jsp");
                     return;
-                
+
                 case "deletePartner":
                     String user_idDelete = request.getParameter("useridDelete");
                     // lav som boolean, så der kan gives feedback på, om det er gået godt eller ej.
@@ -120,15 +121,29 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("message", "You have succesfully deleted " + user_idDelete + " as a partner.");
                     response.sendRedirect("dashboardDell.jsp");
                     return;
-                   
+
                 case "editPartnerPage":
                     String user_idEdit = request.getParameter("useridEdit");
-                    request.getSession().setAttribute("partner", control.getPartner(user_idEdit));    
+                    request.getSession().setAttribute("partner", control.getPartner(user_idEdit));
                     response.sendRedirect("editPartner.jsp");
                     break;
-                    
-//                case "editPartnerDB":
-//                    control.editPartner(user.....);
+
+                case "editPartnerDB":
+                    String useridEdit = request.getParameter("userid");
+                    int partneridEdit = Integer.parseInt(request.getParameter("partnerid"));
+                    String partnernameEdit = request.getParameter("partnername");
+                    String addressEdit = request.getParameter("address");
+                    int cvrEdit = Integer.parseInt(request.getParameter("cvr"));
+                    int phoneEdit = Integer.parseInt(request.getParameter("phone"));
+                    int zipEdit = Integer.parseInt(request.getParameter("zip"));
+                    //String password = request.getParameter("password");
+                    //String re_password = request.getParameter("re_password");
+
+                    //control.editUser(userid, password);
+                    control.editPartner(new Partner (useridEdit, partneridEdit, partnernameEdit, addressEdit, cvrEdit, phoneEdit, zipEdit));
+
+                    request.getSession().setAttribute("message", "You have succesfully edited " + useridEdit );
+                    response.sendRedirect("dashboardDell.jsp");
             }
 
         }

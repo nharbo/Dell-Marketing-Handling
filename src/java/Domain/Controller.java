@@ -67,7 +67,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void editPartner(Partner partner) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        db.editPartner(partner);
     }
 
 

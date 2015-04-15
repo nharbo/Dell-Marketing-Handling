@@ -173,9 +173,17 @@ public class DBMapper {
         }
         return partner;
     }
-    
-    public void editPartner(Partner partner){
+
+    public void editPartner(Partner partner) {
         
+        try {
+            statement = con.createStatement();
+            String sqlEdit = "UPDATE partners SET user_id = '" + partner.getUserid() + "', p_id = '" + partner.getPartnerid() + "', p_name = '" + partner.getPartnername() + "', address = '" + partner.getAddress() + "', cvr = '" + partner.getCvr() + "', phone = '" + partner.getPhone() + "', zip = '" + partner.getZip() + "' WHERE user_id = '" + partner.getUserid() + "'";
+            statement.executeUpdate(sqlEdit);
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - UpdatePartner");
+            System.out.println(e.getMessage());
+        }
     }
 
 //        public boolean authCheck(String id, String password) {
