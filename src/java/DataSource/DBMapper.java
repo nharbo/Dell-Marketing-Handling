@@ -43,7 +43,7 @@ public class DBMapper {
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public List<Campaign> getCampaigns() {
-        
+
         campaigns.clear();
 
         try {
@@ -88,6 +88,17 @@ public class DBMapper {
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addUser");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void addCampaign() {
+        try {
+            statement = con.createStatement();
+            String sqlAddCampaign = "insert into cphnh127.campaign values ()";
+            statement.executeQuery(sqlAddCampaign);
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - addCampaign");
             System.out.println(e.getMessage());
         }
     }
