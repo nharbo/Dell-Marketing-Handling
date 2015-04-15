@@ -20,12 +20,27 @@
             <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>
         </div>
         <div id="middle">
-            <form action="Control" method="POST">
+            <%--HVAD GØR C:OUT??--%>
+            <h1><c:out value=""></c:out></h1>
+            
+                            <c:forEach var="campaign" items="${campaignList}">
+                    <tr>
+                        <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.partnerId}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.startDate}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.stopDate}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.budget}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.status}</td>
+                    </tr>
+
+                </c:forEach>
+            
+            <form action="Control" method="POST">              
                 <table border="0" width="1" cellspacing="1">
                     <tbody>
                         <tr>
                             <td><label>UserID</label></td>
-                            <td><input type="text" name="userid"></td>
+                            <td><input type="text" name="userid" value="${partner.partnerId}"></td>
                         </tr>
                         <tr>
                             <td><label>PartnerID</label></td>

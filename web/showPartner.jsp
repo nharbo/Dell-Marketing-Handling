@@ -62,22 +62,15 @@
     </table>
         <form action="Control" method="POST">
             <table border="0">
-                <thead>
+                <tbody>
                     <tr>
-                        <th> <input type="text" name="Userid" value="" />
+                        <th> <input type="text" name="useridDelete" value="" />
                         </th>
                         <th><input class="DButton" type="submit" value="Delete Partner" name="slet"></th>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
                 </tbody>
             </table>
-            
-            
+            <input type="hidden" name="origin" value="deletePartner">
         </form>
 </body>
 </html>
