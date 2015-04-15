@@ -43,6 +43,8 @@ public class DBMapper {
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     public List<Campaign> getCampaigns() {
+        
+        campaigns.clear();
 
         try {
             con = DBConnector.getInstance().getConnection();
@@ -103,7 +105,7 @@ public class DBMapper {
     }
 
     public List<Partner> getPartners() {
-        // partners.clear();
+        partners.clear();
 
         try {
             // SQLString hiver alle elementer ud med status "ongoing"
