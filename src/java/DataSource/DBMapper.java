@@ -80,6 +80,7 @@ public class DBMapper {
         return new ArrayList<Campaign>(campaigns.values());
     }
 
+    // Denne metode tilføjer en ny user til user-tabellen.
     public void addUser(String userid, String password) {
         try {
             statement = con.createStatement();
@@ -92,6 +93,7 @@ public class DBMapper {
         }
     }
 
+    //Denne metode tilføjer en nu kampagne til campaign-tabellen
     public void addCampaign() {
         try {
             statement = con.createStatement();
@@ -103,6 +105,7 @@ public class DBMapper {
         }
     }
 
+    //Denne metode tilføjer en ny partner til partner-tabellen.
     public void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip) {
         try {
             statement = con.createStatement();
@@ -115,6 +118,7 @@ public class DBMapper {
 
     }
 
+    //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
     public List<Partner> getPartners() {
         partners.clear();
 
@@ -150,6 +154,7 @@ public class DBMapper {
         return new ArrayList<Partner>(partners.values());
     }
 
+    // Denne metode sletter en partner fra databasen, både i partner og user-tabellen, ud fra partnerid'et.
     //Lav som boolean, så der kan returners om det er gået godt eller ej.
     public void deletePartner(String userid) {
         try {
@@ -165,6 +170,7 @@ public class DBMapper {
 
     }
 
+    // Denne metode henter en enkelt partner ind, og gemmer informationerne ned i et partner-objekt.
     public Partner getPartner(String userid) {
         Partner partner = null;
 
@@ -185,6 +191,7 @@ public class DBMapper {
         return partner;
     }
 
+    // Denne metode opdaterer partnerinformationen i partner-tabellen i databasen.
     public void editPartner(Partner partner) {
         
         try {
