@@ -9,9 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+
         <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
-        
+
         <title>Campaign request</title>
     </head>
     <body>
@@ -20,10 +20,37 @@
             <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>
         </div>
         <div id="middle">
-            
+            <form action="Control" method="POST">
+            <div class="campaignInputs">
+            Startdate:
+            <br><input type="date" name="startDate">
+            </div>
+            <div class="campaignInputs">
+            Enddate:
+            <br><input type="date" name="endDate">
+            </div>
+            <div>
+            Budget:
+            <br><input type="text" name="budget">
+            </div>
+            <div>
+            Country:
+            <br><input type="text" name="country">
+            </div>
+            <div>
+            Currency:
+            <br><input type="text" name="currency">
+            </div>
+            <div>
+            Comment:
+            <br><input type="text" name="comment">
+            </div>
+                <button class="button" name="campaignRequest" value="">Request campaign</button>
+                <input type="hidden" name="origin" value="campaignRequest">
+            </form>
         </div>
         <div id="bottom">
-            
+
         </div>
     </body>
 </html>
