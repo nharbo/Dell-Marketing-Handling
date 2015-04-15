@@ -48,6 +48,7 @@ public class Controller implements ControllerInterface {
     public void addCampaign(int campaignId, int startDate, int stopDate, int budget, String status) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    //public void addCampaign(int startDate, int stopDate, int budget, String country, String currency, int campaignId)
 
     @Override
     public List<Campaign> getAllCampaigns() {

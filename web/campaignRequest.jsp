@@ -21,30 +21,34 @@
         </div>
         <div id="middle">
             <form action="Control" method="POST">
-            <div class="campaignInputs">
-            Startdate:
-            <br><input type="date" name="startDate">
-            </div>
-            <div class="campaignInputs">
-            Enddate:
-            <br><input type="date" name="endDate">
-            </div>
-            <div>
-            Budget:
-            <br><input type="text" name="budget">
-            </div>
-            <div>
-            Country:
-            <br><input type="text" name="country">
-            </div>
-            <div>
-            Currency:
-            <br><input type="text" name="currency">
-            </div>
-            <div>
-            Comment:
-            <br><input type="text" name="comment">
-            </div>
+                <div class="campaignInputs">
+                    Startdate:
+                    <br><input type="date" name="startDate">
+                </div>
+                <div class="campaignInputs">
+                    Enddate:
+                    <br><input type="date" name="endDate">
+                </div>
+                <div>
+                    Budget:
+                    <br><input type="text" name="budget">
+                </div>
+                <div>
+                    Country:
+                    <br><input type="text" name="country">
+                </div>
+                <div>
+                    Currency:
+                    <br><input type="text" name="currency">
+                </div>
+                <div>
+                    Comment:
+                    <br><input type="text" name="comment">
+                </div>
+                <div>
+                    Campaign Id:
+                    <br><input type="text" name="campaignId">
+                </div>
                 <button class="button" name="campaignRequest" value="">Request campaign</button>
                 <input type="hidden" name="origin" value="campaignRequest">
             </form>

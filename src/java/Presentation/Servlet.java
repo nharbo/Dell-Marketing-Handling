@@ -86,6 +86,22 @@ public class Servlet extends HttpServlet {
                     // hvilken side du kommer fra.
                     response.sendRedirect("dashboardDell.jsp");
                     break;
+                    
+                    case "campaignRequest":
+                  int startDate = Integer.getInteger("startDate");
+                  int stopDate = Integer.getInteger("stopDate");
+                  int budget = Integer.parseInt("budget");
+                  String country = request.getParameter("country");
+                  String currency = request.getParameter("currency");
+                  int campaignId = Integer.getInteger("campaignId");
+                  //String comment = request.getParameter("comment");
+                   control.addCampaign(campaignId, startDate, stopDate, budget, country);
+                 //control.addCampaign( startDate, stopDate, budget, country, currency, campaignId );
+                 
+                 request.getSession().setAttribute("message", "You have succesfully created a campaign");
+                 response.sendRedirect("dashboardDell.jsp");
+                 break;
+
 
                 case "login":
 
