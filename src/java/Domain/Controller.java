@@ -59,6 +59,18 @@ public class Controller implements ControllerInterface {
     public void deletePartner(String userid) {
         db.deletePartner(userid);
     }
+
+    @Override
+    public Partner getPartner(String userid) {
+        return db.getPartner(userid);
+    }
+
+    @Override
+    public void editPartner(Partner partner) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     
     
     

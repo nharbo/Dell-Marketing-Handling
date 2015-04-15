@@ -4,14 +4,15 @@
     Author     : nicolaiharbo
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+
         <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
-        
+
         <title>Partner registration</title>
     </head>
     <body>
@@ -20,63 +21,53 @@
             <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>
         </div>
         <div id="middle">
-            <%--HVAD GØR C:OUT??--%>
-            <h1><c:out value=""></c:out></h1>
-            
-                            <c:forEach var="campaign" items="${campaignList}">
-                    <tr>
-                        <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
-                        <td style="border: 1px solid #0066CC">${campaign.partnerId}</td>
-                        <td style="border: 1px solid #0066CC">${campaign.startDate}</td>
-                        <td style="border: 1px solid #0066CC">${campaign.stopDate}</td>
-                        <td style="border: 1px solid #0066CC">${campaign.budget}</td>
-                        <td style="border: 1px solid #0066CC">${campaign.status}</td>
-                    </tr>
 
-                </c:forEach>
-            
+            <h1></h1>
+
+            <%--partner.userid - partner kommer fra servletten, under den case som sender videre til editPartnersiden,
+            og userid kommer fra Partner klassen, som er lavet som en bean, og derfor kan vi få fat i getters/setters..--%>
             <form action="Control" method="POST">              
                 <table border="0" width="1" cellspacing="1">
                     <tbody>
                         <tr>
                             <td><label>UserID</label></td>
-                            <td><input type="text" name="userid" value="${partner.partnerId}"></td>
+                            <td><input type="text" name="userid" value="${partner.userid}"></td>
                         </tr>
                         <tr>
                             <td><label>PartnerID</label></td>
-                            <td><input type="text" name="partnerid"></td>
+                            <td><input type="text" name="partnerid" value="${partner.partnerid}"></td>
                         </tr>
                         <tr>
                             <td><label>Partner name</label></td>
-                            <td><input type="text" name="partnername"></td>
+                            <td><input type="text" name="partnername" value="${partner.partnername}"></td>
                         </tr>
                         <tr>
                             <td><label>Address</label></td>
-                            <td><input type="text" name="address"></td>
+                            <td><input type="text" name="address" value="${partner.address}"></td>
                         </tr>
                         <tr>
                             <td><label>Zip</label></td>
-                            <td><input type="text" name="zip"></td>
+                            <td><input type="text" name="zip" value="${partner.zip}"></td>
                         </tr>
                         <tr>
                             <td><label>City</label></td>
-                            <td><input type="text" name="city"></td>
+                            <td><input type="text" name="city" value=""></td>
                         </tr>
                         <tr>
                             <td><label>CVR-number</label></td>
-                            <td><input type="text" name="cvr"></td>
+                            <td><input type="text" name="cvr" value="${partner.cvr}"></td>
                         </tr>
                         <tr>
                             <td><label>Phone number</label></td>
-                            <td><input type="text" name="phone"></td>
+                            <td><input type="text" name="phone" value="${partner.phone}"></td>
                         </tr>
                         <tr>
                             <td><label>Password</label></td>
-                            <td><input type="password" name="password"></td>
+                            <td><input type="password" name="password" value=""></td>
                         </tr>
                         <tr>
                             <td><label>Retype password</label></td>
-                            <td><input type="password" name="retype_password"></td>
+                            <td><input type="password" name="retype_password" value=""></td>
                         </tr>
                         <tr>
                             <td><button name="signup" value="">Edit</button></td>
