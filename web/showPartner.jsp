@@ -60,17 +60,29 @@
 
         </c:forEach>
     </table>
-        <form action="Control" method="POST">
-            <table border="0">
-                <tbody>
-                    <tr>
-                        <th> <input type="text" name="useridDelete" value="" />
-                        </th>
-                        <th><input class="DButton" type="submit" value="Delete Partner" name="slet"></th>
-                    </tr>
-                </tbody>
-            </table>
-            <input type="hidden" name="origin" value="deletePartner">
-        </form>
+    <form action="Control" method="POST">
+        <table border="0">
+            <tbody>
+                <tr>
+                    <th> <input type="text" name="useridDelete" value="" />
+                    </th>
+                    <th><input class="DButton" type="submit" value="Delete Partner" name="slet"></th>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" name="origin" value="deletePartner">
+    </form>
+    <form action="Control" method="POST">
+        <table border="0">
+            <tbody>
+                <tr>
+                    <th> <input type="text" name="useridEdit" value="" />
+                    </th>
+                    <th><input class="DButton" type="submit" value="Edit Partner" name="editPartner"></th>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" name="origin" value="editPartnerPage">
+    </form>
 </body>
 </html>

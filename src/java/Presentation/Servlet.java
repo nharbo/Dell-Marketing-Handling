@@ -114,13 +114,21 @@ public class Servlet extends HttpServlet {
                     return;
                 
                 case "deletePartner":
-                    String user_id = request.getParameter("useridDelete");
+                    String user_idDelete = request.getParameter("useridDelete");
                     // lav som boolean, så der kan gives feedback på, om det er gået godt eller ej.
-                    control.deletePartner(user_id);
-                    request.getSession().setAttribute("message", "You have succesfully deleted " + user_id + " as a partner.");
+                    control.deletePartner(user_idDelete);
+                    request.getSession().setAttribute("message", "You have succesfully deleted " + user_idDelete + " as a partner.");
                     response.sendRedirect("dashboardDell.jsp");
-
+                    return;
+                   
+                case "editPartnerPage":
+                    String user_idEdit = request.getParameter("useridEdit");
+                    request.getSession().setAttribute("partner", control.getPartner(user_idEdit));    
+                    response.sendRedirect("editPartner.jsp");
+                    break;
                     
+//                case "editPartnerDB":
+//                    control.editPartner(user.....);
             }
 
         }

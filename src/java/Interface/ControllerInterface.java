@@ -29,4 +29,8 @@ public interface ControllerInterface {
     public List<Campaign> getAllCampaigns();
     
     public void deletePartner(String userid);
+    
+    public Partner getPartner(String userid);
+    
+    public void editPartner(Partner partner);
 }

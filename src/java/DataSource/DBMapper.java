@@ -165,7 +165,31 @@ public class DBMapper {
 
     }
 
-    //        public boolean authCheck(String id, String password) {
+    public Partner getPartner(String userid) {
+        Partner partner = null;
+
+        try {
+            statement = con.createStatement();
+            String sqlDelete1 = "SELECT * FROM partners WHERE user_id = '" + userid + "'";
+            rs = statement.executeQuery(sqlDelete1);
+
+            while (rs.next()) {
+
+                partner = new Partner(rs.getString("user_id"), rs.getInt("p_id"), rs.getString("p_name"), rs.getString("address"), rs.getInt("cvr"), rs.getInt("phone"), rs.getInt("zip"));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - deletePartner");
+            System.out.println(e.getMessage());
+        }
+        return partner;
+    }
+    
+    public void editPartner(Partner partner){
+        
+    }
+
+//        public boolean authCheck(String id, String password) {
 //
 //        if(userMap.getUserMap().containsKey(id)){
 //            if(getUser(id).getPassword().equals(password)){
