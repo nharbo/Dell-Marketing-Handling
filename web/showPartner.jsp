@@ -66,7 +66,7 @@
                     <tr>
                         <th> <input type="text" name="Userid" value="" />
                         </th>
-                        <th><input class="DButton" type="submit" value="Slet Partner" name="slet"></th>
+                        <th><input class="DButton" type="submit" value="Delete Partner" name="slet"></th>
                     </tr>
                 </thead>
                 <tbody>

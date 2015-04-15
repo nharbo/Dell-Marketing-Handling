@@ -22,18 +22,18 @@
 
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
         <div>
-            <input class="Button" type="submit" value="Anmodninger" name="Anmodninger" onclick="location.href = 'NæsteSide'"/>
+            <input class="Button" type="submit" value="Requests" name="Anmodninger" onclick="location.href = 'NæsteSide'"/>
 
             <form action="Control" method="POST">
-                <input class="Button" type="submit" value="Igangværende kampagner" name="IK"/>
+                <input class="Button" type="submit" value="Active campaigns" name="IK"/>
                 <input type="hidden" name="origin" value="showActiveCampaigns">
             </form>
 
             
-            <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href = 'registration.jsp'" />
+            <input class="Button" type="submit" value="Add new partner" name="Ny" onclick="location.href = 'registration.jsp'" />
 
             <form action="Control" metohd="POST">
-                <input class="Button" type="submit" value="Rediger/Slet partner" name="RDP"/>
+                <input class="Button" type="submit" value="Edit/Delete partner" name="RDP"/>
                 <input type="hidden" name="origin" value="showPartners">
             </form>
         </div>

@@ -119,7 +119,10 @@ public class Servlet extends HttpServlet {
                     control.deletePartner(user_id);
                     request.getSession().setAttribute("message", "You have succesfully deleted " + user_id + " as a partner.");
                     response.sendRedirect("dashboardDell.jsp");
+                    return;
 
+                case "editPartner":
+                    
             }
 
         }
