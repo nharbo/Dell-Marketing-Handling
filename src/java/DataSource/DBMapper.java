@@ -92,6 +92,17 @@ public class DBMapper {
         }
     }
 
+    public void addCampaign() {
+        try {
+            statement = con.createStatement();
+            String sqlAddCampaign = "insert into cphnh127.campaign values ()";
+            statement.executeQuery(sqlAddCampaign);
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - addCampaign");
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip) {
         try {
             statement = con.createStatement();
