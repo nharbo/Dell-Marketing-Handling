@@ -24,7 +24,7 @@ public class Test {
             
         }
         
-        ctrl.addCampaign(startDate, stopDate, budget, null, null, campaignId);
+        ctrl.addCampaign(5000, 4999, "1992-04-28", "1992-04-30", 1337);
         
 //        Controller control = new Controller();
 //        control.addUser("Username222011", "hej");

@@ -97,7 +97,7 @@ public class DBMapper {
     public void addCampaign(int c_id, int p_id, String startdate, String stopdate, int c_budget) {
         try {
             statement = con.createStatement();
-            String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", '" + p_id + ",'" + startdate + "', '" + stopdate + "', " + c_budget + ")";
+            String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ",'" + startdate + "', '" + stopdate + "', " + c_budget + ")";
             statement.executeQuery(sqlAddCampaign);
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addCampaign");
