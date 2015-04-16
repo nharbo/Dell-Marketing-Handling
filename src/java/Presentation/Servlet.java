@@ -60,12 +60,11 @@ public class Servlet extends HttpServlet {
             String origin = request.getParameter("origin");
 
             switch (origin) {
+
                 case "registration":
 
                     // Her gemmes teksten fra registration-formen, ned i strings, som så bliver tilføjet
                     // til et userobjekt.
-                    System.out.println("Inside processRequest() switch origin - > registration!");
-
                     String userid = request.getParameter("userid");
                     int partnerid = Integer.parseInt(request.getParameter("partnerid"));
                     String partnername = request.getParameter("partnername");
@@ -153,17 +152,19 @@ public class Servlet extends HttpServlet {
                     int budget = Integer.parseInt(request.getParameter("budget"));
                     String country = request.getParameter("country");
                     String currency = request.getParameter("currency");
-                    int campaignId = Integer.getInteger(request.getParameter("campaignId"));//Campaign id skal countes, så den selv finder et ledigt nummer.
-                    int partnerId = Integer.getInteger("partnerId");//Denne skal autoudfyldes.
+                    int campaignId = Integer.parseInt(request.getParameter("campaignId"));//Campaign id skal countes, så den selv finder et ledigt nummer.
+                    int partnerId = Integer.parseInt(request.getParameter("partnerId"));//Denne skal autoudfyldes.
                     //Status fastlåst til "Pending" her, fordi det er et request, som skal godkendes, og derefter ændres status.
                     String status = "Pending";
+                    //String campaignType = ...
                     //String comment = request.getParameter("comment");
-
+                    System.out.println("Startdate: " + startDate + " - stopdate: " + stopDate);
                     control.addCampaign(campaignId, partnerId, startDate, stopDate, budget, status, country, currency);
 
                     request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
-                    response.sendRedirect("dashboardDell.jsp");
+                    response.sendRedirect("dashboardPartner.jsp");
                     break;
+
             }
 
         }

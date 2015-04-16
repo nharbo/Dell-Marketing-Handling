@@ -22,39 +22,41 @@
         <div id="middle">
             <form action="Control" method="POST">
                 <div class="campaignInputs">
-                    Startdate:
-                    <br><input type="date" name="startDate">
-                </div>
-                <div class="campaignInputs">
-                    Enddate:
-                    <br><input type="date" name="stopDate">
-                </div>
-                <div>
-                    Budget:
-                    <br><input type="text" name="budget">
-                </div>
-                <div>
-                    Country:
-                    <br><input type="text" name="country">
-                </div>
-                <div>
-                    Currency:
-                    <br><input type="text" name="currency">
-                </div>
-                <div>
-                    Campaign Id:
-                    <br><input type="text" name="campaignId">
-                </div>
-                <div>
-                    Partner Id:
-                    <br><input type="text" name="partnerId">
-                </div>
-                <button class="button" name="campaignRequest" value="">Request campaign!</button>
-                <input type="hidden" name="origin" value="campaignRequest">
-            </form>
-        </div>
-        <div id="bottom">
+                    <div>
+                        Startdate:
+                        <br><input type="date" name="startDate">
+                    </div>
+                    <div class="campaignInputs">
+                        Enddate:
+                        <br><input type="date" name="stopDate">
+                    </div>
+                    <div>
+                        Budget:
+                        <br><input type="text" name="budget">
+                    </div>
+                    <div>
+                        Country:
+                        <br><input type="text" name="country">
+                    </div>
+                    <div>
+                        Currency:
+                        <br><input type="text" name="currency">
+                    </div>
+                    <div>
+                        Campaign Id:
+                        <br><input type="text" name="campaignId">
+                    </div>
+                    <div>
+                        Partner Id:
+                        <br><input type="text" name="partnerId">
+                    </div>
 
-        </div>
-    </body>
-</html>
+                    <button class="button" name="campaignRequest" value="">Request campaign!</button>
+                    <input type="hidden" name="origin" value="campaignRequest">
+                    </form>
+                </div>
+                <div id="bottom">
+
+                </div>
+                </body>
+                </html>
