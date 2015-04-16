@@ -24,7 +24,7 @@ public interface ControllerInterface {
     
     public void getUser(String userid);
     
-    public void addCampaign(int startDate, int stopDate, int budget, String country, String currency, int campaignId);
+    public void addCampaign(int c_id, int p_id, String startdate, String stopdate, int c_budget);
     
     public List<Campaign> getAllCampaigns();
     

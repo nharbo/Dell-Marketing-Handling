@@ -21,6 +21,7 @@ public class Controller implements ControllerInterface {
     DBMapper db = new DBMapper();
     private Map<String, Campaign> campaigns = new HashMap();
     
+    public static final boolean inDebugMode = false;
 
     @Override
     public void addPartner(String userid, int partnerid, String partnername, String address, int cvr, int phone, int zip) {
@@ -30,7 +31,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void addUser(String userid, String password) {
-        System.out.println("now in addUser");
+        if(inDebugMode) {System.out.println("now in addUser");}
         db.addUser(userid, password);
     }
 
@@ -67,8 +68,9 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addCampaign(int startDate, int stopDate, int budget, String country, String currency, int campaignId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void addCampaign(int c_id, int p_id, String startdate, String stopdate, int c_budget) {
+        db.addCampaign(c_id, p_id, startdate, stopdate, c_budget);
+        if(inDebugMode) {System.out.println("Now aded in addCampaign");}
     }
 
 

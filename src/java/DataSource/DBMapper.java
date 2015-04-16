@@ -115,7 +115,6 @@ public class DBMapper {
             System.out.println("Fail in DBMapper - addPartner");
             System.out.println(e.getMessage());
         }
-
     }
 
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.

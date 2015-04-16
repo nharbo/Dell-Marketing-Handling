@@ -24,6 +24,8 @@ public class Test {
             
         }
         
+        ctrl.addCampaign(startDate, stopDate, budget, null, null, campaignId);
+        
 //        Controller control = new Controller();
 //        control.addUser("Username222011", "hej");
 //        control.addPartner("Username222011", 121111, "123", "Århus C", 123, 123, 8000);
