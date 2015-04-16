@@ -87,7 +87,7 @@ public class Servlet extends HttpServlet {
                     response.sendRedirect("dashboardDell.jsp");
                     break;
                     
-                    case "campaignRequest":
+                case "campaignRequest":
                   int startDate = Integer.getInteger("startDate");
                   int stopDate = Integer.getInteger("stopDate");
                   int budget = Integer.parseInt("budget");
@@ -95,10 +95,10 @@ public class Servlet extends HttpServlet {
                   String currency = request.getParameter("currency");
                   int campaignId = Integer.getInteger("campaignId");
                   //String comment = request.getParameter("comment");
-                   control.addCampaign(campaignId, startDate, stopDate, budget, country);
-                 //control.addCampaign( startDate, stopDate, budget, country, currency, campaignId );
+                  
+                 control.addCampaign( startDate, stopDate, budget, country, currency, campaignId );
                  
-                 request.getSession().setAttribute("message", "You have succesfully created a campaign");
+                 request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
                  response.sendRedirect("dashboardDell.jsp");
                  break;
 
