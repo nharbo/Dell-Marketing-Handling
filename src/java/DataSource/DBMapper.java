@@ -9,6 +9,7 @@ import Domain.Campaign;
 import Domain.Partner;
 import Domain.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -64,7 +65,7 @@ public class DBMapper {
                     System.out.println("ResultSet: " + rs.getString("c_id"));
                 }
 
-                campaigns.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status")));
+                campaigns.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country"), rs.getString("currency")));
             }
             rs.close();
             statement.close();
@@ -94,10 +95,10 @@ public class DBMapper {
     }
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
-    public void addCampaign(int c_id, int p_id, String startdate, String stopdate, int c_budget) {
+    public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country, String currency) {
         try {
             statement = con.createStatement();
-            String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ",'" + startdate + "', '" + stopdate + "', " + c_budget + ")";
+            String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ",'" + startdate + "', '" + stopdate + "', " + c_budget + ",  '" + status + "',  '" + country + "',  '" + currency + "')";
             statement.executeQuery(sqlAddCampaign);
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addCampaign");

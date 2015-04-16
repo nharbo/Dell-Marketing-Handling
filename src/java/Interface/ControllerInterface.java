@@ -7,6 +7,7 @@ package Interface;
 
 import Domain.Campaign;
 import Domain.Partner;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +25,7 @@ public interface ControllerInterface {
     
     public void getUser(String userid);
     
-    public void addCampaign(int c_id, int p_id, String startdate, String stopdate, int c_budget);
+    public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country, String currency);
     
     public List<Campaign> getAllCampaigns();
     

@@ -9,6 +9,7 @@ import Domain.Controller;
 import Domain.Partner;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.servlet.ServletException;
@@ -88,15 +89,17 @@ public class Servlet extends HttpServlet {
                     break;
                     
                 case "campaignRequest":
-                  int startDate = Integer.getInteger("startDate");
-                  int stopDate = Integer.getInteger("stopDate");
-                  int budget = Integer.parseInt("budget");
+                  Date startDate = Date.valueOf(request.getParameter("startDate"));
+                  Date stopDate = Date.valueOf(request.getParameter("stopDate"));
+                  int budget = Integer.parseInt(request.getParameter("budget"));
                   String country = request.getParameter("country");
                   String currency = request.getParameter("currency");
-                  int campaignId = Integer.getInteger("campaignId");
+                  int campaignId = Integer.getInteger(request.getParameter("campaignId"));
+                  int partnerId = 0;
+                  String status = "Pending";
                   //String comment = request.getParameter("comment");
                   
-                 control.addCampaign( startDate, stopDate, budget, country, currency, campaignId );
+                 control.addCampaign( campaignId, partnerId, startDate, stopDate, budget, status, country, currency);
                  
                  request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
                  response.sendRedirect("dashboardDell.jsp");

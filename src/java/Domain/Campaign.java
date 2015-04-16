@@ -19,6 +19,8 @@ public class Campaign {
     Date stopDate;
     int budget;
     String status;
+    String country;
+    String currency;
     
     // Denne klasse er en "bean", så vi kan få fat i den og bruge dataen på jsp-siden.
     // En bean har en tom konstruktør, getters og setters på alle input-parametrene og en toString.
@@ -29,13 +31,15 @@ public class Campaign {
 
     
     // Constructor til at "fange" data og lave det om til objekter, fra DBMapperen.
-    public Campaign(int campaignId, int partnerId, Date startDate, Date stopDate, int budget, String status) {
+    public Campaign(int campaignId, int partnerId, Date startDate, Date stopDate, int budget, String status, String country, String currency) {
         this.campaignId = campaignId;
         this.partnerId = partnerId;
         this.startDate = startDate;
         this.stopDate = stopDate;
         this.budget = budget;
         this.status = status;
+        this.country = country;
+        this.currency = currency;
     }
 
     public int getCampaignId() {
@@ -84,6 +88,22 @@ public class Campaign {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+    
+     public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     @Override

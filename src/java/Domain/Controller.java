@@ -7,6 +7,7 @@ package Domain;
 
 import DataSource.DBMapper;
 import Interface.ControllerInterface;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -68,10 +69,14 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addCampaign(int c_id, int p_id, String startdate, String stopdate, int c_budget) {
-        db.addCampaign(c_id, p_id, startdate, stopdate, c_budget);
+    public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country, String currency) {
+        db.addCampaign(c_id, p_id, startdate, stopdate, c_budget, status , country, currency); // ret efter table
         if(inDebugMode) {System.out.println("Now aded in addCampaign");}
     }
+   
+
+    
+    
 
 
     
