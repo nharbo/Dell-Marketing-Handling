@@ -44,11 +44,6 @@ public class Controller implements ControllerInterface {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void addCampaign(int campaignId, int startDate, int stopDate, int budget, String status) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    //public void addCampaign(int startDate, int stopDate, int budget, String country, String currency, int campaignId)
 
     @Override
     public List<Campaign> getAllCampaigns() {
@@ -69,6 +64,11 @@ public class Controller implements ControllerInterface {
     @Override
     public void editPartner(Partner partner) {
         db.editPartner(partner);
+    }
+
+    @Override
+    public void addCampaign(int startDate, int stopDate, int budget, String country, String currency, int campaignId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 
