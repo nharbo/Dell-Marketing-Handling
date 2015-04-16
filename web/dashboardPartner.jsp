@@ -22,17 +22,17 @@
        
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
         <div>
-        <input class="Button" type="submit" value="Ansøgning om ny kampagne" name="Ansøgning" onclick="location.href='campaignRequest.jsp'"/>
+        <input class="Button" type="submit" value="Request a new campaign" name="Ansøgning" onclick="location.href='campaignRequest.jsp'"/>
     
      <%--   <input class="Button" type="submit" value="Igangværende kampagner" name="IK" onclick="location.href='activeCampaigns.jsp'" />
        
         <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href='registration.jsp'" />
      --%>
-             
+      <%--       
         <input class="Button" type="submit" value="Rediger/Slet partner" name="RDP" onclick="location.href='NæsteSide'" />
         </div>
       
-        <%----%>
+        --%>
         
         
     </body>

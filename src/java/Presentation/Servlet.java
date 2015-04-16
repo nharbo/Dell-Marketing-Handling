@@ -87,24 +87,6 @@ public class Servlet extends HttpServlet {
                     // hvilken side du kommer fra.
                     response.sendRedirect("dashboardDell.jsp");
                     break;
-                    
-                case "campaignRequest":
-                  Date startDate = Date.valueOf(request.getParameter("startDate"));
-                  Date stopDate = Date.valueOf(request.getParameter("stopDate"));
-                  int budget = Integer.parseInt(request.getParameter("budget"));
-                  String country = request.getParameter("country");
-                  String currency = request.getParameter("currency");
-                  int campaignId = Integer.getInteger(request.getParameter("campaignId"));
-                  int partnerId = 0;
-                  String status = "Pending";
-                  //String comment = request.getParameter("comment");
-                  
-                 control.addCampaign( campaignId, partnerId, startDate, stopDate, budget, status, country, currency);
-                 
-                 request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
-                 response.sendRedirect("dashboardDell.jsp");
-                 break;
-
 
                 case "login":
 
@@ -159,10 +141,29 @@ public class Servlet extends HttpServlet {
                     //String re_password = request.getParameter("re_password");
 
                     //control.editUser(userid, password);
-                    control.editPartner(new Partner (useridEdit, partneridEdit, partnernameEdit, addressEdit, cvrEdit, phoneEdit, zipEdit));
+                    control.editPartner(new Partner(useridEdit, partneridEdit, partnernameEdit, addressEdit, cvrEdit, phoneEdit, zipEdit));
 
-                    request.getSession().setAttribute("message", "You have succesfully edited " + useridEdit );
+                    request.getSession().setAttribute("message", "You have succesfully edited " + useridEdit);
                     response.sendRedirect("dashboardDell.jsp");
+                    break;
+
+                case "campaignRequest":
+                    Date startDate = Date.valueOf(request.getParameter("startDate"));
+                    Date stopDate = Date.valueOf(request.getParameter("stopDate"));
+                    int budget = Integer.parseInt(request.getParameter("budget"));
+                    String country = request.getParameter("country");
+                    String currency = request.getParameter("currency");
+                    int campaignId = Integer.getInteger(request.getParameter("campaignId"));//Campaign id skal countes, så den selv finder et ledigt nummer.
+                    int partnerId = Integer.getInteger("partnerId");//Denne skal autoudfyldes.
+                    //Status fastlåst til "Pending" her, fordi det er et request, som skal godkendes, og derefter ændres status.
+                    String status = "Pending";
+                    //String comment = request.getParameter("comment");
+
+                    control.addCampaign(campaignId, partnerId, startDate, stopDate, budget, status, country, currency);
+
+                    request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
+                    response.sendRedirect("dashboardDell.jsp");
+                    break;
             }
 
         }

@@ -22,7 +22,7 @@
 
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
         <div>
-            <input class="Button" type="submit" value="Requests" name="Anmodninger" onclick="location.href = 'NæsteSide'"/>
+            <input class="Button" type="submit" value="Requests" name="Anmodninger" onclick="location.href = 'OPRET NY SIDE MED SHOW REQUESTS'"/>
 
             <form action="Control" method="POST">
                 <input class="Button" type="submit" value="Active campaigns" name="IK"/>

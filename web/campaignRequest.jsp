@@ -27,7 +27,7 @@
                 </div>
                 <div class="campaignInputs">
                     Enddate:
-                    <br><input type="date" name="endDate">
+                    <br><input type="date" name="stopDate">
                 </div>
                 <div>
                     Budget:
@@ -42,14 +42,14 @@
                     <br><input type="text" name="currency">
                 </div>
                 <div>
-                    Comment:
-                    <br><input type="text" name="comment">
-                </div>
-                <div>
                     Campaign Id:
                     <br><input type="text" name="campaignId">
                 </div>
-                <button class="button" name="campaignRequest" value="">Request campaign</button>
+                <div>
+                    Partner Id:
+                    <br><input type="text" name="partnerId">
+                </div>
+                <button class="button" name="campaignRequest" value="">Request campaign!</button>
                 <input type="hidden" name="origin" value="campaignRequest">
             </form>
         </div>
