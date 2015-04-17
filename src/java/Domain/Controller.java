@@ -5,7 +5,7 @@
  */
 package Domain;
 
-import DataSource.DBMapper;
+import DataSource.DBfacade;
 import Interface.ControllerInterface;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class Controller implements ControllerInterface {
     
-    DBMapper db = new DBMapper();
+    DBfacade db = new DBfacade();
     
     public static final boolean inDebugMode = false;
 

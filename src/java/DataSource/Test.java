@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public class Test {
     public static void main(String[] args) {
-        DBMapper dbm = new DBMapper();
+        DBfacade dbm = new DBfacade();
         Controller ctrl = new Controller();
         
         for (int i = 0; i < ctrl.getAllPartners().size(); i++) {

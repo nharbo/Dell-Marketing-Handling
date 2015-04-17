@@ -22,7 +22,7 @@ import java.util.Map;
  *
  * @author nicolaiharbo
  */
-public class DBMapper {
+public class DBfacade {
 
     public static final boolean inDebugMode = false;
 
@@ -35,7 +35,7 @@ public class DBMapper {
     // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
     // så der kun oprettes 1 forbindelse til DB-serveren.
-    public DBMapper() {
+    public DBfacade() {
 
         con = DBConnector.getInstance().getConnection();
 
