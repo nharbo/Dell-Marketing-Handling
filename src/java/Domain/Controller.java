@@ -68,8 +68,8 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country, String currency) {
-        db.addCampaign(c_id, p_id, startdate, stopdate, c_budget, status , country, currency); // ret efter table
+    public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
+        db.addCampaign(c_id, p_id, startdate, stopdate, c_budget, status , country); // ret efter table
     }
    
 

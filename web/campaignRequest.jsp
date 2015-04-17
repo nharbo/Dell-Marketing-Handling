@@ -40,7 +40,7 @@
                     </div>
                     <div>
                         Currency:
-                        <br><input type="text" name="currency">
+                        <br><input type="text" name="currency" value="">
                     </div>
                     <div>
                         Campaign Id:

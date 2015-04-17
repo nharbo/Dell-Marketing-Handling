@@ -95,10 +95,10 @@ public class DBfacade {
     }
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
-    public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country, String currency) {
+    public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
         try {
             statement = con.createStatement();
-            String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "',  '" + currency + "')";
+            String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
             statement.executeQuery(sqlAddCampaign);
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addCampaign");
