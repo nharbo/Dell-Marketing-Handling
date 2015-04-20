@@ -16,17 +16,28 @@ import java.util.Map;
  */
 public class Test {
     public static void main(String[] args) {
+        
+//        DBConnector con = DBConnector.getInstance();
+//        
+//        try {
+//            con.getConnection().close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+        
         DBfacade dbm = new DBfacade();
         Controller ctrl = new Controller();
         
-        for (int i = 0; i < ctrl.getAllPartners().size(); i++) {
-            
-            System.out.println("liste " + i);
-            
-        }
-        
-        ctrl.addCampaign(5000, 1001, Date.valueOf("1992-04-28"), Date.valueOf("1992-04-30"), 1337, "Pending", "denmark");
-        
+        ctrl.acceptCampaignRequest(5555);
+//        
+//        for (int i = 0; i < ctrl.getAllPartners().size(); i++) {
+//            
+//            System.out.println("liste " + i);
+//            
+//        }
+//        
+//        ctrl.addCampaign(5000, 1001, Date.valueOf("1992-04-28"), Date.valueOf("1992-04-30"), 1337, "Pending", "denmark");
+//        
 //        Controller control = new Controller();
 //        control.addUser("Username222011", "hej");
 //        control.addPartner("Username222011", 121111, "123", "Århus C", 123, 123, 8000);

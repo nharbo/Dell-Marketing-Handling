@@ -76,6 +76,11 @@ public class Controller implements ControllerInterface {
     public List<Campaign> getCampaignRequests() {
         return db.getCampaignRequests();
     }
+
+    @Override
+    public void acceptCampaignRequest(int campaignid) {
+        db.acceptCampaignRequest(campaignid);
+    }
    
 
     

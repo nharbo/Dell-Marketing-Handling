@@ -215,7 +215,6 @@ public class DBfacade {
 //        }
 //        return false;
 //    }
-    
     public List<Campaign> getCampaignRequests() {
 
         campaignReq.clear();
@@ -243,5 +242,17 @@ public class DBfacade {
         }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return new ArrayList<Campaign>(campaignReq.values());
+    }
+
+    public void acceptCampaignRequest(int campaignid) {
+
+        try {
+            statement = con.createStatement();
+            String sqlEdit = "UPDATE campaign SET status = 'ongoing' WHERE c_id = '" + campaignid + "'";
+            statement.executeUpdate(sqlEdit);
+        } catch (Exception e) {
+            System.out.println("Fail in DBfacade - acceptCampaignRequest");
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -61,9 +61,22 @@
 
                 </c:forEach>
             </table>
-        </div>
-        <div id="bottom">
 
         </div>
-    </body>
+    <form action="Control" method="POST">
+        <table border="0">
+            <tbody>
+                <tr>
+                    <th> <input type="text" name="acceptCampaignid" value="Type campaign id here" />
+                    </th>
+                    <th><input class="DButton" type="submit" value="Accept campaign!" name="acceptCampaign"></th>
+                </tr>
+            </tbody>
+        </table>
+        <input type="hidden" name="origin" value="acceptCampaignRequest">
+    </form>
+<div id="bottom">
+
+</div>
+</body>
 </html>

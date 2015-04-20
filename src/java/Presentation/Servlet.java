@@ -168,6 +168,13 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("campaignReqList", control.getCampaignRequests());
                     response.sendRedirect("awaitingRequests.jsp");
                     break;
+                 
+                case "acceptCampaignRequest":
+                    int accept_c_id = Integer.parseInt(request.getParameter("acceptCampaignid"));
+                    control.acceptCampaignRequest(accept_c_id);
+                    request.getSession().setAttribute("message", "You have succesfully accepted the request");
+                    response.sendRedirect("dashboardDell.jsp");
+                    break;
             }
 
         }
