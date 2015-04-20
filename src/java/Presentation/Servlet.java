@@ -164,6 +164,9 @@ public class Servlet extends HttpServlet {
                     response.sendRedirect("dashboardPartner.jsp");
                     break;
 
+                case "awaitingRequests":
+                    
+                    break;
             }
 
         }
