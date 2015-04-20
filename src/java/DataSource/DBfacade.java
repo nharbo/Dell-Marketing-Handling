@@ -32,6 +32,7 @@ public class DBfacade {
     private Map<String, Campaign> campaigns = new HashMap();
     private Map<String, Campaign> partnercampaigns = new HashMap();
     private Map<String, Partner> partners = new HashMap();
+    private Map<String, Campaign> campaignReq = new HashMap();
 
     // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
@@ -44,43 +45,13 @@ public class DBfacade {
 
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
-    public List<Campaign> getPartnerCampaigns() {
-        campaigns.clear();
-        try {
-            con = DBConnector.getInstance().getConnection();
-            
-            String SQLString1 = "SELECT * FROM campaign WHERE c_id = 'username'";
-            
-            statement = con.createStatement();
-            
-            rs = statement.executeQuery(SQLString1);
-            
-            while (rs.next()) {
-                if (inDebugMode) {
-                    System.out.println("ResultSet: " + rs.getString("c_id"));
-                }
-            }
-            rs.close();
-            statement.close();
-
-        } catch (Exception e) {
-            System.out.println("Fail in DBMapper - getCampaign");
-            System.out.println(e.getMessage());
-        }
-        if (inDebugMode) {
-            System.out.println("Retrieved campaign: " + campaigns);
-        }
-      
-        return new ArrayList<Campaign>(partnercampaigns.values());
-            
-        }
-    
+    // Listen indeholder aktive/accepterede kampagner (ongoing)
     public List<Campaign> getCampaigns() {
 
         campaigns.clear();
 
         try {
-            con = DBConnector.getInstance().getConnection();
+     //       con = DBConnector.getInstance().getConnection();
 
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
@@ -103,7 +74,7 @@ public class DBfacade {
             statement.close();
 
         } catch (Exception e) {
-            System.out.println("Fail in DBMapper - getCampaign");
+            System.out.println("Fail in DBfacade - getCampaign");
             System.out.println(e.getMessage());
         }
         if (inDebugMode) {
@@ -121,7 +92,7 @@ public class DBfacade {
             statement.executeQuery(sqlAdd);
 
         } catch (Exception e) {
-            System.out.println("Fail in DBMapper - addUser");
+            System.out.println("Fail in DBfacade - addUser");
             System.out.println(e.getMessage());
         }
     }
@@ -133,7 +104,7 @@ public class DBfacade {
             String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
             statement.executeQuery(sqlAddCampaign);
         } catch (Exception e) {
-            System.out.println("Fail in DBMapper - addCampaign");
+            System.out.println("Fail in DBfacade - addCampaign");
             System.out.println(e.getMessage());
         }
     }
@@ -145,7 +116,7 @@ public class DBfacade {
             String sqlAdd = "insert into cphnh127.partners values ('" + userid + "', " + partnerid + ", '" + partnername + "', '" + adress + "', " + cvr + ", " + phone + ", " + zip + ")";
             statement.executeQuery(sqlAdd);
         } catch (Exception e) {
-            System.out.println("Fail in DBMapper - addPartner");
+            System.out.println("Fail in DBfacade - addPartner");
             System.out.println(e.getMessage());
         }
     }
@@ -176,7 +147,7 @@ public class DBfacade {
             statement.close();
 
         } catch (Exception e) {
-            System.out.println("Fail in DBMapper - getPartner");
+            System.out.println("Fail in DBfacade - getPartner");
             System.out.println(e.getMessage());
         }
         if (inDebugMode) {
@@ -196,7 +167,7 @@ public class DBfacade {
             String sqlDelete2 = "DELETE FROM users WHERE user_id = '" + userid + "'";
             statement.executeQuery(sqlDelete2);
         } catch (Exception e) {
-            System.out.println("Fail in DBMapper - deletePartner");
+            System.out.println("Fail in DBfacade - deletePartner");
             System.out.println(e.getMessage());
         }
 
@@ -217,7 +188,7 @@ public class DBfacade {
             }
 
         } catch (Exception e) {
-            System.out.println("Fail in DBMapper - deletePartner");
+            System.out.println("Fail in DBfacade - deletePartner");
             System.out.println(e.getMessage());
         }
         return partner;
@@ -231,7 +202,7 @@ public class DBfacade {
             String sqlEdit = "UPDATE partners SET user_id = '" + partner.getUserid() + "', p_id = '" + partner.getPartnerid() + "', p_name = '" + partner.getPartnername() + "', address = '" + partner.getAddress() + "', cvr = '" + partner.getCvr() + "', phone = '" + partner.getPhone() + "', zip = '" + partner.getZip() + "' WHERE user_id = '" + partner.getUserid() + "'";
             statement.executeUpdate(sqlEdit);
         } catch (Exception e) {
-            System.out.println("Fail in DBMapper - UpdatePartner");
+            System.out.println("Fail in DBfacade - UpdatePartner");
             System.out.println(e.getMessage());
         }
     }
@@ -245,4 +216,44 @@ public class DBfacade {
 //        }
 //        return false;
 //    }
+    public List<Campaign> getCampaignRequests() {
+
+        campaignReq.clear();
+
+        try {
+            // SQLString hiver alle elementer ud med status "ongoing"
+            String SQLString1 = "SELECT * FROM campaign WHERE status = 'pending'";
+
+            // Gør connection klar til at modtage et statement.
+            statement = con.createStatement();
+
+            // Eksikverer de SQL-statements som er gjort klar, og gemmer dem i en rs-variabel af typen ResultSet
+            rs = statement.executeQuery(SQLString1);
+
+            // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
+            while (rs.next()) {
+                campaignReq.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+            }
+            rs.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.println("Fail in DBfacade - getCampaignRequests");
+            System.out.println(e.getMessage());
+        }
+        // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
+        return new ArrayList<Campaign>(campaignReq.values());
+    }
+
+    public void acceptCampaignRequest(int campaignid) {
+
+        try {
+            statement = con.createStatement();
+            String sqlEdit = "UPDATE campaign SET status = 'ongoing' WHERE c_id = '" + campaignid + "'";
+            statement.executeUpdate(sqlEdit);
+        } catch (Exception e) {
+            System.out.println("Fail in DBfacade - acceptCampaignRequest");
+            System.out.println(e.getMessage());
+        }
+    }
 }

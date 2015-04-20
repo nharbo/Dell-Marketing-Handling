@@ -156,10 +156,10 @@ public class Servlet extends HttpServlet {
                     int campaignId = Integer.parseInt(request.getParameter("campaignId"));//Campaign id skal countes, så den selv finder et ledigt nummer.
                     int partnerId = Integer.parseInt(request.getParameter("partnerId"));//Denne skal autoudfyldes.
                     //Status fastlåst til "Pending" her, fordi det er et request, som skal godkendes, og derefter ændres status.
-                    String status = "Pending";
+                    String status = "pending";
                     //String campaignType = ...
                     //String comment = request.getParameter("comment");
-                    System.out.println("Startdate: " + startDate + " - stopdate: " + stopDate);
+                    //System.out.println("Startdate: " + startDate + " - stopdate: " + stopDate);
                     control.addCampaign(campaignId, partnerId, startDate, stopDate, budget, status, country);
 
                     request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
@@ -167,7 +167,15 @@ public class Servlet extends HttpServlet {
                     break;
 
                 case "awaitingRequests":
-                    
+                    request.getSession().setAttribute("campaignReqList", control.getCampaignRequests());
+                    response.sendRedirect("awaitingRequests.jsp");
+                    break;
+                 
+                case "acceptCampaignRequest":
+                    int accept_c_id = Integer.parseInt(request.getParameter("acceptCampaignid"));
+                    control.acceptCampaignRequest(accept_c_id);
+                    request.getSession().setAttribute("message", "You have succesfully accepted the request");
+                    response.sendRedirect("dashboardDell.jsp");
                     break;
             }
 

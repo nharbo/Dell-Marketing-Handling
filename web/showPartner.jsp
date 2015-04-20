@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="DashBoardStyle.css" type="text/css">
+        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
         <title>Partners</title>
     </head>
     <body>
@@ -64,7 +64,7 @@
         <table border="0">
             <tbody>
                 <tr>
-                    <th> <input type="text" name="useridDelete" value="" />
+                    <th> <input type="text" name="useridDelete" value="Type partner id here" />
                     </th>
                     <th><input class="DButton" type="submit" value="Delete Partner" name="slet"></th>
                 </tr>
@@ -76,7 +76,7 @@
         <table border="0">
             <tbody>
                 <tr>
-                    <th> <input type="text" name="useridEdit" value="" />
+                    <th> <input type="text" name="useridEdit" value="Type partner id here" />
                     </th>
                     <th><input class="DButton" type="submit" value="Edit Partner" name="editPartner"></th>
                 </tr>
