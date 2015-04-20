@@ -84,12 +84,15 @@ public class DBfacade {
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return new ArrayList<Campaign>(campaigns.values());
     }
+    
      public List<Campaign> getPartnerCampaigns() {
-        campaigns.clear();
+         
+        partnercampaigns.clear();
+        
         try {
             con = DBConnector.getInstance().getConnection();
             
-            String SQLString1 = "SELECT * FROM campaign WHERE c_id = 'username'";
+            String SQLString1 = "SELECT * FROM campaign WHERE c_id = '" + username + "'";
             
             statement = con.createStatement();
             
@@ -104,11 +107,8 @@ public class DBfacade {
             statement.close();
 
         } catch (Exception e) {
-            System.out.println("Fail in DBMapper - getCampaign");
+            System.out.println("Fail in DBMapper - getPartnerCampaign");
             System.out.println(e.getMessage());
-        }
-        if (inDebugMode) {
-            System.out.println("Retrieved campaign: " + campaigns);
         }
       
         return new ArrayList<Campaign>(partnercampaigns.values());
