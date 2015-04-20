@@ -40,4 +40,6 @@ public interface ControllerInterface {
     public List<Campaign> getCampaignRequests();
     
     public void acceptCampaignRequest(int campaignid);
+    
+    public void addPoe(String poeid, int c_id, String status, String poe);
 }
