@@ -34,4 +34,6 @@ public interface ControllerInterface {
     public Partner getPartner(String userid);
     
     public void editPartner(Partner partner);
+    
+    public List<Campaign> getCampaignRequests();
 }

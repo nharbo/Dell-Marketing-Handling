@@ -71,6 +71,11 @@ public class Controller implements ControllerInterface {
     public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
         db.addCampaign(c_id, p_id, startdate, stopdate, c_budget, status , country); // ret efter table
     }
+
+    @Override
+    public List<Campaign> getCampaignRequests() {
+        return db.getCampaignRequests();
+    }
    
 
     

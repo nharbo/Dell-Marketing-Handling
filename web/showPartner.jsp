@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="DashBoardStyle.css" type="text/css">
+        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
         <title>Partners</title>
     </head>
     <body>
