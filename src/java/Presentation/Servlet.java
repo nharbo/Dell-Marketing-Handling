@@ -100,7 +100,7 @@ public class Servlet extends HttpServlet {
                     }
 
                     request.getSession().setAttribute("message", "Welcome " + username + "!");
-
+                    
                     return;
 
                 case "showActiveCampaigns":
@@ -108,6 +108,8 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("campaignList", control.getAllCampaigns());
                     response.sendRedirect("activeCampaigns.jsp");
                     return;
+                case "showPartnerCampaigns":
+                    request.getSession().setAttribute("partnercampaigns", control.getAllCampaigns());
 
                 case "showPartners":
                     request.getSession().setAttribute("partnerList", control.getAllPartners());

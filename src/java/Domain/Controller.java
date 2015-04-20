@@ -51,6 +51,10 @@ public class Controller implements ControllerInterface {
         return db.getCampaigns();
        
     }
+    
+    public List<Campaign> getPartnerCampaigns(){
+        return db.getPartnerCampaigns();
+    }
 
     @Override
     public void deletePartner(String userid) {

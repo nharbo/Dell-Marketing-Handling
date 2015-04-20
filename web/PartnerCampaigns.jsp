@@ -42,7 +42,7 @@
                     </thead>
 
 
-                <c:forEach var="campaign" items="${campaignList}">
+                <c:forEach var="campaign" items="${partnercampaigns}">
                     <tr>
                         <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
                         <td style="border: 1px solid #0066CC">${campaign.startDate}</td>

@@ -30,6 +30,7 @@ public class DBfacade {
     private ResultSet rs;
     private Statement statement = null;
     private Map<String, Campaign> campaigns = new HashMap();
+    private Map<String, Campaign> partnercampaigns = new HashMap();
     private Map<String, Partner> partners = new HashMap();
 
     // Constructor som holder forbindelsen til databasen, via DBConnector.
@@ -43,6 +44,37 @@ public class DBfacade {
 
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
+    public List<Campaign> getPartnerCampaigns() {
+        campaigns.clear();
+        try {
+            con = DBConnector.getInstance().getConnection();
+            
+            String SQLString1 = "SELECT * FROM campaign WHERE c_id = 'username'";
+            
+            statement = con.createStatement();
+            
+            rs = statement.executeQuery(SQLString1);
+            
+            while (rs.next()) {
+                if (inDebugMode) {
+                    System.out.println("ResultSet: " + rs.getString("c_id"));
+                }
+            }
+            rs.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - getCampaign");
+            System.out.println(e.getMessage());
+        }
+        if (inDebugMode) {
+            System.out.println("Retrieved campaign: " + campaigns);
+        }
+      
+        return new ArrayList<Campaign>(partnercampaigns.values());
+            
+        }
+    
     public List<Campaign> getCampaigns() {
 
         campaigns.clear();
