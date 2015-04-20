@@ -90,7 +90,8 @@ public class DBfacade {
         partnercampaigns.clear();
         
         try {
-
+            //Her laves en inner join, da campaign ikke inderholder et user_id, 
+            //men kun p_id - derfor skal tabellerne sammensmeltes med en join..
             String SQLString1 = "SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = '" + username + "'";
             statement = con.createStatement();
             rs = statement.executeQuery(SQLString1);
