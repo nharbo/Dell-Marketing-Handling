@@ -42,6 +42,7 @@ public class Servlet extends HttpServlet {
         request.getSession(true);
         Controller control;
 
+        
         //Hvis control-attributten er tom, oprettes en ny controller,
         // hvis der findes en controller i forvejen (else), bruges denne.
         // Dette er for at der ikke oprettes flere controllere under samme session,
@@ -103,16 +104,13 @@ public class Servlet extends HttpServlet {
                     
                     return;
 
-                case "showActiveCampaigns":
-
+                case "showActiveCampaigns":                   
                     request.getSession().setAttribute("campaignList", control.getAllCampaigns());
                     response.sendRedirect("activeCampaigns.jsp");
                     return;
                     
                 case "showPartnerCampaigns":
-                    String user = request.getParameter("username");
-                    request.getSession().setAttribute("partnercampaigns", control.getPartnerCampaigns(user));
-                    
+                    request.getSession().setAttribute("partnercampaigns", control.getPartnerCampaigns(username));                  
                     response.sendRedirect("PartnerCampaigns.jsp");
                     return;
                  

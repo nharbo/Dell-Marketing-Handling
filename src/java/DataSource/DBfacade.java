@@ -84,26 +84,21 @@ public class DBfacade {
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return new ArrayList<Campaign>(campaigns.values());
     }
-    
-     public List<Campaign> getPartnerCampaigns(String username) {
-         
+
+    public List<Campaign> getPartnerCampaigns(String username) {
+
         partnercampaigns.clear();
         
         try {
-            con = DBConnector.getInstance().getConnection();
-            
-            String SQLString1 = "SELECT * FROM campaign WHERE c_id = '" + username + "'";
-            
+
+            String SQLString1 = "SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = '" + username + "'";
             statement = con.createStatement();
-            
             rs = statement.executeQuery(SQLString1);
             
+            System.out.println(SQLString1);
+
             while (rs.next()) {
-                if (inDebugMode) {
-                    System.out.println("ResultSet: " + rs.getString("c_id"));
-                }
-            
-              partnercampaigns.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                partnercampaigns.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -112,10 +107,10 @@ public class DBfacade {
             System.out.println("Fail in DBMapper - getPartnerCampaign");
             System.out.println(e.getMessage());
         }
-      
+
         return new ArrayList<Campaign>(partnercampaigns.values());
-            
-        }
+
+    }
 
     // Denne metode tilføjer en ny user til user-tabellen.
     public void addUser(String userid, String password) {
@@ -290,4 +285,3 @@ public class DBfacade {
         }
     }
 }
-
