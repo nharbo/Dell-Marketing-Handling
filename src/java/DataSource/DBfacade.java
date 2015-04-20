@@ -284,4 +284,16 @@ public class DBfacade {
             System.out.println(e.getMessage());
         }
     }
+    public void addPoe(String poeid, int c_id, String status, String poe){
+    
+        try {
+            statement = con.createStatement();
+            String sqlPoe = "INSERT INTO poe values('" + poeid + "', " + c_id + ", '" + status + "', '" + poe + "')";
+            statement.executeQuery(sqlPoe);
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - addPoe");
+            System.out.println(e.getMessage());
+        }
+    
+    } 
 }

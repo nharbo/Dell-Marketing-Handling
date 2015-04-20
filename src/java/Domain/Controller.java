@@ -86,7 +86,10 @@ public class Controller implements ControllerInterface {
         db.acceptCampaignRequest(campaignid);
     }
    
-
+@Override
+    public void addPoe(String poeid, int c_id, String status, String poe) {
+       db.addPoe(poeid, c_id, status, poe);
+    }
     
     
 

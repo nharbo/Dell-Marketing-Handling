@@ -11,12 +11,17 @@ package Domain;
  */
 public class POE {
     
+   String poeid;
+    int c_id;
     String status;
-    String dir;
+    String poe;
+    
 
-    public POE(String status, String dir) {
+    public POE(String poeid, int c_id, String status, String poe){
+        this.poeid = poeid;
+        this.c_id = c_id;
         this.status = status;
-        this.dir = dir;
+        this.poe = poe;
     }
 
     public String getStatus() {
@@ -27,14 +32,33 @@ public class POE {
         this.status = status;
     }
 
-    public String getDir() {
-        return dir;
+    public int getC_id() {
+        return c_id;
     }
 
-    public void setDir(String dir) {
-        this.dir = dir;
+    public void setC_id(int c_id) {
+        this.c_id = c_id;
+    }
+
+    public String getPoe() {
+        return poe;
+    }
+
+    public void setPoe(String poe) {
+        this.poe = poe;
+        
+        
+    }
+
+    public String getPoeid() {
+        return poeid;
+    }
+
+    public void setPoeid(String poeid) {
+        this.poeid = poeid;
+    }
     }
     
     
     
-}
+

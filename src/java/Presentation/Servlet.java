@@ -101,19 +101,20 @@ public class Servlet extends HttpServlet {
                     }
 
                     request.getSession().setAttribute("message", "Welcome " + username + "!");
-                    
+
                     return;
 
                 case "showActiveCampaigns":                   
                     request.getSession().setAttribute("campaignList", control.getAllCampaigns());
                     response.sendRedirect("activeCampaigns.jsp");
                     return;
-                    
+
                 case "showPartnerCampaigns":
-                    request.getSession().setAttribute("partnercampaigns", control.getPartnerCampaigns(username));                  
+                    String user = request.getParameter("username");
+                    request.getSession().setAttribute("partnercampaigns", control.getPartnerCampaigns(user));
+
                     response.sendRedirect("PartnerCampaigns.jsp");
                     return;
-                 
 
                 case "showPartners":
                     request.getSession().setAttribute("partnerList", control.getAllPartners());
@@ -174,13 +175,25 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("campaignReqList", control.getCampaignRequests());
                     response.sendRedirect("awaitingRequests.jsp");
                     break;
-                 
+
                 case "acceptCampaignRequest":
                     int accept_c_id = Integer.parseInt(request.getParameter("acceptCampaignid"));
                     control.acceptCampaignRequest(accept_c_id);
                     request.getSession().setAttribute("message", "You have succesfully accepted the request");
                     response.sendRedirect("dashboardDell.jsp");
                     break;
+
+                case "POEUpload":
+                    String POEID = request.getParameter("POEID");
+                    int POE_C_ID = Integer.parseInt(request.getParameter("CampaignID"));
+                    String POEimg = request.getParameter("POEFile");
+                    String PStatus = "Pending";
+
+                    control.addPoe(POEID, POE_C_ID, PStatus, POEimg);
+                    request.getSession().setAttribute("message", "You have succesfully send your POE ");
+                    response.sendRedirect("dashboardPartner.jsp");
+                    break;
+
             }
 
         }
