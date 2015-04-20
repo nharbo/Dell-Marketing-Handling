@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -83,6 +84,36 @@ public class DBfacade {
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return new ArrayList<Campaign>(campaigns.values());
     }
+     public List<Campaign> getPartnerCampaigns() {
+        campaigns.clear();
+        try {
+            con = DBConnector.getInstance().getConnection();
+            
+            String SQLString1 = "SELECT * FROM campaign WHERE c_id = 'username'";
+            
+            statement = con.createStatement();
+            
+            rs = statement.executeQuery(SQLString1);
+            
+            while (rs.next()) {
+                if (inDebugMode) {
+                    System.out.println("ResultSet: " + rs.getString("c_id"));
+                }
+            }
+            rs.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - getCampaign");
+            System.out.println(e.getMessage());
+        }
+        if (inDebugMode) {
+            System.out.println("Retrieved campaign: " + campaigns);
+        }
+      
+        return new ArrayList<Campaign>(partnercampaigns.values());
+            
+        }
 
     // Denne metode tilføjer en ny user til user-tabellen.
     public void addUser(String userid, String password) {
@@ -257,3 +288,4 @@ public class DBfacade {
         }
     }
 }
+
