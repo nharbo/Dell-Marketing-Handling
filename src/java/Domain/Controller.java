@@ -52,8 +52,8 @@ public class Controller implements ControllerInterface {
        
     }
     
-    public List<Campaign> getPartnerCampaigns(){
-        return db.getPartnerCampaigns();
+    public List<Campaign> getPartnerCampaigns(String username){
+        return db.getPartnerCampaigns(username);
     }
 
     @Override

@@ -110,7 +110,12 @@ public class Servlet extends HttpServlet {
                     return;
                     
                 case "showPartnerCampaigns":
-                    request.getSession().setAttribute("partnercampaigns", control.getPartnerCampaigns());
+                    String user = request.getParameter("username");
+                    request.getSession().setAttribute("partnercampaigns", control.getPartnerCampaigns(user));
+                    
+                    response.sendRedirect("PartnerCampaigns.jsp");
+                    return;
+                 
 
                 case "showPartners":
                     request.getSession().setAttribute("partnerList", control.getAllPartners());

@@ -35,6 +35,8 @@ public interface ControllerInterface {
     
     public void editPartner(Partner partner);
     
+    public List<Campaign> getPartnerCampaigns(String username);
+    
     public List<Campaign> getCampaignRequests();
     
     public void acceptCampaignRequest(int campaignid);
