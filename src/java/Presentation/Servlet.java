@@ -208,7 +208,7 @@ public class Servlet extends HttpServlet {
                     String PStatus = "Pending";
 
                     control.addPoe(POEID, POE_C_ID, PStatus, POEimg);
-                    request.getSession().setAttribute("message", "You have succesfully send your POE ");
+                    request.getSession().setAttribute("message", "You have succesfully sent your POE ");
                     response.sendRedirect("dashboardPartner.jsp");
                     break;
 
