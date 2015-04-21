@@ -28,8 +28,13 @@
             </form>
 
             <form action="Control" method="POST">
-                <input class="Button" type="submit" value="Active campaigns" name="IK"/>
+                <input class="Button" type="submit" value="Active campaigns" name="AC"/>
                 <input type="hidden" name="origin" value="showActiveCampaigns">
+            </form>
+
+            <form action="Control" method="POST">
+                <input class="Button" type="submit" value="Inactive campaigns" name="IC"/>
+                <input type="hidden" name="origin" value="showInactiveCampaigns">
             </form>
 
             <input class="Button" type="submit" value="Add new partner" name="Ny" onclick="location.href = 'registration.jsp'" />

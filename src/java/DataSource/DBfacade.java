@@ -34,6 +34,7 @@ public class DBfacade {
     private Map<String, Campaign> partnercampaigns = new HashMap();
     private Map<String, Partner> partners = new HashMap();
     private Map<String, Campaign> campaignReq = new HashMap();
+    private Map<String, Campaign> disCampaign = new HashMap();
 
     // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
@@ -88,14 +89,14 @@ public class DBfacade {
     public List<Campaign> getPartnerCampaigns(String username) {
 
         partnercampaigns.clear();
-        
+
         try {
             //Her laves en inner join, da campaign ikke inderholder et user_id, 
             //men kun p_id - derfor skal tabellerne sammensmeltes med en join..
             String SQLString1 = "SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = '" + username + "'";
             statement = con.createStatement();
             rs = statement.executeQuery(SQLString1);
-            
+
             System.out.println(SQLString1);
 
             while (rs.next()) {
@@ -285,8 +286,9 @@ public class DBfacade {
             System.out.println(e.getMessage());
         }
     }
-    public void addPoe(String poeid, int c_id, String status, String poe){
-    
+
+    public void addPoe(String poeid, int c_id, String status, String poe) {
+
         try {
             statement = con.createStatement();
             String sqlPoe = "INSERT INTO poe values('" + poeid + "', " + c_id + ", '" + status + "', '" + poe + "')";
@@ -295,6 +297,55 @@ public class DBfacade {
             System.out.println("Fail in DBMapper - addPoe");
             System.out.println(e.getMessage());
         }
-    
-    } 
+
+    }
+
+    public List<Campaign> getDisapprovedCampaigns() {
+        try {
+            String sqlDis = "SELECT * FROM campaign WHERE status = 'disapproved'";
+            statement = con.createStatement();
+            rs = statement.executeQuery(sqlDis);
+
+            while (rs.next()) {
+                disCampaign.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+            }
+
+            rs.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.println("Fail in DBfacade - getDisapprovedCampaigns");
+            System.out.println(e);
+        }
+
+        return new ArrayList<Campaign>(disCampaign.values());
+    }
+
+    public void disapproveCampaignRequest(int campaignid) {
+
+        try {
+            statement = con.createStatement();
+            String sqlDisapprove = "UPDATE campaign SET status = 'disapproved' WHERE c_id = '" + campaignid + "'";
+            statement.executeUpdate(sqlDisapprove);
+        } catch (Exception e) {
+            System.out.println("Fail in DBfacade - disapproveCampaignRequest");
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void clearDisapprovedCampaigns() {
+
+        try {
+            statement = con.createStatement();
+            //FIX SQL STRENG SÅ DEN IKKE BEHØVER FK FOR AT SLETTE.... ON CASCADE??
+            String sqlDeleteDisapprove = "DELETE FROM campaign WHERE status = 'disapproved'";
+            statement.executeQuery(sqlDeleteDisapprove);
+        } catch (Exception e) {
+            System.out.println("Fail in DBfacade - clearDisapprovedCampaigns");
+            System.out.println(e.getMessage());
+        }
+    }
 }
+
+

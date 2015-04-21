@@ -28,7 +28,7 @@ public class Test {
         DBfacade dbm = new DBfacade();
         Controller ctrl = new Controller();
         
-        ctrl.acceptCampaignRequest(5555);
+        ctrl.clearDisapprovedCampaigns();
 //        
 //        for (int i = 0; i < ctrl.getAllPartners().size(); i++) {
 //            

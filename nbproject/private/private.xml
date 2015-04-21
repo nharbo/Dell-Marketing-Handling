@@ -3,22 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/showPartner.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/dashboardDell.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/awaitingRequests.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/src/java/DataSource/DBfacade.java</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/src/java/DataSource/Test.java</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/src/java/Domain/Controller.java</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/registration.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/PartnerCampaigns.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/login.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/editPartner.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/campaignRequest.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/activeCampaigns.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/web/dashboardPartner.jsp</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/src/java/Presentation/Servlet.java</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/src/java/Interface/ControllerInterface.java</file>
-            <file>file:/Users/nicolaiharbo/Desktop/Java/Dell-Marketing-Handling/src/java/Domain/POE.java</file>
+            <file>file:/C:/Users/Nicolai/Documents/NetBeansProjects/Dell-Marketing-Handling/src/java/Presentation/Servlet.java</file>
+            <file>file:/C:/Users/Nicolai/Documents/NetBeansProjects/Dell-Marketing-Handling/web/login.jsp</file>
+            <file>file:/C:/Users/Nicolai/Documents/NetBeansProjects/Dell-Marketing-Handling/web/activeCampaigns.jsp</file>
+            <file>file:/C:/Users/Nicolai/Documents/NetBeansProjects/Dell-Marketing-Handling/src/java/Domain/Campaign.java</file>
+            <file>file:/C:/Users/Nicolai/Documents/NetBeansProjects/Dell-Marketing-Handling/src/java/DataSource/Test.java</file>
         </group>
     </open-files>
 </project-private>

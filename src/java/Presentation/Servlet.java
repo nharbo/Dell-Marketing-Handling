@@ -182,6 +182,24 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("message", "You have succesfully accepted the request");
                     response.sendRedirect("dashboardDell.jsp");
                     break;
+                    
+                case "disapproveCampaignRequest":
+                    int disapprove_c_id = Integer.parseInt(request.getParameter("disapproveCampaignid"));
+                    control.disapproveCampaignRequest(disapprove_c_id);
+                    request.getSession().setAttribute("message", "You have succesfully disapproved the request!");
+                    response.sendRedirect("dashboardDell.jsp");
+                    break;
+                    
+                case "showInactiveCampaigns":
+                    request.getSession().setAttribute("disCampaignList", control.getDisapprovedCampaigns());
+                    response.sendRedirect("disapprovedCampaigns.jsp");
+                    break;
+                    
+                case "clearDisapproved":
+                    control.clearDisapprovedCampaigns();
+                    request.getSession().setAttribute("message", "You have succesfully cleared the list of disapproved campaigns!");
+                    response.sendRedirect("dashboardDell.jsp");
+                    break;
 
                 case "POEUpload":
                     String POEID = request.getParameter("POEID");

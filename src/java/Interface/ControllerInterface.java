@@ -42,4 +42,10 @@ public interface ControllerInterface {
     public void acceptCampaignRequest(int campaignid);
     
     public void addPoe(String poeid, int c_id, String status, String poe);
+    
+    public List<Campaign> getDisapprovedCampaigns();
+    
+    public void disapproveCampaignRequest(int campaignid);
+    
+    public void clearDisapprovedCampaigns();
 }

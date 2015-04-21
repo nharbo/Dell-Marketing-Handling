@@ -90,6 +90,21 @@ public class Controller implements ControllerInterface {
     public void addPoe(String poeid, int c_id, String status, String poe) {
        db.addPoe(poeid, c_id, status, poe);
     }
+
+    @Override
+    public List<Campaign> getDisapprovedCampaigns() {
+        return db.getDisapprovedCampaigns();
+    }
+
+    @Override
+    public void disapproveCampaignRequest(int campaignid) {
+        db.disapproveCampaignRequest(campaignid);
+    }
+
+    @Override
+    public void clearDisapprovedCampaigns() {
+        db.clearDisapprovedCampaigns();
+    }
     
     
 

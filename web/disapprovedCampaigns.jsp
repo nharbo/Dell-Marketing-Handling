@@ -1,6 +1,6 @@
 <%-- 
-    Document   : activeCampaigns
-    Created on : Apr 9, 2015, 12:35:32 PM
+    Document   : disapprovedCampaigns
+    Created on : Apr 21, 2015, 10:10:32 AM
     Author     : nicolaiharbo
 --%>
 
@@ -13,11 +13,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
-        <title>Awaiting campaign requests</title>
+        <title>Disapproved campaigns</title>
     </head>
     <body> 
         <div id="header">
-            <h1>Awaiting campaign requests</h1>
+            <h1>Disapproved campaigns</h1>
             <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>          
         </div>
         <div id="middle">
@@ -48,7 +48,7 @@
                     </thead>
 
 
-                <c:forEach var="campaign" items="${campaignReqList}">
+                <c:forEach var="campaign" items="${disCampaignList}">
                     <tr>
                         <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
                         <td style="border: 1px solid #0066CC">${campaign.partnerId}</td>
@@ -61,31 +61,16 @@
 
                 </c:forEach>
             </table>
-
         </div>
         <form action="Control" method="POST">
             <table border="0">
                 <tbody>
-                    <tr>
-                        <th> <input type="text" name="acceptCampaignid" value="Type campaign id here" />
-                        </th>
-                        <th><input class="DButton" type="submit" value="Accept campaign!" name="acceptCampaign"></th>
+                    <tr>    
+                        <th><input class="DButton" type="submit" value="Clear list" name="clearDis"></th>
                     </tr>
                 </tbody>
             </table>
-            <input type="hidden" name="origin" value="acceptCampaignRequest">
-        </form>
-        <form action="Control" method="POST">
-            <table border="0">
-                <tbody>
-                    <tr>
-                        <th> <input type="text" name="disapproveCampaignid" value="Type campaign id here" />
-                        </th>
-                        <th><input class="DButton" type="submit" value="Disapprove campaign!" name="disapproveCampaign"></th>
-                    </tr>
-                </tbody>
-            </table>
-            <input type="hidden" name="origin" value="disapproveCampaignRequest">
+            <input type="hidden" name="origin" value="clearDisapproved">
         </form>
         <div id="bottom">
 
