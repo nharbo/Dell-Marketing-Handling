@@ -1,20 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Domain;
 
-/**
- *
- * @author nicolaiharbo
- */
+
 public class User {
     
     String userId;
     String password;
+    public boolean valid;
     //String re_password;
 
+    public User() {
+    }
+
+    
     public User(String userId, String password) {
         this.userId = userId;
         this.password = password;
@@ -36,10 +34,11 @@ public class User {
         this.password = password;
     }
     
-    
+    public boolean isValid() {
+        return valid;
+    }
 
-
-
-
-    
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    } 
 }
