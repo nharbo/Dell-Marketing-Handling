@@ -58,9 +58,11 @@
                 </c:forEach>
             </table>
         </div>
-       
-                Campaign ID: <input class="tinput" type="text" name="campaignid" value=""  />
-                <input type="submit" value="Show POE" name="spoe" />
-                <input type="hidden" name="origin" value="showPOE">  
+        <form action="Control" method="POST">
+
+            Campaign ID: <input type="text" name="campaignid" value=""  />
+            <input type="submit" name="spoe" />
+            <input type="hidden" name="origin" value="showPOE"> 
+        </form>
     </body>
 </html>
