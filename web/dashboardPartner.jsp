@@ -9,20 +9,29 @@
 <!DOCTYPE html>
 <html>  
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-        <link rel="stylesheet" href="DashBoardStyle.css" type="text/css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <%-- Link til CSS style filen. --%>
+        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
 
         <title>Partner Dashboard</title>
     </head>
     <body>
+        <div id="header">
         <h1> <img src="dell round logo.png" width="150" height="150" alt="dell-logo"/>
             <p><%=session.getAttribute("message")%></p>
         </h1>
-
+        </div>
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
-        <div>
+        <div id="middle">
             <input class="Button" type="submit" value="Request a new campaign" name="Ansøgning" onclick="location.href = 'campaignRequest.jsp'"/>
 
             <form action="Control" method="POST">

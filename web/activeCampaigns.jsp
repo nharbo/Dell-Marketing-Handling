@@ -10,8 +10,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+        <%-- Link til CSS style filen. --%>
         <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
         <title>Active campaigns</title>
     </head>
@@ -57,12 +66,16 @@
 
                 </c:forEach>
             </table>
-        </div>
-        <form action="Control" method="POST">
 
-            Campaign ID: <input type="text" name="campaignid" value=""  />
-            <input type="submit" value="Show POE" name="spoe" />
-            <input type="hidden" name="origin" value="showPOE"> 
-        </form>
+            <form action="Control" method="POST">
+
+                Campaign ID: <input type="text" name="campaignid" value=""  />
+                <input type="submit" value="Show POE" name="spoe" />
+                <input type="hidden" name="origin" value="showPOE"> 
+            </form>
+        </div>
+        <div id="bottom">
+
+        </div>
     </body>
 </html>

@@ -346,6 +346,9 @@ public class DBfacade {
     }
 
     public List<Campaign> getDisapprovedCampaigns() {
+        
+        disCampaign.clear();
+        
         try {
             String sqlDis = "SELECT * FROM campaign WHERE status = 'disapproved'";
             statement = con.createStatement();
@@ -379,16 +382,45 @@ public class DBfacade {
 
     }
 
+    // Clearer de inaktive kampagner (dem som ikke er blevet godkendte).
+    // Der laves en autocommit, så der ikke går noget galt, når der slettes i to forskellige tabeller.
+    // På den måde bliver begge statements kun udført, hvis de går godt. Hvis det ene fejler, bliver det andet ikke udført.
+    // OBS!! DETTE ER EN TRANSACTION!
     public void clearDisapprovedCampaigns() {
-        
+
         try {
+            //Autocommit slåes fra.
+            con.setAutoCommit(false);
+
             statement = con.createStatement();
-            //FIX SQL STRENG SÅ DEN IKKE BEHØVER FK FOR AT SLETTE.... ON CASCADE??
-            String sqlDeleteDisapprove = "DELETE FROM campaign WHERE status = 'disapproved'";
+            String sqlDeleteDisapprove = "DELETE FROM POE WHERE C_ID IN (SELECT c_id FROM campaign WHERE status = 'disapproved')";
             statement.executeQuery(sqlDeleteDisapprove);
+            String sqlDeleteDisapprove2 = "DELETE FROM campaign WHERE status = 'disapproved'";
+            statement.executeQuery(sqlDeleteDisapprove2);
+
+            //Her committes sql-strengene, og udføres, hvis de begge er "godkendte".
+            con.commit();
+
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - clearDisapprovedCampaigns");
             System.out.println(e.getMessage());
+            // trycatch i catchen, hvis der opstår exception, 
+            // som laver en rollback, så der ikke laves noget rod i DB
+            try {
+                con.rollback();
+                System.out.println("Transaction rolled back..");
+            } catch (Exception f) {
+                System.out.println("Fail doing rollback");
+                System.out.println(f);
+            }
+        } //Finally vil altid blive udført i en metode, uanset udfald i trycatch, break etc..
+        finally {
+            try {
+                //Autocommit slåes til igen.
+                con.setAutoCommit(true);
+            } catch (Exception e) {
+            }
+
         }
     }
 
