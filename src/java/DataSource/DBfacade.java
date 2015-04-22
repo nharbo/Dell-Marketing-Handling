@@ -335,7 +335,7 @@ public class DBfacade {
     }
 
     public void clearDisapprovedCampaigns() {
-
+        
         try {
             statement = con.createStatement();
             //FIX SQL STRENG SÅ DEN IKKE BEHØVER FK FOR AT SLETTE.... ON CASCADE??
