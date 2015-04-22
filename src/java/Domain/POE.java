@@ -5,19 +5,21 @@
  */
 package Domain;
 
+import javax.servlet.http.Part;
+
 /**
  *
  * @author nicolaiharbo
  */
 public class POE {
     
-   String poeid;
+    String poeid;
     int c_id;
     String status;
-    String poe;
+    Part poe;
     
 
-    public POE(String poeid, int c_id, String status, String poe){
+    public POE(String poeid, int c_id, String status, Part poe){
         this.poeid = poeid;
         this.c_id = c_id;
         this.status = status;
@@ -40,11 +42,11 @@ public class POE {
         this.c_id = c_id;
     }
 
-    public String getPoe() {
+    public Part getPoe() {
         return poe;
     }
 
-    public void setPoe(String poe) {
+    public void setPoe(Part poe) {
         this.poe = poe;
         
         

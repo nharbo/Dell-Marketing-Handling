@@ -15,17 +15,21 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
  * @author nicolaiharbo
  */
 @WebServlet(name = "Control", urlPatterns = {"/Control"})
+@MultipartConfig
+
 public class Servlet extends HttpServlet {
 
     /**
@@ -230,12 +234,14 @@ public class Servlet extends HttpServlet {
                     break;
 
                 case "POEUpload":
+                  
                     String POEID = request.getParameter("POEID");
                     int POE_C_ID = Integer.parseInt(request.getParameter("CampaignID"));
-                    String POEimg = request.getParameter("POEFile");
                     String PStatus = "Pending";
-
+                    Part POEimg = request.getPart("POEFile");
+                    
                     control.addPoe(POEID, POE_C_ID, PStatus, POEimg);
+                    //control.addPoe(POEID, POE_C_ID, PStatus, POEimg);
                     request.getSession().setAttribute("message", "You have succesfully sent your POE ");
                     response.sendRedirect("dashboardPartner.jsp");
                     break;

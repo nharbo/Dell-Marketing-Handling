@@ -10,6 +10,7 @@ import Domain.Partner;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -41,7 +42,7 @@ public interface ControllerInterface {
     
     public void acceptCampaignRequest(int campaignid);
     
-    public void addPoe(String poeid, int c_id, String status, String poe);
+    public void addPoe(String poeid, int c_id, String status, Part poe);
     
     public List<Campaign> getDisapprovedCampaigns();
     

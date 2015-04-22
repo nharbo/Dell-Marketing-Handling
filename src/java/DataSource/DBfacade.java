@@ -9,6 +9,8 @@ package DataSource;
 import Domain.Campaign;
 import Domain.Partner;
 import Domain.User;
+import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -322,12 +325,19 @@ public class DBfacade {
         }
     }
 
-    public void addPoe(String poeid, int c_id, String status, String poe) {
+    public void addPoe(String poeid, int c_id, String status, Part poe) {
 
         try {
-            statement = con.createStatement();
-            String sqlPoe = "INSERT INTO poe values('" + poeid + "', " + c_id + ", '" + status + "', '" + poe + "')";
-            statement.executeQuery(sqlPoe);
+      
+            PreparedStatement sqlPoe = con.prepareStatement("insert into cphnh127.poe values (?,?,?,?)");
+            sqlPoe.setString(1, poeid);
+            sqlPoe.setInt(2, c_id);
+            sqlPoe.setString(3, status);
+            sqlPoe.setBlob(4, poe.getInputStream());
+            sqlPoe.executeQuery();
+//            statement = con.createStatement();
+//            String sqlPoe = "insert into cphnh127.poe values('" + poeid + "', " + c_id + ", '" + status + "', " + poe + ")";
+//            statement.executeQuery(sqlPoe);
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addPoe");
             System.out.println(e.getMessage());

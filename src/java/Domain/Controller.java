@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -87,8 +88,9 @@ public class Controller implements ControllerInterface {
     }
    
 @Override
-    public void addPoe(String poeid, int c_id, String status, String poe) {
-       db.addPoe(poeid, c_id, status, poe);
+    public void addPoe(String poeid, int c_id, String status, Part poe) {
+        
+        db.addPoe(poeid, c_id, status, poe);
     }
 
     @Override
