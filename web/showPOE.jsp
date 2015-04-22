@@ -27,9 +27,14 @@
             
         </div>
         <div id="middle">
-        <h1>Accept or decline POE</h1>
+        <h1><%=session.getAttribute("message")%></h1>
+        
+        ${poe.poe}
+        
         </div>
         <div id="bottom">
+            
+            
             
         </div>
     </body>

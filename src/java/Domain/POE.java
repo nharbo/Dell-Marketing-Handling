@@ -5,6 +5,9 @@
  */
 package Domain;
 
+import java.sql.Blob;
+import javax.servlet.http.Part;
+
 /**
  *
  * @author nicolaiharbo
@@ -14,19 +17,24 @@ public class POE {
    String poeid;
     int c_id;
     String status;
-    String poe;
+    Blob poe;
+
+    public POE() {
+    }
     
 
-    public POE(String poeid, int c_id, String status, String poe){
+    public POE(String poeid, int c_id, String status, Blob poe){
         this.poeid = poeid;
         this.c_id = c_id;
         this.status = status;
         this.poe = poe;
+        
     }
 
     public String getStatus() {
         return status;
     }
+    
 
     public void setStatus(String status) {
         this.status = status;
@@ -40,11 +48,11 @@ public class POE {
         this.c_id = c_id;
     }
 
-    public String getPoe() {
+    public Blob getPoe() {
         return poe;
     }
 
-    public void setPoe(String poe) {
+    public void setPoe(Blob poe) {
         this.poe = poe;
         
         

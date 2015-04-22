@@ -6,10 +6,12 @@
 package Interface;
 
 import Domain.Campaign;
+import Domain.POE;
 import Domain.Partner;
 import java.sql.Date;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -48,4 +50,6 @@ public interface ControllerInterface {
     public void disapproveCampaignRequest(int campaignid);
     
     public void clearDisapprovedCampaigns();
+    
+    public List<POE> getPOE(int campaignid);
 }
