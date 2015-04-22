@@ -45,7 +45,7 @@ public class DBfacade {
 
     }
 
-    // Authication check.
+    // Authentication check.
     public static User login(User bean) {
         // Henter UserId og Password fra "User" class. 
         String username = bean.getUserId();
