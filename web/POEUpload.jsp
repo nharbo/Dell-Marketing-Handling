@@ -23,7 +23,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="Control" method="POST" enctype="multipart/form-data">
+        <div id="header">
+            
+        </div>
+        <div id="middle">
+        <form action="Control" method="POST" enctype="multipart/form-data" name="Poeup">
             <%-- Campaign ID skal helst selv fyldes ud når du kommer ind på denne side, indtil videre skal det gøres manuelt --%>
             POEID: <input type="text" name="POEID">
             CampaignID: <input type="text" name="CampaignID">

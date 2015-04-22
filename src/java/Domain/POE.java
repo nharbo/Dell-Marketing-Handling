@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import java.sql.Blob;
 import javax.servlet.http.Part;
 
 /**
@@ -19,16 +20,20 @@ public class POE {
     Part poe;
     
 
+
     public POE(String poeid, int c_id, String status, Part poe){
+
         this.poeid = poeid;
         this.c_id = c_id;
         this.status = status;
         this.poe = poe;
+        
     }
 
     public String getStatus() {
         return status;
     }
+    
 
     public void setStatus(String status) {
         this.status = status;
@@ -42,16 +47,6 @@ public class POE {
         this.c_id = c_id;
     }
 
-    public Part getPoe() {
-        return poe;
-    }
-
-    public void setPoe(Part poe) {
-        this.poe = poe;
-        
-        
-    }
-
     public String getPoeid() {
         return poeid;
     }
@@ -59,7 +54,20 @@ public class POE {
     public void setPoeid(String poeid) {
         this.poeid = poeid;
     }
+
+    public Part getPoe() {
+        return poe;
     }
+
+    public void setPoe(Part poe) {
+        this.poe = poe;
+    }
+
+
+    }
+
+ 
+    
     
     
     

@@ -7,6 +7,7 @@
 package DataSource;
 
 import Domain.Campaign;
+import Domain.POE;
 import Domain.Partner;
 import Domain.User;
 import java.io.File;
@@ -38,6 +39,7 @@ public class DBfacade {
     private Map<String, Partner> partners = new HashMap();
     private Map<String, Campaign> campaignReq = new HashMap();
     private Map<String, Campaign> disCampaign = new HashMap();
+    private Map<String, POE> poe = new HashMap();
 
     // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
@@ -346,9 +348,9 @@ public class DBfacade {
     }
 
     public List<Campaign> getDisapprovedCampaigns() {
-        
+
         disCampaign.clear();
-        
+
         try {
             String sqlDis = "SELECT * FROM campaign WHERE status = 'disapproved'";
             statement = con.createStatement();
@@ -422,6 +424,26 @@ public class DBfacade {
             }
 
         }
+    }
+
+    public List<POE> getPOE(int campaignid) {
+
+        try {
+            String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
+            statement = con.createStatement();
+            rs = statement.executeQuery(SQLpoe);
+            
+        while(rs.next()){
+            poe.put(rs.getString("poeid"), new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img")));
+        }
+
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - getPOE");
+            System.out.println(e.getMessage());
+        }
+
+        return new ArrayList<POE>(poe.values());
+
     }
 
 }

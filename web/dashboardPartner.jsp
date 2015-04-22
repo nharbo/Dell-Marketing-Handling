@@ -38,7 +38,11 @@
                 <input class="Button" type="submit" value="Show all campaigns" name="Campaigns"/>
                 <input type="hidden" name="origin" value="showPartnerCampaigns">
             </form>
-            <input class="Button" type="submit" value="Send POE" name="POE" onclick="location.href = 'POEUpload.jsp'"/>
+        </div>
+        <div id="bottom">
+            
+        </div>
+
             <%--   <input class="Button" type="submit" value="Igangværende kampagner" name="IK" onclick="location.href='activeCampaigns.jsp'" />
               
                <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href='registration.jsp'" />

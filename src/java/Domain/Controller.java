@@ -26,7 +26,6 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void addPartner(String userid, int partnerid, String partnername, String address, int cvr, int phone, int zip) {
-        System.out.println("now in addPartner");
         db.addPartner(userid, partnerid, partnername, address, cvr, phone, zip);
     }
 
@@ -106,6 +105,11 @@ public class Controller implements ControllerInterface {
     @Override
     public void clearDisapprovedCampaigns() {
         db.clearDisapprovedCampaigns();
+    }
+
+    @Override
+    public List<POE> getPOE(int campaignid) {
+       return db.getPOE(campaignid);
     }
     
     

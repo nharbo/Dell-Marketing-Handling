@@ -247,8 +247,9 @@ public class Servlet extends HttpServlet {
                     break;
                     
                 case "showPOE":
-                    String campaignid = request.getParameter("campaignid");
+                    int campaignid = Integer.parseInt(request.getParameter("campaignid"));
                     request.getSession().setAttribute("message", "Showing POE for campaign: " + campaignid + ". Please accept or decline.");
+                    request.getSession().setAttribute("poe", control.getPOE(campaignid));
                     response.sendRedirect("showPOE.jsp");
                     break;
                     
