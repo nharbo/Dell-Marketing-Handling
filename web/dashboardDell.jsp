@@ -25,12 +25,14 @@
         <title>Dell Dashboard</title>
     </head>
     <body>
+        <div id="header">
         <h1> <img src="dell round logo.png" width="150" height="150" alt="dell-logo"/>
             <p><%=session.getAttribute("message")%></p>
         </h1>
+        </div>
 
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
-        <div>
+        <div id="middle">
             <form action="Control" method="POST">
                 <input class="Button" type="submit" value="Awaiting requests" name="Anmodninger"/>
                 <input type="hidden" name="origin" value="awaitingRequests">
@@ -55,7 +57,9 @@
         </div>
 
         <%----%>
-
+        <div id="bottom">
+            
+        </div>
 
     </body>
 </html>

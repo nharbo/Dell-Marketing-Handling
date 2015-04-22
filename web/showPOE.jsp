@@ -23,6 +23,14 @@
         <title>Accept or decline POE</title>
     </head>
     <body>
+        <div id="header">
+            
+        </div>
+        <div id="middle">
         <h1>Accept or decline POE</h1>
+        </div>
+        <div id="bottom">
+            
+        </div>
     </body>
 </html>

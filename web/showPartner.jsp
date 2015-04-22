@@ -26,7 +26,10 @@
         <title>Partners</title>
     </head>
     <body>
-
+        <div id="header">
+            
+        </div>
+        <div id="middle">
         <h1><c:out value="Partner"></c:out></h1>
 
             <table style="border: 1px solid #0066cc">
@@ -94,5 +97,9 @@
         </table>
         <input type="hidden" name="origin" value="editPartnerPage">
     </form>
+        </div>
+        <div id="bottom">
+            
+        </div>
 </body>
 </html>
