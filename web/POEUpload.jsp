@@ -23,6 +23,10 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div id="header">
+            
+        </div>
+        <div id="middle">
         <form action="Control" method="POST" enctype="multipart/form-data" name="Poeup">
             <%-- Campaign ID skal helst selv fyldes ud når du kommer ind på denne side, indtil videre skal det gøres manuelt --%>
             POEID: <input type="text" name="POEID">
@@ -31,6 +35,10 @@
             Attach POE FILE: <input type="file" name="POEFile">
             <input type="submit" value="Send">
             <input type="hidden" name="origin" value="POEUpload">
+            </div>
+            <div id="bottom">
+                
+            </div>
 
         </form>
     </body>

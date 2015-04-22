@@ -25,18 +25,23 @@
         <title>Partner Dashboard</title>
     </head>
     <body>
+        <div id="header">
         <h1> <img src="dell round logo.png" width="150" height="150" alt="dell-logo"/>
             <p><%=session.getAttribute("message")%></p>
         </h1>
-
+        </div>
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
-        <div>
+        <div id="middle">
             <input class="Button" type="submit" value="Request a new campaign" name="Ansøgning" onclick="location.href = 'campaignRequest.jsp'"/>
 
             <form action="Control" method="POST">
                 <input class="Button" type="submit" value="Show all campaigns" name="Campaigns"/>
                 <input type="hidden" name="origin" value="showPartnerCampaigns">
             </form>
+        </div>
+        <div id="bottom">
+            
+        </div>
 
             <%--   <input class="Button" type="submit" value="Igangværende kampagner" name="IK" onclick="location.href='activeCampaigns.jsp'" />
               
