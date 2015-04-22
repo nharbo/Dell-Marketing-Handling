@@ -211,6 +211,16 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("message", "You have succesfully sent your POE ");
                     response.sendRedirect("dashboardPartner.jsp");
                     break;
+                    
+                case "showPOE":
+                    String campaignid = request.getParameter("campaignid");
+                    request.getSession().setAttribute("message", "Showing POE for campaign: " + campaignid + ". Please accept or decline.");
+                    response.sendRedirect("showPOE.jsp");
+                    break;
+                    
+                case "AcceptDeclinePOE":
+                    
+                    break;
 
             }
 
