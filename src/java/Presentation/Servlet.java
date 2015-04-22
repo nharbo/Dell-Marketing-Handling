@@ -5,8 +5,10 @@
  */
 package Presentation;
 
+import DataSource.DBfacade;
 import Domain.Controller;
 import Domain.Partner;
+import Domain.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -17,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -42,7 +45,6 @@ public class Servlet extends HttpServlet {
         request.getSession(true);
         Controller control;
 
-        
         //Hvis control-attributten er tom, oprettes en ny controller,
         // hvis der findes en controller i forvejen (else), bruges denne.
         // Dette er for at der ikke oprettes flere controllere under samme session,
@@ -91,20 +93,41 @@ public class Servlet extends HttpServlet {
                 case "login":
 
                     //skriv et authCheck som kaldes igennem controlleren her.
-                    String username = request.getParameter("username");
-
+//                    String username = request.getParameter("username");
                     //Nedenstående afgør om det er Dell eller Partner dashboard som vises ved login. Dette skal nok skrivs ind i en auth i stedet
-                    if (username.equalsIgnoreCase("Dell")) {
-                        response.sendRedirect("dashboardDell.jsp");
-                    } else {
-                        response.sendRedirect("dashboardPartner.jsp");
-                    }
+//                    if (username.equalsIgnoreCase("Dell")) {
+//                        response.sendRedirect("dashboardDell.jsp");
+//                    } else {
+//                        response.sendRedirect("dashboardPartner.jsp");
+//                    }
+//                    request.getSession().setAttribute("message", "Welcome " + username + "!");
+                    try {
+                        User user = new User();
+                        String username = request.getParameter("username");
+                        user.setUserId(request.getParameter("username"));
+                        user.setPassword(request.getParameter("password"));
+                        user = DBfacade.login(user);
+                        if (user.isValid()) {
+                            HttpSession session = request.getSession(true);
+                            session.setAttribute("message", user);
 
-                    request.getSession().setAttribute("message", "Welcome " + username + "!");
+                            // I tilfælde af del login.
+                            if (username.equalsIgnoreCase("Dell")) {
+                                response.sendRedirect("dashboardDell.jsp"); //logged-in page for Dell 
+                            } else if (username.equalsIgnoreCase("Elgiganten100") || username.equalsIgnoreCase("Elgiganten200")) { // I tilfælde af partner login. 
+                                response.sendRedirect("dashboardPartner.jsp");
+                            }
+
+                        } else {
+                            response.sendRedirect("invalidLogin.jsp"); //error page 
+
+                        }
+                    } catch (Exception e) {
+                    }
 
                     return;
 
-                case "showActiveCampaigns":                   
+                case "showActiveCampaigns":
                     request.getSession().setAttribute("campaignList", control.getAllCampaigns());
                     response.sendRedirect("activeCampaigns.jsp");
                     return;
@@ -182,19 +205,19 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("message", "You have succesfully accepted the request");
                     response.sendRedirect("dashboardDell.jsp");
                     break;
-                    
+
                 case "disapproveCampaignRequest":
                     int disapprove_c_id = Integer.parseInt(request.getParameter("disapproveCampaignid"));
                     control.disapproveCampaignRequest(disapprove_c_id);
                     request.getSession().setAttribute("message", "You have succesfully disapproved the request!");
                     response.sendRedirect("dashboardDell.jsp");
                     break;
-                    
+
                 case "showInactiveCampaigns":
                     request.getSession().setAttribute("disCampaignList", control.getDisapprovedCampaigns());
                     response.sendRedirect("disapprovedCampaigns.jsp");
                     break;
-                    
+
                 case "clearDisapproved":
                     control.clearDisapprovedCampaigns();
                     request.getSession().setAttribute("message", "You have succesfully cleared the list of disapproved campaigns!");

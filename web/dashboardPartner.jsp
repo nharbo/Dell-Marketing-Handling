@@ -4,6 +4,7 @@
     Author     : nicolaiharbo
 --%>
 
+<%@page import="Domain.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>  
@@ -17,6 +18,8 @@
     </head>
     <body>
         <h1> <img src="dell round logo.png" width="150" height="150" alt="dell-logo"/>
+            <p><% User currentUser = (User)(session.getAttribute("message")); %>
+            Welcome <%= currentUser.getUserId()%></p>
             <p><%=session.getAttribute("message")%></p>
         </h1>
 
