@@ -40,10 +40,11 @@ public class Servlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        //Nedenstående opretter en session, hvis der ikke allerede findes en.
-        request.getSession(true);
         Controller control;
+        
+        //Nedenstående opretter en session, hvis der ikke allerede findes en, som efterfølgende
+        //kan bruges til at fører oplysninger om brugeren videre i programmet.
+        HttpSession session = request.getSession(true);
 
         //Hvis control-attributten er tom, oprettes en ny controller,
         // hvis der findes en controller i forvejen (else), bruges denne.
@@ -104,11 +105,15 @@ public class Servlet extends HttpServlet {
                     try {
                         User user = new User();
                         String username = request.getParameter("username");
+                        
+                        // Her gemmes username ned i en session-variabel, så vi kan bruge den i en anden case.
+                        session.setAttribute("username", username);
+                        
                         user.setUserId(request.getParameter("username"));
                         user.setPassword(request.getParameter("password"));
                         user = DBfacade.login(user);
                         if (user.isValid()) {
-                            HttpSession session = request.getSession(true);
+                            
                             session.setAttribute("message", user);
 
                             // I tilfælde af del login.
@@ -133,9 +138,9 @@ public class Servlet extends HttpServlet {
                     return;
 
                 case "showPartnerCampaigns":
-                    String user = request.getParameter("username");
+                    String user = (String)session.getAttribute("username");
                     request.getSession().setAttribute("partnercampaigns", control.getPartnerCampaigns(user));
-
+                    
                     response.sendRedirect("PartnerCampaigns.jsp");
                     return;
 
