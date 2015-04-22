@@ -41,4 +41,12 @@ public class User {
     public void setValid(boolean valid) {
         this.valid = valid;
     } 
+
+    @Override
+    public String toString() {
+        return userId;
+    }
+    
+    
+    
 }
