@@ -25,11 +25,11 @@ import java.util.Map;
  */
 public class DBfacade {
 
-    public static final boolean inDebugMode = false;
+    public static final boolean inDebugMode = true;
 
-    private Connection con = null;
-    private ResultSet rs;
-    private Statement statement = null;
+    private static Connection con = null;
+    private static ResultSet rs;
+    private static Statement statement = null;
     private Map<String, Campaign> campaigns = new HashMap();
     private Map<String, Campaign> partnercampaigns = new HashMap();
     private Map<String, Partner> partners = new HashMap();
@@ -43,6 +43,41 @@ public class DBfacade {
 
         con = DBConnector.getInstance().getConnection();
 
+    }
+
+    // Authication check.
+    public static User login(User bean) {
+        // Henter UserId og Password fra "User" class. 
+        String username = bean.getUserId();
+        String password = bean.getPassword();
+
+        // SQL-streng der finder alle users der passer med oplyste user_id og pwd. 
+        String SQLString = "select * from users where user_id='" + username + "' AND pwd = '" + password + "'";
+
+        try {
+            // Gør connection klar til at modtage et statement.
+            statement = con.createStatement();
+
+            // Eksikverer de SQL-statements som er gjort klar, og gemmer dem i en rs-variabel af typen ResultSet
+            rs = statement.executeQuery(SQLString);
+
+            // 
+            boolean more = rs.next();
+
+            // If user does not exist, set isValid variable in user class to false. 
+            if (!more) {
+                bean.setValid(false);
+            } // If user exists, set isValid variable in user class to true.
+            else if (more) {
+                bean.setValid(true);
+            }
+            rs.close();
+            statement.close();
+
+        } catch (Exception e) {
+            System.out.println("Log-in failed: An exception has occured - " + e);
+        }
+        return bean;
     }
 
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
@@ -346,6 +381,5 @@ public class DBfacade {
             System.out.println(e.getMessage());
         }
     }
+
 }
-
-
