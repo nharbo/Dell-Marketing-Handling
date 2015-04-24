@@ -91,11 +91,11 @@
                 <tr>
                     <th> <input type="text" name="useridEdit" value="Type partner id here" />
                     </th>
-                    <th><input class="DButton" type="submit" value="Edit Partner" name="editPartner"></th>
+                    <th><input class="DButton" type="submit" value="editPartnerPage" name="origin"></th>
                 </tr>
             </tbody>
         </table>
-        <input type="hidden" name="origin" value="editPartnerPage">
+    <%--<input type="hidden" name="origin" value="editPartnerPage"> --%>
     </form>
         </div>
         <div id="bottom">
