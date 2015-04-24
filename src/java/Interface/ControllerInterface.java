@@ -51,5 +51,5 @@ public interface ControllerInterface {
     
     public void clearDisapprovedCampaigns();
     
-    public List<POE> getPOE(int campaignid);
+    public void getPOE(int campaignid);
 }

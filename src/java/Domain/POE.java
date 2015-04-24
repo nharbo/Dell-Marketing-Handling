@@ -5,6 +5,7 @@
  */
 package Domain;
 
+import java.io.InputStream;
 import java.sql.Blob;
 import javax.servlet.http.Part;
 
@@ -13,27 +14,26 @@ import javax.servlet.http.Part;
  * @author nicolaiharbo
  */
 public class POE {
-    
+
     String poeid;
     int c_id;
     String status;
     Part poe;
-    
+    InputStream in;
 
-
-    public POE(String poeid, int c_id, String status, Part poe){
+    public POE(String poeid, int c_id, String status, Part poe, InputStream in) {
 
         this.poeid = poeid;
         this.c_id = c_id;
         this.status = status;
         this.poe = poe;
-        
+        this.in = in;
+
     }
 
     public String getStatus() {
         return status;
     }
-    
 
     public void setStatus(String status) {
         this.status = status;
@@ -63,12 +63,12 @@ public class POE {
         this.poe = poe;
     }
 
-
+    public InputStream getIn() {
+        return in;
     }
 
- 
-    
-    
-    
-    
+    public void setIn(InputStream in) {
+        this.in = in;
+    }
 
+}
