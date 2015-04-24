@@ -38,9 +38,9 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void addUser(String userid, String password) {
+    public void addUser(String userid, String password, String status) {
         if(inDebugMode) {System.out.println("now in addUser");}
-        db.addUser(userid, password);
+        db.addUser(userid, password, status);
     }
 
     @Override

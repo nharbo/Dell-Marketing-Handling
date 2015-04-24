@@ -82,8 +82,9 @@ public class Servlet extends HttpServlet {
                     int zip = Integer.parseInt(request.getParameter("zip"));
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
+                    String userStatus = "pending";
 
-                    control.addUser(userid, password);
+                    control.addUser(userid, password, userStatus);
                     control.addPartner(userid, partnerid, partnername, address, cvr, phone, zip);
 
                     // "message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.

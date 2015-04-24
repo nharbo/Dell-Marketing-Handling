@@ -6,18 +6,28 @@ public class User {
     
     String userId;
     String password;
+    String status;
     public boolean valid;
     //String re_password;
 
     public User() {
     }
 
-    
-    public User(String userId, String password) {
+    public User(String userId, String password, String status, boolean valid) {
         this.userId = userId;
         this.password = password;
+        this.status = status;
+        this.valid = valid;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
     public String getUserId() {
         return userId;
     }

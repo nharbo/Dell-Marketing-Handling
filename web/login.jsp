@@ -38,7 +38,7 @@
                     Password:
                     <br><input type="password" name="password" >
                 </div>
-                <button class="button" name="loorigingin" value="login" id="login">Login</button>
+                <button class="button" name="origin" value="login" id="login">Login</button>
             </form>
         </div>
         <div id="bottom">

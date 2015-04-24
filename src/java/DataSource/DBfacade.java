@@ -140,11 +140,12 @@ public class DBfacade {
             
             //Her laves en inner join, da campaign ikke inderholder et user_id, 
             //men kun p_id - derfor skal tabellerne sammensmeltes med en join..
-            String SQLString1 = "SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = '" + username + "'";
-            statement = con.createStatement();
-            rs = statement.executeQuery(SQLString1);
+            PreparedStatement sqlGPC = con.prepareStatement("SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = ?");
+            //String SQLString1 = "SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = '" + username + "'";
+            sqlGPC.setString(1, username);
+            rs = sqlGPC.executeQuery();
 
-            System.out.println(SQLString1);
+            System.out.println(sqlGPC);
 
             while (rs.next()) {
                 partnercampaigns.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
@@ -166,14 +167,17 @@ public class DBfacade {
     }
 
     // Denne metode tilføjer en ny user til user-tabellen.
-    public void addUser(String userid, String password) {
+    public void addUser(String userid, String password, String status) {
 
         try  {
             con = DBConnector.getInstance().getConnection();
             
-            statement = con.createStatement();
-            String sqlAdd = "insert into cphnh127.users values ('" + userid + "', '" + password + "')";
-            statement.executeQuery(sqlAdd);
+            PreparedStatement sqlAdd = con.prepareStatement("insert into cphnh127.users values (?,?,?)");
+            //String sqlAdd = "insert into cphnh127.users values ('" + userid + "', '" + password + "')";
+            sqlAdd.setString(1, userid);
+            sqlAdd.setString(2, password);
+            sqlAdd.setString(3, status);
+            sqlAdd.executeQuery();
 
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - addUser");
@@ -191,9 +195,17 @@ public class DBfacade {
 
         try {
             con = DBConnector.getInstance().getConnection();
-            statement = con.createStatement();
-            String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
-            statement.executeQuery(sqlAddCampaign);
+            
+            PreparedStatement sqlAC = con.prepareStatement("insert into cphnh127.campaign values (?,?, to_date(?, 'YYYY-MM-DD'), to_date(?, 'YYYY-MM-DD'),?,?,?)");
+            // String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
+            sqlAC.setInt(1, c_id);
+            sqlAC.setInt(2, p_id);
+            sqlAC.setDate(3, startdate);
+            sqlAC.setDate(4, stopdate);
+            sqlAC.setInt(5, c_budget);
+            sqlAC.setString(6, status);
+            sqlAC.setString(7, country);
+            sqlAC.executeQuery();
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - addCampaign");
             System.out.println(e.getMessage());
@@ -208,9 +220,16 @@ public class DBfacade {
     public void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip) {
         try  {
             con = DBConnector.getInstance().getConnection();
-            statement = con.createStatement();
-            String sqlAdd = "insert into cphnh127.partners values ('" + userid + "', " + partnerid + ", '" + partnername + "', '" + adress + "', " + cvr + ", " + phone + ", " + zip + ")";
-            statement.executeQuery(sqlAdd);
+            PreparedStatement sqlAdd = con.prepareStatement("insert into cphnh127.partners values (?,?,?,?,?,?,?)");
+            //String sqlAdd = "insert into cphnh127.partners values ('" + userid + "', " + partnerid + ", '" + partnername + "', '" + adress + "', " + cvr + ", " + phone + ", " + zip + ")";
+            sqlAdd.setString(1, userid);
+            sqlAdd.setInt(2, partnerid);
+            sqlAdd.setString(3, partnername);
+            sqlAdd.setString(4, adress);
+            sqlAdd.setInt(5, cvr);
+            sqlAdd.setInt(6, phone);
+            sqlAdd.setInt(7, zip);
+            sqlAdd.executeQuery();
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - addPartner");
             System.out.println(e.getMessage());
@@ -272,11 +291,14 @@ public class DBfacade {
         try  {
             con = DBConnector.getInstance().getConnection();
             
-            statement = con.createStatement();
-            String sqlDelete1 = "DELETE FROM partners WHERE user_id = '" + userid + "'";
-            statement.executeQuery(sqlDelete1);
-            String sqlDelete2 = "DELETE FROM users WHERE user_id = '" + userid + "'";
-            statement.executeQuery(sqlDelete2);
+            PreparedStatement sqldelP = con.prepareStatement("DELETE FROM partners WHERE user_id = ?");
+            PreparedStatement sqldelU = con.prepareStatement("DELETE FROM users WHERE user_id = ?");
+            //String sqlDelete1 = "DELETE FROM partners WHERE user_id = '" + userid + "'";
+            //String sqlDelete2 = "DELETE FROM users WHERE user_id = '" + userid + "'";
+            sqldelP.setString(1, userid); 
+            sqldelP.executeQuery();
+            sqldelU.setString(1, userid);
+            sqldelU.executeQuery();
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - deletePartner");
             System.out.println(e.getMessage());
@@ -298,9 +320,10 @@ public class DBfacade {
         try  {
             con = DBConnector.getInstance().getConnection();
             
-            statement = con.createStatement();
-            String sqlDelete1 = "SELECT * FROM partners WHERE user_id = '" + userid + "'";
-            rs = statement.executeQuery(sqlDelete1);
+            PreparedStatement sqlDel = con.prepareStatement("SELECT * FROM partners WHERE user_id = ?");
+            //String sqlDelete1 = "SELECT * FROM partners WHERE user_id = '" + userid + "'";
+            sqlDel.setString(1, userid);
+            rs = sqlDel.executeQuery();
 
             while (rs.next()) {
 
@@ -325,9 +348,18 @@ public class DBfacade {
         try {
             con = DBConnector.getInstance().getConnection();
             
-            statement = con.createStatement();
-            String sqlEdit = "UPDATE partners SET user_id = '" + partner.getUserid() + "', p_id = '" + partner.getPartnerid() + "', p_name = '" + partner.getPartnername() + "', address = '" + partner.getAddress() + "', cvr = '" + partner.getCvr() + "', phone = '" + partner.getPhone() + "', zip = '" + partner.getZip() + "' WHERE user_id = '" + partner.getUserid() + "'";
-            statement.executeUpdate(sqlEdit);
+            PreparedStatement sqlEdit = con.prepareCall("UPDATE partners SET user_id = ?, p_id = ?, p_name = ?, address = ?, cvr = ?, phone = ?, zip = ? WHERE user_id = ?");
+            //"UPDATE partners SET user_id = '" + partner.getUserid() + "', p_id = '" + partner.getPartnerid() + "', p_name = '" + partner.getPartnername() + "', address = '" + partner.getAddress() + "', cvr = '" + partner.getCvr() + "', phone = '" + partner.getPhone() + "', zip = '" + partner.getZip() + "' WHERE user_id = '" + partner.getUserid() + "'";
+            sqlEdit.setString(1, partner.getUserid());
+            sqlEdit.setInt(2, partner.getPartnerid());
+            sqlEdit.setString(3, partner.getPartnername());
+            sqlEdit.setString(4, partner.getAddress());
+            sqlEdit.setInt(5, partner.getCvr());
+            sqlEdit.setInt(6, partner.getPhone());
+            sqlEdit.setInt(7, partner.getZip());
+            sqlEdit.setString(8, partner.getUserid());
+            sqlEdit.executeUpdate();
+            
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - UpdatePartner");
             System.out.println(e.getMessage());
@@ -381,9 +413,10 @@ public class DBfacade {
         try {
             con = DBConnector.getInstance().getConnection();
             
-            statement = con.createStatement();
-            String sqlEdit = "UPDATE campaign SET status = 'ongoing' WHERE c_id = '" + campaignid + "'";
-            statement.executeUpdate(sqlEdit);
+            PreparedStatement sqlACR = con.prepareStatement("UPDATE campaign SET status = 'ongoing' WHERE c_id = ?");
+            //String sqlEdit = "UPDATE campaign SET status = 'ongoing' WHERE c_id = '" + campaignid + "'";
+            sqlACR.setInt(1, campaignid);
+            sqlACR.executeQuery();
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - acceptCampaignRequest");
             System.out.println(e.getMessage());
@@ -456,9 +489,10 @@ public class DBfacade {
         try {
             con = DBConnector.getInstance().getConnection();
             
-            statement = con.createStatement();
-            String sqlDisapprove = "UPDATE campaign SET status = 'disapproved' WHERE c_id = '" + campaignid + "'";
-            statement.executeUpdate(sqlDisapprove);
+            PreparedStatement sqlDis = con.prepareStatement("UPDATE campaign SET status = 'disapproved' WHERE c_id = ?");
+            //String sqlDisapprove = "UPDATE campaign SET status = 'disapproved' WHERE c_id = '" + campaignid + "'";
+            sqlDis.setInt(1, campaignid);
+            sqlDis.executeQuery();
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - disapproveCampaignRequest");
             System.out.println(e.getMessage());
@@ -527,9 +561,10 @@ public class DBfacade {
         try {
             con = DBConnector.getInstance().getConnection();
             
-            String SQLpoe = "SELECT * FROM poe WHERE c_id = " + campaignid + "";
-            statement = con.createStatement();
-            rs = statement.executeQuery(SQLpoe);
+            PreparedStatement sqlpoe = con.prepareStatement("SELECT * FROM poe WHERE c_id = ?");
+            //String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
+            sqlpoe.setInt(1, campaignid);
+            rs = sqlpoe.executeQuery();
             
 //            if(rs.next()){
 //                poe2 = new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img"));
