@@ -45,11 +45,17 @@
                     </div>
                     <div>
                         Country:
-                        <br><input type="text" name="country">
+                        <br><select id="Country">
+                            <option value="Norge">Norge</option>
+                            <option value="Danmark">Danmark</option>
+                            <option value="Sverige">Sverige</option>
+                            <option value="Island">Island</option>
+                            <option value="Finland">Finland</option>
+                            <option value="USA">USA</option>
+                        </select>
                     </div>
                     <div>
-                        Currency:
-                        <br><input type="text" name="currency" value="">
+                        Currency: <br><input type="text" name="currency" readonly="readonly">
                     </div>
                     <div>
                         Campaign Id:

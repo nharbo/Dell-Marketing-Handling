@@ -53,7 +53,6 @@
                     </th>
                     </thead>
 
-
                 <c:forEach var="campaign" items="${campaignList}">
                     <tr>
                         <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
@@ -69,7 +68,7 @@
 
             <form action="Control" method="POST">
 
-                Campaign ID: <input type="text" name="campaignid" value=""  />
+                Campaign ID: <select></select>
                 <input type="submit" value="Show POE" name="spoe" />
                 <input type="hidden" name="origin" value="showPOE"> 
             </form>
