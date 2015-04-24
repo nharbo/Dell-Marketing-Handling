@@ -116,7 +116,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void getPOE(int campaignid) {
+    public POE getPOE(int campaignid) {
       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

@@ -31,6 +31,10 @@ public class DBfacade {
 
     public static final boolean inDebugMode = true;
 
+    private static String URL = "jdbc:oracle:thin:@datdb.cphbusiness.dk:1521:dat";
+    private static String USERNAME = "cphnh127";
+    private static String PASSWORD = "cphnh127";
+
     private static Connection con = null;
     private static Statement statement = null;
     private Map<String, Campaign> campaigns = new HashMap();
@@ -46,7 +50,6 @@ public class DBfacade {
     public DBfacade() {
 
         con = DBConnector.getInstance().getConnection();
-
     }
 
     // Authentication check.
@@ -59,7 +62,7 @@ public class DBfacade {
         // SQL-streng der finder alle users der passer med oplyste user_id og pwd. 
         String SQLString = "select * from users where user_id='" + username + "' AND pwd = '" + password + "'";
 
-        try {
+        try (Connection con = DBConnector.getInstance().getConnection(URL, USERNAME, PASSWORD)) {
             // Gør connection klar til at modtage et statement.
             statement = con.createStatement();
 
@@ -89,7 +92,7 @@ public class DBfacade {
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Listen indeholder aktive/accepterede kampagner (ongoing)
     public List<Campaign> getCampaigns() {
-        
+
         ResultSet rs;
         campaigns.clear();
 
@@ -158,8 +161,7 @@ public class DBfacade {
 
     // Denne metode tilføjer en ny user til user-tabellen.
     public void addUser(String userid, String password) {
-        
-        
+
         try {
             statement = con.createStatement();
             String sqlAdd = "insert into cphnh127.users values ('" + userid + "', '" + password + "')";
@@ -173,8 +175,7 @@ public class DBfacade {
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
     public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
-        
-        
+
         try {
             statement = con.createStatement();
             String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
@@ -199,7 +200,7 @@ public class DBfacade {
 
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
     public List<Partner> getPartners() {
-        
+
         ResultSet rs;
         partners.clear();
 
@@ -253,7 +254,7 @@ public class DBfacade {
 
     // Denne metode henter en enkelt partner ind, og gemmer informationerne ned i et partner-objekt.
     public Partner getPartner(String userid) {
-        
+
         ResultSet rs;
         Partner partner = null;
 
@@ -297,7 +298,7 @@ public class DBfacade {
 //        return false;
 //    }
     public List<Campaign> getCampaignRequests() {
-        
+
         ResultSet rs;
 
         campaignReq.clear();
@@ -342,16 +343,13 @@ public class DBfacade {
     public void addPoe(String poeid, int c_id, String status, Part poe) {
 
         try {
-      
+
             PreparedStatement sqlPoe = con.prepareStatement("insert into cphnh127.poe values (?,?,?,?)");
             sqlPoe.setString(1, poeid);
             sqlPoe.setInt(2, c_id);
             sqlPoe.setString(3, status);
             sqlPoe.setBlob(4, poe.getInputStream());
             sqlPoe.executeQuery();
-//            statement = con.createStatement();
-//            String sqlPoe = "insert into cphnh127.poe values('" + poeid + "', " + c_id + ", '" + status + "', " + poe + ")";
-//            statement.executeQuery(sqlPoe);
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addPoe");
             System.out.println(e.getMessage());
@@ -360,7 +358,7 @@ public class DBfacade {
     }
 
     public List<Campaign> getDisapprovedCampaigns() {
-        
+
         ResultSet rs;
         disCampaign.clear();
 
@@ -439,24 +437,26 @@ public class DBfacade {
         }
     }
 
-//    public List<POE> getPOE(int campaignid) {
-//
-//        try {
-//            String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
-//            statement = con.createStatement();
-//            rs = statement.executeQuery(SQLpoe);
-//            
-//        while(rs.next()){
-//            poe.put(rs.getString("poeid"), new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img")));
-//        }
-//
-//        } catch (Exception e) {
-//            System.out.println("Fail in DBMapper - getPOE");
-//            System.out.println(e.getMessage());
-//        }
-//
-//        return new ArrayList<POE>(poe.values());
-//
-//    }
+    public POE getPOE(int campaignid) {
+
+        ResultSet rs;
+
+        try {
+            String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
+            statement = con.createStatement();
+            rs = statement.executeQuery(SQLpoe);
+
+            while (rs.next()) {
+                poe.put(rs.getString("poeid"), new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), (Part)rs.getBlob("poe"), rs.getBinaryStream("in")));
+            }
+
+        } catch (Exception e) {
+            System.out.println("Fail in DBMapper - getPOE");
+            System.out.println(e.getMessage());
+        }
+
+        return;
+
+    }
 
 }

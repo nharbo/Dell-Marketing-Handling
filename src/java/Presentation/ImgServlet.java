@@ -5,6 +5,7 @@
  */
 package Presentation;
 
+import Domain.Controller;
 import Domain.POE;
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,8 +37,10 @@ public class ImgServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String id = request.getParameter("poeid");
-        POE poe = controller.getPoe(id);
+        Controller controller = new Controller();
+        
+        int id = Integer.parseInt(request.getParameter("poeid"));
+        POE poe = controller.getPOE(id);
         InputStream in = poe.getIn();
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
