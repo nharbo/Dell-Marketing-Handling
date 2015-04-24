@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -30,16 +31,15 @@ public class DBfacade {
 
     public static final boolean inDebugMode = true;
 
-    private static Connection con = null;
+    private static Connection con;
     private static Statement statement = null;
 
-        // Constructor som holder forbindelsen til databasen, via DBConnector.
+    // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
     // så der kun oprettes 1 forbindelse til DB-serveren.
     public DBfacade() {
 
-        con = DBConnector.getInstance().getConnection();
-
+//        con = DBConnector.getInstance().getConnection();
     }
 
     // Authentication check.
@@ -53,6 +53,9 @@ public class DBfacade {
         String SQLString = "select * from users where user_id='" + username + "' AND pwd = '" + password + "'";
 
         try {
+
+            con = DBConnector.getInstance().getConnection();
+
             // Gør connection klar til at modtage et statement.
             statement = con.createStatement();
 
@@ -75,10 +78,15 @@ public class DBfacade {
         } catch (Exception e) {
             System.out.println("Log-in failed: An exception has occured - " + e);
         }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return bean;
     }
 
-        // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
+    // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Listen indeholder aktive/accepterede kampagner (ongoing)
     public ArrayList<Campaign> getCampaigns() {
@@ -87,7 +95,7 @@ public class DBfacade {
         ResultSet rs;
 
         try {
-         //       con = DBConnector.getInstance().getConnection();
+            con = DBConnector.getInstance().getConnection();
 
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
@@ -113,8 +121,10 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - getCampaign");
             System.out.println(e.getMessage());
         }
-        if (inDebugMode) {
-            System.out.println("Retrieved campaign: " + campaigns);
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return campaigns;
@@ -125,8 +135,11 @@ public class DBfacade {
         ArrayList<Campaign> partnercampaigns = new ArrayList();
         ResultSet rs;
 
-        try {
-                //Her laves en inner join, da campaign ikke inderholder et user_id, 
+        try  {
+            
+            con = DBConnector.getInstance().getConnection();
+            
+            //Her laves en inner join, da campaign ikke inderholder et user_id, 
             //men kun p_id - derfor skal tabellerne sammensmeltes med en join..
             String SQLString1 = "SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = '" + username + "'";
             statement = con.createStatement();
@@ -144,7 +157,11 @@ public class DBfacade {
             System.out.println("Fail in DBMapper - getPartnerCampaign");
             System.out.println(e.getMessage());
         }
-
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return partnercampaigns;
 
     }
@@ -152,7 +169,9 @@ public class DBfacade {
     // Denne metode tilføjer en ny user til user-tabellen.
     public void addUser(String userid, String password) {
 
-        try {
+        try  {
+            con = DBConnector.getInstance().getConnection();
+            
             statement = con.createStatement();
             String sqlAdd = "insert into cphnh127.users values ('" + userid + "', '" + password + "')";
             statement.executeQuery(sqlAdd);
@@ -161,12 +180,18 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - addUser");
             System.out.println(e.getMessage());
         }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
     public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
 
         try {
+            con = DBConnector.getInstance().getConnection();
             statement = con.createStatement();
             String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
             statement.executeQuery(sqlAddCampaign);
@@ -174,17 +199,27 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - addCampaign");
             System.out.println(e.getMessage());
         }
+        try {
+            con.close();
+        } catch (Exception e) {
+        }
     }
 
     //Denne metode tilføjer en ny partner til partner-tabellen.
     public void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip) {
-        try {
+        try  {
+            con = DBConnector.getInstance().getConnection();
             statement = con.createStatement();
             String sqlAdd = "insert into cphnh127.partners values ('" + userid + "', " + partnerid + ", '" + partnername + "', '" + adress + "', " + cvr + ", " + phone + ", " + zip + ")";
             statement.executeQuery(sqlAdd);
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - addPartner");
             System.out.println(e.getMessage());
+        }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -194,7 +229,9 @@ public class DBfacade {
         ArrayList<Partner> partners = new ArrayList();
         ResultSet rs;
 
-        try {
+        try  {
+            con = DBConnector.getInstance().getConnection();
+            
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM partners";
 
@@ -219,6 +256,11 @@ public class DBfacade {
         if (inDebugMode) {
             System.out.println("Retrieved partners: " + partners);
         }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         //listen med partner-objekter returneres.
         return partners;
     }
@@ -226,7 +268,9 @@ public class DBfacade {
     // Denne metode sletter en partner fra databasen, både i partner og user-tabellen, ud fra partnerid'et.
     // Lav som boolean, så der kan returners om det er gået godt eller ej.
     public void deletePartner(String userid) {
-        try {
+        try  {
+            con = DBConnector.getInstance().getConnection();
+            
             statement = con.createStatement();
             String sqlDelete1 = "DELETE FROM partners WHERE user_id = '" + userid + "'";
             statement.executeQuery(sqlDelete1);
@@ -235,6 +279,11 @@ public class DBfacade {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - deletePartner");
             System.out.println(e.getMessage());
+        }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
 
     }
@@ -245,7 +294,9 @@ public class DBfacade {
         ResultSet rs;
         Partner partner = null;
 
-        try {
+        try  {
+            con = DBConnector.getInstance().getConnection();
+            
             statement = con.createStatement();
             String sqlDelete1 = "SELECT * FROM partners WHERE user_id = '" + userid + "'";
             rs = statement.executeQuery(sqlDelete1);
@@ -259,6 +310,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - deletePartner");
             System.out.println(e.getMessage());
         }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return partner;
     }
 
@@ -266,6 +322,8 @@ public class DBfacade {
     public void editPartner(Partner partner) {
 
         try {
+            con = DBConnector.getInstance().getConnection();
+            
             statement = con.createStatement();
             String sqlEdit = "UPDATE partners SET user_id = '" + partner.getUserid() + "', p_id = '" + partner.getPartnerid() + "', p_name = '" + partner.getPartnername() + "', address = '" + partner.getAddress() + "', cvr = '" + partner.getCvr() + "', phone = '" + partner.getPhone() + "', zip = '" + partner.getZip() + "' WHERE user_id = '" + partner.getUserid() + "'";
             statement.executeUpdate(sqlEdit);
@@ -273,23 +331,21 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - UpdatePartner");
             System.out.println(e.getMessage());
         }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
-    //        public boolean authCheck(String id, String password) {
-    //
-    //        if(userMap.getUserMap().containsKey(id)){
-    //            if(getUser(id).getPassword().equals(password)){
-    //                return true;
-    //            }
-    //        }
-    //        return false;
-    //    }
     public ArrayList<Campaign> getCampaignRequests() {
 
         ResultSet rs;
         ArrayList<Campaign> campaignReq = new ArrayList();
 
         try {
+            con = DBConnector.getInstance().getConnection();
+            
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign WHERE status = 'pending'";
 
@@ -310,6 +366,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - getCampaignRequests");
             System.out.println(e.getMessage());
         }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return campaignReq;
     }
@@ -317,6 +378,8 @@ public class DBfacade {
     public void acceptCampaignRequest(int campaignid) {
 
         try {
+            con = DBConnector.getInstance().getConnection();
+            
             statement = con.createStatement();
             String sqlEdit = "UPDATE campaign SET status = 'ongoing' WHERE c_id = '" + campaignid + "'";
             statement.executeUpdate(sqlEdit);
@@ -324,11 +387,18 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - acceptCampaignRequest");
             System.out.println(e.getMessage());
         }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     public void addPoe(String poeid, int c_id, String status, Part poe) {
 
         try {
+            
+            con = DBConnector.getInstance().getConnection();
 
             PreparedStatement sqlPoe = con.prepareStatement("insert into cphnh127.poe values (?,?,?,?)");
             sqlPoe.setString(1, poeid);
@@ -336,12 +406,15 @@ public class DBfacade {
             sqlPoe.setString(3, status);
             sqlPoe.setBlob(4, poe.getInputStream());
             sqlPoe.executeQuery();
-    //            statement = con.createStatement();
-            //            String sqlPoe = "insert into cphnh127.poe values('" + poeid + "', " + c_id + ", '" + status + "', " + poe + ")";
-            //            statement.executeQuery(sqlPoe);
+
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addPoe");
             System.out.println(e.getMessage());
+        }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
         }
 
     }
@@ -352,6 +425,8 @@ public class DBfacade {
         ArrayList<Campaign> disCampaign = new ArrayList();
 
         try {
+            con = DBConnector.getInstance().getConnection();
+            
             String sqlDis = "SELECT * FROM campaign WHERE status = 'disapproved'";
             statement = con.createStatement();
             rs = statement.executeQuery(sqlDis);
@@ -367,13 +442,19 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - getDisapprovedCampaigns");
             System.out.println(e);
         }
-
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return disCampaign;
     }
 
     public void disapproveCampaignRequest(int campaignid) {
 
         try {
+            con = DBConnector.getInstance().getConnection();
+            
             statement = con.createStatement();
             String sqlDisapprove = "UPDATE campaign SET status = 'disapproved' WHERE c_id = '" + campaignid + "'";
             statement.executeUpdate(sqlDisapprove);
@@ -381,16 +462,23 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - disapproveCampaignRequest");
             System.out.println(e.getMessage());
         }
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
     }
 
-        // Clearer de inaktive kampagner (dem som ikke er blevet godkendte).
+    // Clearer de inaktive kampagner (dem som ikke er blevet godkendte).
     // Der laves en autocommit, så der ikke går noget galt, når der slettes i to forskellige tabeller.
     // På den måde bliver begge statements kun udført, hvis de går godt. Hvis det ene fejler, bliver det andet ikke udført.
     // OBS!! DETTE ER EN TRANSACTION!
     public void clearDisapprovedCampaigns() {
 
-        try {
+        try  {
+            con = DBConnector.getInstance().getConnection();
+            
             //Autocommit slåes fra.
             con.setAutoCommit(false);
 
@@ -406,9 +494,9 @@ public class DBfacade {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - clearDisapprovedCampaigns");
             System.out.println(e.getMessage());
-                // trycatch i catchen, hvis der opstår exception, 
+            // trycatch i catchen, hvis der opstår exception, 
             // som laver en rollback, så der ikke laves noget rod i DB
-            try {
+            try (Connection con = DriverManager.getConnection(URL, ID, PW)) {
                 con.rollback();
                 System.out.println("Transaction rolled back..");
             } catch (Exception f) {
@@ -420,6 +508,7 @@ public class DBfacade {
             try {
                 //Autocommit slåes til igen.
                 con.setAutoCommit(true);
+                con.close();
             } catch (Exception e) {
             }
 
@@ -427,24 +516,30 @@ public class DBfacade {
     }
 
     public ArrayList<POE> getPOE(int campaignid) {
-        
+
         ArrayList poe = new ArrayList();
         ResultSet rs;
 
         try {
+            con = DBConnector.getInstance().getConnection();
+            
             String SQLpoe = "SELECT * FROM poe WHERE c_id = " + campaignid + "";
             statement = con.createStatement();
             rs = statement.executeQuery(SQLpoe);
 
             while (rs.next()) {
-                poe.add(new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("poe"), rs.getBinaryStream("in")));
+                poe.add(new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("poe")));
             }
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getPOE");
             System.out.println(e.getMessage());
         }
-
+        try {
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
         return poe;
 
     }
