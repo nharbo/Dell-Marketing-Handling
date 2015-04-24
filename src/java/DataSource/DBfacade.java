@@ -206,9 +206,6 @@ public class DBfacade {
 
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
             while (rs.next()) {
-                if (inDebugMode) {
-                    System.out.println("ResultSet: " + rs.getString("c_id"));
-                }
 
                 partners.add(new Partner(rs.getString("user_id"), rs.getInt("p_id"), rs.getString("p_name"), rs.getString("address"), rs.getInt("cvr"), rs.getInt("phone"), rs.getInt("zip")));
             }
@@ -222,12 +219,12 @@ public class DBfacade {
         if (inDebugMode) {
             System.out.println("Retrieved partners: " + partners);
         }
-        // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med partner-objekter returneres.
+        //listen med partner-objekter returneres.
         return partners;
     }
 
-        // Denne metode sletter en partner fra databasen, både i partner og user-tabellen, ud fra partnerid'et.
-    //Lav som boolean, så der kan returners om det er gået godt eller ej.
+    // Denne metode sletter en partner fra databasen, både i partner og user-tabellen, ud fra partnerid'et.
+    // Lav som boolean, så der kan returners om det er gået godt eller ej.
     public void deletePartner(String userid) {
         try {
             statement = con.createStatement();
