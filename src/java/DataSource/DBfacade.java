@@ -432,12 +432,12 @@ public class DBfacade {
         ResultSet rs;
 
         try {
-            String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
+            String SQLpoe = "SELECT * FROM poe WHERE c_id = " + campaignid + "";
             statement = con.createStatement();
             rs = statement.executeQuery(SQLpoe);
 
             while (rs.next()) {
-                poe.add(new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), (Part) rs.getBlob("poe"), rs.getBinaryStream("in")));
+                poe.add(new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("poe"), rs.getBinaryStream("in")));
             }
 
         } catch (Exception e) {
