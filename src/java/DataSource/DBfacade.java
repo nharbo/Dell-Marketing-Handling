@@ -33,13 +33,12 @@ public class DBfacade {
 
     private static Connection con = null;
     private static Statement statement = null;
-    private Map<String, Campaign> campaigns = new HashMap();
-    private Map<String, Campaign> partnercampaigns = new HashMap();
-    private Map<String, Partner> partners = new HashMap();
-    private Map<String, Campaign> campaignReq = new HashMap();
-    private Map<String, Campaign> disCampaign = new HashMap();
+    
+    
+    
+    
     private Map<String, POE> poe = new HashMap();
-
+    
     // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
     // så der kun oprettes 1 forbindelse til DB-serveren.
@@ -88,10 +87,11 @@ public class DBfacade {
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Listen indeholder aktive/accepterede kampagner (ongoing)
-    public List<Campaign> getCampaigns() {
-        
+    public ArrayList<Campaign> getCampaigns() {
+    
+        ArrayList<Campaign> campaigns = new ArrayList();
         ResultSet rs;
-        campaigns.clear();
+        
 
         try {
      //       con = DBConnector.getInstance().getConnection();
@@ -111,7 +111,7 @@ public class DBfacade {
                     System.out.println("ResultSet: " + rs.getString("c_id"));
                 }
 
-                campaigns.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                campaigns.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -124,13 +124,14 @@ public class DBfacade {
             System.out.println("Retrieved campaign: " + campaigns);
         }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
-        return new ArrayList<Campaign>(campaigns.values());
+        return campaigns;
     }
 
-    public List<Campaign> getPartnerCampaigns(String username) {
-
+    public ArrayList<Campaign> getPartnerCampaigns(String username) {
+        
+        ArrayList<Campaign> partnercampaigns = new ArrayList();
         ResultSet rs;
-        partnercampaigns.clear();
+        
 
         try {
             //Her laves en inner join, da campaign ikke inderholder et user_id, 
@@ -142,7 +143,7 @@ public class DBfacade {
             System.out.println(SQLString1);
 
             while (rs.next()) {
-                partnercampaigns.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                partnercampaigns.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -152,7 +153,7 @@ public class DBfacade {
             System.out.println(e.getMessage());
         }
 
-        return new ArrayList<Campaign>(partnercampaigns.values());
+        return partnercampaigns;
 
     }
 
@@ -198,10 +199,11 @@ public class DBfacade {
     }
 
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
-    public List<Partner> getPartners() {
+    public ArrayList<Partner> getPartners() {
         
+        ArrayList<Partner> partners = new ArrayList();
         ResultSet rs;
-        partners.clear();
+        
 
         try {
             // SQLString hiver alle elementer ud med status "ongoing"
@@ -219,7 +221,7 @@ public class DBfacade {
                     System.out.println("ResultSet: " + rs.getString("c_id"));
                 }
 
-                partners.put(rs.getString("user_id"), new Partner(rs.getString("user_id"), rs.getInt("p_id"), rs.getString("p_name"), rs.getString("address"), rs.getInt("cvr"), rs.getInt("phone"), rs.getInt("zip")));
+                partners.add( new Partner(rs.getString("user_id"), rs.getInt("p_id"), rs.getString("p_name"), rs.getString("address"), rs.getInt("cvr"), rs.getInt("phone"), rs.getInt("zip")));
             }
             rs.close();
             statement.close();
@@ -232,7 +234,7 @@ public class DBfacade {
             System.out.println("Retrieved partners: " + partners);
         }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med partner-objekter returneres.
-        return new ArrayList<Partner>(partners.values());
+        return partners;
     }
 
     // Denne metode sletter en partner fra databasen, både i partner og user-tabellen, ud fra partnerid'et.
@@ -296,11 +298,13 @@ public class DBfacade {
 //        }
 //        return false;
 //    }
-    public List<Campaign> getCampaignRequests() {
+    public ArrayList<Campaign> getCampaignRequests() {
         
         ResultSet rs;
+        ArrayList<Campaign> campaignReq = new ArrayList();
 
-        campaignReq.clear();
+
+        
 
         try {
             // SQLString hiver alle elementer ud med status "ongoing"
@@ -314,7 +318,7 @@ public class DBfacade {
 
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
             while (rs.next()) {
-                campaignReq.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                campaignReq.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -324,7 +328,7 @@ public class DBfacade {
             System.out.println(e.getMessage());
         }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
-        return new ArrayList<Campaign>(campaignReq.values());
+        return campaignReq;
     }
 
     public void acceptCampaignRequest(int campaignid) {
@@ -359,10 +363,11 @@ public class DBfacade {
 
     }
 
-    public List<Campaign> getDisapprovedCampaigns() {
+    public ArrayList<Campaign> getDisapprovedCampaigns() {
         
         ResultSet rs;
-        disCampaign.clear();
+        ArrayList<Campaign> disCampaign = new ArrayList();
+        
 
         try {
             String sqlDis = "SELECT * FROM campaign WHERE status = 'disapproved'";
@@ -370,7 +375,7 @@ public class DBfacade {
             rs = statement.executeQuery(sqlDis);
 
             while (rs.next()) {
-                disCampaign.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                disCampaign.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
 
             rs.close();
@@ -381,7 +386,7 @@ public class DBfacade {
             System.out.println(e);
         }
 
-        return new ArrayList<Campaign>(disCampaign.values());
+        return disCampaign;
     }
 
     public void disapproveCampaignRequest(int campaignid) {
