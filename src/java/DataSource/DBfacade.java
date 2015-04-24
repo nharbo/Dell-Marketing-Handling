@@ -32,7 +32,6 @@ public class DBfacade {
     public static final boolean inDebugMode = true;
 
     private static Connection con = null;
-    private static ResultSet rs;
     private static Statement statement = null;
     private Map<String, Campaign> campaigns = new HashMap();
     private Map<String, Campaign> partnercampaigns = new HashMap();
@@ -55,6 +54,7 @@ public class DBfacade {
         // Henter UserId og Password fra "User" class. 
         String username = bean.getUserId();
         String password = bean.getPassword();
+        ResultSet rs;
 
         // SQL-streng der finder alle users der passer med oplyste user_id og pwd. 
         String SQLString = "select * from users where user_id='" + username + "' AND pwd = '" + password + "'";
@@ -89,7 +89,8 @@ public class DBfacade {
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Listen indeholder aktive/accepterede kampagner (ongoing)
     public List<Campaign> getCampaigns() {
-
+        
+        ResultSet rs;
         campaigns.clear();
 
         try {
@@ -128,6 +129,7 @@ public class DBfacade {
 
     public List<Campaign> getPartnerCampaigns(String username) {
 
+        ResultSet rs;
         partnercampaigns.clear();
 
         try {
@@ -156,6 +158,8 @@ public class DBfacade {
 
     // Denne metode tilføjer en ny user til user-tabellen.
     public void addUser(String userid, String password) {
+        
+        
         try {
             statement = con.createStatement();
             String sqlAdd = "insert into cphnh127.users values ('" + userid + "', '" + password + "')";
@@ -169,6 +173,8 @@ public class DBfacade {
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
     public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
+        
+        
         try {
             statement = con.createStatement();
             String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
@@ -193,6 +199,8 @@ public class DBfacade {
 
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
     public List<Partner> getPartners() {
+        
+        ResultSet rs;
         partners.clear();
 
         try {
@@ -245,6 +253,8 @@ public class DBfacade {
 
     // Denne metode henter en enkelt partner ind, og gemmer informationerne ned i et partner-objekt.
     public Partner getPartner(String userid) {
+        
+        ResultSet rs;
         Partner partner = null;
 
         try {
@@ -287,6 +297,8 @@ public class DBfacade {
 //        return false;
 //    }
     public List<Campaign> getCampaignRequests() {
+        
+        ResultSet rs;
 
         campaignReq.clear();
 
@@ -348,7 +360,8 @@ public class DBfacade {
     }
 
     public List<Campaign> getDisapprovedCampaigns() {
-
+        
+        ResultSet rs;
         disCampaign.clear();
 
         try {
@@ -427,6 +440,8 @@ public class DBfacade {
     }
 
     public List<POE> getPOE(int campaignid) {
+        
+        ResultSet rs;
 
         try {
             String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
