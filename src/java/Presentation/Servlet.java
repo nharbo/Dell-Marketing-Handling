@@ -11,6 +11,7 @@ import Domain.Partner;
 import Domain.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Blob;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +22,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 /**
  *
@@ -238,9 +238,9 @@ public class Servlet extends HttpServlet {
                     String POEID = request.getParameter("POEID");
                     int POE_C_ID = Integer.parseInt(request.getParameter("CampaignID"));
                     String PStatus = "Pending";
-                    Part POEimg = request.getPart("POEFile");
+                    //Blob POEimg = request.getInputStream("POEFile");
                     
-                    control.addPoe(POEID, POE_C_ID, PStatus, POEimg);
+                    //control.addPoe(POEID, POE_C_ID, PStatus, POEimg);
                     //control.addPoe(POEID, POE_C_ID, PStatus, POEimg);
                     request.getSession().setAttribute("message", "You have succesfully sent your POE ");
                     response.sendRedirect("dashboardPartner.jsp");
@@ -255,6 +255,8 @@ public class Servlet extends HttpServlet {
 
         }
     }
+
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

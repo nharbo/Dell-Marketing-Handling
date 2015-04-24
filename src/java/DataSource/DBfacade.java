@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,6 +11,7 @@ import Domain.Partner;
 import Domain.User;
 import java.io.File;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -21,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.servlet.http.Part;
 
 /**
  *
@@ -39,7 +39,7 @@ public class DBfacade {
     // så der kun oprettes 1 forbindelse til DB-serveren.
     public DBfacade() {
 
-//        con = DBConnector.getInstance().getConnection();
+        con = DBConnector.getInstance().getConnection();
     }
 
     // Authentication check.
@@ -48,13 +48,12 @@ public class DBfacade {
         String username = bean.getUserId();
         String password = bean.getPassword();
         ResultSet rs;
+//        con = DBConnector.getInstance().getConnection();
 
         // SQL-streng der finder alle users der passer med oplyste user_id og pwd. 
         String SQLString = "select * from users where user_id='" + username + "' AND pwd = '" + password + "'";
 
         try {
-
-            con = DBConnector.getInstance().getConnection();
 
             // Gør connection klar til at modtage et statement.
             statement = con.createStatement();
@@ -78,11 +77,11 @@ public class DBfacade {
         } catch (Exception e) {
             System.out.println("Log-in failed: An exception has occured - " + e);
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
         return bean;
     }
 
@@ -93,9 +92,9 @@ public class DBfacade {
 
         ArrayList<Campaign> campaigns = new ArrayList();
         ResultSet rs;
+        //con = DBConnector.getInstance().getConnection();
 
         try {
-            con = DBConnector.getInstance().getConnection();
 
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
@@ -121,11 +120,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - getCampaign");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return campaigns;
     }
@@ -157,11 +156,11 @@ public class DBfacade {
             System.out.println("Fail in DBMapper - getPartnerCampaign");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
         return partnercampaigns;
 
     }
@@ -180,11 +179,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - addUser");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
     }
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
@@ -199,10 +198,10 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - addCampaign");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//        }
     }
 
     //Denne metode tilføjer en ny partner til partner-tabellen.
@@ -216,12 +215,14 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - addPartner");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
     }
+
+
 
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
     public ArrayList<Partner> getPartners() {
@@ -256,11 +257,11 @@ public class DBfacade {
         if (inDebugMode) {
             System.out.println("Retrieved partners: " + partners);
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
         //listen med partner-objekter returneres.
         return partners;
     }
@@ -280,11 +281,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - deletePartner");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
 
     }
 
@@ -310,11 +311,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - deletePartner");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
         return partner;
     }
 
@@ -331,11 +332,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - UpdatePartner");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
     }
 
     public ArrayList<Campaign> getCampaignRequests() {
@@ -366,11 +367,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - getCampaignRequests");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return campaignReq;
     }
@@ -387,14 +388,14 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - acceptCampaignRequest");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
     }
 
-    public void addPoe(String poeid, int c_id, String status, Part poe) {
+    public void addPoe(String poeid, int c_id, String status, Blob poe) {
 
         try {
             
@@ -404,18 +405,18 @@ public class DBfacade {
             sqlPoe.setString(1, poeid);
             sqlPoe.setInt(2, c_id);
             sqlPoe.setString(3, status);
-            sqlPoe.setBlob(4, poe.getInputStream());
+            sqlPoe.setBlob(4, poe.getBinaryStream());
             sqlPoe.executeQuery();
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addPoe");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
 
     }
 
@@ -442,11 +443,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - getDisapprovedCampaigns");
             System.out.println(e);
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
         return disCampaign;
     }
 
@@ -462,11 +463,11 @@ public class DBfacade {
             System.out.println("Fail in DBfacade - disapproveCampaignRequest");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
 
     }
 
@@ -498,7 +499,7 @@ public class DBfacade {
             // som laver en rollback, så der ikke laves noget rod i DB
             try {
                 con.rollback();
-                con.close();
+//                con.close();
                 System.out.println("Transaction rolled back..");
             } catch (Exception f) {
                 System.out.println("Fail doing rollback");
@@ -509,7 +510,7 @@ public class DBfacade {
             try {
                 //Autocommit slåes til igen.
                 con.setAutoCommit(true);
-                con.close();
+//                con.close();
             } catch (Exception e) {
             }
 
@@ -517,6 +518,8 @@ public class DBfacade {
     }
 
     public ArrayList<POE> getPOE(int campaignid) {
+        
+//        POE poe2;
 
         ArrayList poe = new ArrayList();
         ResultSet rs;
@@ -527,22 +530,28 @@ public class DBfacade {
             String SQLpoe = "SELECT * FROM poe WHERE c_id = " + campaignid + "";
             statement = con.createStatement();
             rs = statement.executeQuery(SQLpoe);
+            
+//            if(rs.next()){
+//                poe2 = new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img"));
+//            }
 
             while (rs.next()) {
-                poe.add(new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("poe")));
+                poe.add(new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img")));
             }
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getPOE");
             System.out.println(e.getMessage());
         }
-        try {
-            con.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            con.close();
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
         return poe;
+//        return poe2;
 
     }
 
 }
+

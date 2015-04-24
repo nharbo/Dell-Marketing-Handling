@@ -66,12 +66,18 @@
                 </c:forEach>
             </table>
 
-            <form action="Control" method="POST">
+            <form action="ImgServlet" method="POST">
 
+                <select name="">
+                    <c:forEach var="campaign" items="${campaignList}">
+
+                        <option>${campaign.campaignId}</option>
+
+                    </c:forEach>
+                </select>
                 Campaign ID: 
-                    <select>
-                    </select>
-                <button type="submit" value="showPOE" name="origin" />Show POE</button>
+                <button value="ImgServlet" name="ImgServlet">Show POE</button>
+                
             </form>
         </div>
         <div id="bottom">
@@ -79,3 +85,4 @@
         </div>
     </body>
 </html>
+

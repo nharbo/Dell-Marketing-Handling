@@ -29,7 +29,7 @@
         <div id="middle">
         <h1><%=session.getAttribute("message")%></h1>
         
-        <img src="ImgServlet?poeID=?${poe.id}"/>
+        <img src="ImgServlet?poeID=?${image.poe}"/>
         
         </div>
         <div id="bottom">

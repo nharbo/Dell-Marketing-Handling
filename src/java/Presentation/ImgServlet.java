@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,24 +37,29 @@ public class ImgServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         Controller controller = new Controller();
-        
+
         int id = Integer.parseInt(request.getParameter("poeid"));
-        POE poe = controller.getPOE(id);
-        InputStream in = poe.getIn();
+        ArrayList<POE> poe = controller.getPOE(id);
+        POE p = poe.get(0);
+        
+        InputStream in = (InputStream)p.getPoe();
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
         int counter = 0;
-        
-        do{
+
+        do {
             counter = in.read(buffer);
             out.write(buffer, 0, counter);
         } while (counter == 1024);
         
+        request.getSession().setAttribute("image", in);
+        response.sendRedirect("showPOE.jsp");
 
-        }
     }
+
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
