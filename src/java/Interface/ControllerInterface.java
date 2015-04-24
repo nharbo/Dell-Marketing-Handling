@@ -9,6 +9,7 @@ import Domain.Campaign;
 import Domain.POE;
 import Domain.Partner;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.Part;
@@ -51,5 +52,5 @@ public interface ControllerInterface {
     
     public void clearDisapprovedCampaigns();
     
-    public List<POE> getPOE(int campaignid);
+    public ArrayList<POE> getPOE(int campaignid);
 }

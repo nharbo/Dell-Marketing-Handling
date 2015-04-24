@@ -1,5 +1,4 @@
-
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -32,16 +31,9 @@ public class DBfacade {
     public static final boolean inDebugMode = true;
 
     private static Connection con = null;
-    private static ResultSet rs;
     private static Statement statement = null;
-    private Map<String, Campaign> campaigns = new HashMap();
-    private Map<String, Campaign> partnercampaigns = new HashMap();
-    private Map<String, Partner> partners = new HashMap();
-    private Map<String, Campaign> campaignReq = new HashMap();
-    private Map<String, Campaign> disCampaign = new HashMap();
-    private Map<String, POE> poe = new HashMap();
 
-    // Constructor som holder forbindelsen til databasen, via DBConnector.
+        // Constructor som holder forbindelsen til databasen, via DBConnector.
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
     // så der kun oprettes 1 forbindelse til DB-serveren.
     public DBfacade() {
@@ -55,6 +47,7 @@ public class DBfacade {
         // Henter UserId og Password fra "User" class. 
         String username = bean.getUserId();
         String password = bean.getPassword();
+        ResultSet rs;
 
         // SQL-streng der finder alle users der passer med oplyste user_id og pwd. 
         String SQLString = "select * from users where user_id='" + username + "' AND pwd = '" + password + "'";
@@ -85,15 +78,16 @@ public class DBfacade {
         return bean;
     }
 
-    // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
+        // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Listen indeholder aktive/accepterede kampagner (ongoing)
-    public List<Campaign> getCampaigns() {
+    public ArrayList<Campaign> getCampaigns() {
 
-        campaigns.clear();
+        ArrayList<Campaign> campaigns = new ArrayList();
+        ResultSet rs;
 
         try {
-     //       con = DBConnector.getInstance().getConnection();
+         //       con = DBConnector.getInstance().getConnection();
 
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
@@ -110,7 +104,7 @@ public class DBfacade {
                     System.out.println("ResultSet: " + rs.getString("c_id"));
                 }
 
-                campaigns.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                campaigns.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -123,15 +117,16 @@ public class DBfacade {
             System.out.println("Retrieved campaign: " + campaigns);
         }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
-        return new ArrayList<Campaign>(campaigns.values());
+        return campaigns;
     }
 
-    public List<Campaign> getPartnerCampaigns(String username) {
+    public ArrayList<Campaign> getPartnerCampaigns(String username) {
 
-        partnercampaigns.clear();
+        ArrayList<Campaign> partnercampaigns = new ArrayList();
+        ResultSet rs;
 
         try {
-            //Her laves en inner join, da campaign ikke inderholder et user_id, 
+                //Her laves en inner join, da campaign ikke inderholder et user_id, 
             //men kun p_id - derfor skal tabellerne sammensmeltes med en join..
             String SQLString1 = "SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = '" + username + "'";
             statement = con.createStatement();
@@ -140,7 +135,7 @@ public class DBfacade {
             System.out.println(SQLString1);
 
             while (rs.next()) {
-                partnercampaigns.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                partnercampaigns.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -150,12 +145,13 @@ public class DBfacade {
             System.out.println(e.getMessage());
         }
 
-        return new ArrayList<Campaign>(partnercampaigns.values());
+        return partnercampaigns;
 
     }
 
     // Denne metode tilføjer en ny user til user-tabellen.
     public void addUser(String userid, String password) {
+
         try {
             statement = con.createStatement();
             String sqlAdd = "insert into cphnh127.users values ('" + userid + "', '" + password + "')";
@@ -169,6 +165,7 @@ public class DBfacade {
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
     public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
+
         try {
             statement = con.createStatement();
             String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
@@ -192,8 +189,10 @@ public class DBfacade {
     }
 
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
-    public List<Partner> getPartners() {
-        partners.clear();
+    public ArrayList<Partner> getPartners() {
+
+        ArrayList<Partner> partners = new ArrayList();
+        ResultSet rs;
 
         try {
             // SQLString hiver alle elementer ud med status "ongoing"
@@ -207,11 +206,8 @@ public class DBfacade {
 
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
             while (rs.next()) {
-                if (inDebugMode) {
-                    System.out.println("ResultSet: " + rs.getString("c_id"));
-                }
 
-                partners.put(rs.getString("user_id"), new Partner(rs.getString("user_id"), rs.getInt("p_id"), rs.getString("p_name"), rs.getString("address"), rs.getInt("cvr"), rs.getInt("phone"), rs.getInt("zip")));
+                partners.add(new Partner(rs.getString("user_id"), rs.getInt("p_id"), rs.getString("p_name"), rs.getString("address"), rs.getInt("cvr"), rs.getInt("phone"), rs.getInt("zip")));
             }
             rs.close();
             statement.close();
@@ -223,12 +219,12 @@ public class DBfacade {
         if (inDebugMode) {
             System.out.println("Retrieved partners: " + partners);
         }
-        // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med partner-objekter returneres.
-        return new ArrayList<Partner>(partners.values());
+        //listen med partner-objekter returneres.
+        return partners;
     }
 
     // Denne metode sletter en partner fra databasen, både i partner og user-tabellen, ud fra partnerid'et.
-    //Lav som boolean, så der kan returners om det er gået godt eller ej.
+    // Lav som boolean, så der kan returners om det er gået godt eller ej.
     public void deletePartner(String userid) {
         try {
             statement = con.createStatement();
@@ -245,6 +241,8 @@ public class DBfacade {
 
     // Denne metode henter en enkelt partner ind, og gemmer informationerne ned i et partner-objekt.
     public Partner getPartner(String userid) {
+
+        ResultSet rs;
         Partner partner = null;
 
         try {
@@ -277,18 +275,19 @@ public class DBfacade {
         }
     }
 
-//        public boolean authCheck(String id, String password) {
-//
-//        if(userMap.getUserMap().containsKey(id)){
-//            if(getUser(id).getPassword().equals(password)){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-    public List<Campaign> getCampaignRequests() {
+    //        public boolean authCheck(String id, String password) {
+    //
+    //        if(userMap.getUserMap().containsKey(id)){
+    //            if(getUser(id).getPassword().equals(password)){
+    //                return true;
+    //            }
+    //        }
+    //        return false;
+    //    }
+    public ArrayList<Campaign> getCampaignRequests() {
 
-        campaignReq.clear();
+        ResultSet rs;
+        ArrayList<Campaign> campaignReq = new ArrayList();
 
         try {
             // SQLString hiver alle elementer ud med status "ongoing"
@@ -302,7 +301,7 @@ public class DBfacade {
 
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
             while (rs.next()) {
-                campaignReq.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                campaignReq.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -312,7 +311,7 @@ public class DBfacade {
             System.out.println(e.getMessage());
         }
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
-        return new ArrayList<Campaign>(campaignReq.values());
+        return campaignReq;
     }
 
     public void acceptCampaignRequest(int campaignid) {
@@ -330,16 +329,16 @@ public class DBfacade {
     public void addPoe(String poeid, int c_id, String status, Part poe) {
 
         try {
-      
+
             PreparedStatement sqlPoe = con.prepareStatement("insert into cphnh127.poe values (?,?,?,?)");
             sqlPoe.setString(1, poeid);
             sqlPoe.setInt(2, c_id);
             sqlPoe.setString(3, status);
             sqlPoe.setBlob(4, poe.getInputStream());
             sqlPoe.executeQuery();
-//            statement = con.createStatement();
-//            String sqlPoe = "insert into cphnh127.poe values('" + poeid + "', " + c_id + ", '" + status + "', " + poe + ")";
-//            statement.executeQuery(sqlPoe);
+    //            statement = con.createStatement();
+            //            String sqlPoe = "insert into cphnh127.poe values('" + poeid + "', " + c_id + ", '" + status + "', " + poe + ")";
+            //            statement.executeQuery(sqlPoe);
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addPoe");
             System.out.println(e.getMessage());
@@ -347,9 +346,10 @@ public class DBfacade {
 
     }
 
-    public List<Campaign> getDisapprovedCampaigns() {
+    public ArrayList<Campaign> getDisapprovedCampaigns() {
 
-        disCampaign.clear();
+        ResultSet rs;
+        ArrayList<Campaign> disCampaign = new ArrayList();
 
         try {
             String sqlDis = "SELECT * FROM campaign WHERE status = 'disapproved'";
@@ -357,7 +357,7 @@ public class DBfacade {
             rs = statement.executeQuery(sqlDis);
 
             while (rs.next()) {
-                disCampaign.put(rs.getString("c_id"), new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                disCampaign.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
 
             rs.close();
@@ -368,7 +368,7 @@ public class DBfacade {
             System.out.println(e);
         }
 
-        return new ArrayList<Campaign>(disCampaign.values());
+        return disCampaign;
     }
 
     public void disapproveCampaignRequest(int campaignid) {
@@ -384,7 +384,7 @@ public class DBfacade {
 
     }
 
-    // Clearer de inaktive kampagner (dem som ikke er blevet godkendte).
+        // Clearer de inaktive kampagner (dem som ikke er blevet godkendte).
     // Der laves en autocommit, så der ikke går noget galt, når der slettes i to forskellige tabeller.
     // På den måde bliver begge statements kun udført, hvis de går godt. Hvis det ene fejler, bliver det andet ikke udført.
     // OBS!! DETTE ER EN TRANSACTION!
@@ -406,7 +406,7 @@ public class DBfacade {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - clearDisapprovedCampaigns");
             System.out.println(e.getMessage());
-            // trycatch i catchen, hvis der opstår exception, 
+                // trycatch i catchen, hvis der opstår exception, 
             // som laver en rollback, så der ikke laves noget rod i DB
             try {
                 con.rollback();
@@ -426,23 +426,26 @@ public class DBfacade {
         }
     }
 
-    public List<POE> getPOE(int campaignid) {
+    public ArrayList<POE> getPOE(int campaignid) {
+        
+        ArrayList poe = new ArrayList();
+        ResultSet rs;
 
         try {
             String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
             statement = con.createStatement();
             rs = statement.executeQuery(SQLpoe);
-            
-        while(rs.next()){
-            poe.put(rs.getString("poeid"), new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img")));
-        }
+
+            while (rs.next()) {
+                poe.add(new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), (Part) rs.getBlob("poe"), rs.getBinaryStream("in")));
+            }
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getPOE");
             System.out.println(e.getMessage());
         }
 
-        return new ArrayList<POE>(poe.values());
+        return poe;
 
     }
 

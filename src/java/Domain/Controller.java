@@ -116,8 +116,8 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<POE> getPOE(int campaignid) {
-       return db.getPOE(campaignid);
+    public ArrayList<POE> getPOE(int campaignid) {
+      return db.getPOE(campaignid);
     }
     
     
