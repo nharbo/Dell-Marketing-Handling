@@ -18,10 +18,10 @@ public class POE {
     String poeid;
     int c_id;
     String status;
-    Part poe;
+    Blob poe;
     InputStream in;
 
-    public POE(String poeid, int c_id, String status, Part poe, InputStream in) {
+    public POE(String poeid, int c_id, String status, Blob poe, InputStream in) {
 
         this.poeid = poeid;
         this.c_id = c_id;
@@ -55,11 +55,11 @@ public class POE {
         this.poeid = poeid;
     }
 
-    public Part getPoe() {
+    public Blob getPoe() {
         return poe;
     }
 
-    public void setPoe(Part poe) {
+    public void setPoe(Blob poe) {
         this.poe = poe;
     }
 
