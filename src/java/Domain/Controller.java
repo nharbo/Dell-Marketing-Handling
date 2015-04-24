@@ -44,7 +44,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<Partner> getAllPartners() {
+    public ArrayList<Partner> getAllPartners() {
         return db.getPartners();
     }
 
@@ -55,12 +55,12 @@ public class Controller implements ControllerInterface {
 
 
     @Override
-    public List<Campaign> getAllCampaigns() {
+    public ArrayList<Campaign> getAllCampaigns() {
         return db.getCampaigns();
        
     }
     
-    public List<Campaign> getPartnerCampaigns(String username){
+    public ArrayList<Campaign> getPartnerCampaigns(String username){
         return db.getPartnerCampaigns(username);
     }
 
@@ -85,7 +85,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<Campaign> getCampaignRequests() {
+    public ArrayList<Campaign> getCampaignRequests() {
         return db.getCampaignRequests();
     }
 
@@ -101,7 +101,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<Campaign> getDisapprovedCampaigns() {
+    public ArrayList<Campaign> getDisapprovedCampaigns() {
         return db.getDisapprovedCampaigns();
     }
 
