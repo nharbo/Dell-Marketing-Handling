@@ -40,11 +40,11 @@
                     <tbody>
                         <tr>
                             <td><label>UserID</label></td>
-                            <td><input type="text" name="userid" value="${partner.userid}"></td>
+                            <td><input type="text" name="userid" value="${partner.userid}" readonly="readonly"></td>
                         </tr>
                         <tr>
                             <td><label>PartnerID</label></td>
-                            <td><input type="text" name="partnerid" value="${partner.partnerid}"></td>
+                            <td><input type="text" name="partnerid" value="${partner.partnerid}" readonly="readonly"></td>
                         </tr>
                         <tr>
                             <td><label>Partner name</label></td>
@@ -64,7 +64,7 @@
                         </tr>
                         <tr>
                             <td><label>CVR-number</label></td>
-                            <td><input type="text" name="cvr" value="${partner.cvr}"></td>
+                            <td><input type="text" name="cvr" value="${partner.cvr}" readonly="readonly"></td>
                         </tr>
                         <tr>
                             <td><label>Phone number</label></td>
