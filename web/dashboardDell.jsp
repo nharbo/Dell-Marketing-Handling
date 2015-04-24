@@ -20,7 +20,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
 
         <title>Dell Dashboard</title>
     </head>
@@ -34,25 +34,21 @@
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
         <div id="middle">
             <form action="Control" method="POST">
-                <input class="Button" type="submit" value="Awaiting requests" name="Anmodninger"/>
-                <input type="hidden" name="origin" value="awaitingRequests">
+                <button class="Button" value="awaitingRequests" name="origin">Awaiting requests</button>
             </form>
 
             <form action="Control" method="POST">
-                <input class="Button" type="submit" value="Active campaigns" name="AC"/>
-                <input type="hidden" name="origin" value="showActiveCampaigns">
+                <button class="Button" value="showActiveCampaigns" name="origin"/>Active campaigns</button>
             </form>
 
             <form action="Control" method="POST">
-                <input class="Button" type="submit" value="Inactive campaigns" name="IC"/>
-                <input type="hidden" name="origin" value="showInactiveCampaigns">
+                <button class="Button" value="showInactiveCampaigns" name="origin"/>Inactive campaigns</button>
             </form>
 
-            <input class="Button" type="submit" value="Add new partner" name="Ny" onclick="location.href = 'registration.jsp'" />
+            <button class="Button" name="Ny" onclick="location.href = 'registration.jsp'" />Add new partner</button>
 
             <form action="Control" metohd="POST">
-                <input class="Button" type="submit" value="Edit/Delete partner" name="RDP"/>
-                <input type="hidden" name="origin" value="showPartners">
+                <button class="Button" value="showPartners" name="origin"/>Edit/Delete partner</button>
             </form>
         </div>
 

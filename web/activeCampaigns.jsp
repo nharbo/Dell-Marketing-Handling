@@ -21,7 +21,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
         <title>Active campaigns</title>
     </head>
     <body> 
@@ -68,9 +68,10 @@
 
             <form action="Control" method="POST">
 
-                Campaign ID: <select></select>
-                <input type="submit" value="Show POE" name="spoe" />
-                <input type="hidden" name="origin" value="showPOE"> 
+                Campaign ID: 
+                    <select>
+                    </select>
+                <button type="submit" value="showPOE" name="origin" />Show POE</button>
             </form>
         </div>
         <div id="bottom">

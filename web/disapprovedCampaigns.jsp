@@ -21,7 +21,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
         <title>Disapproved campaigns</title>
     </head>
     <body> 
@@ -75,11 +75,10 @@
             <table border="0">
                 <tbody>
                     <tr>    
-                        <th><input class="DButton" type="submit" value="Clear list" name="clearDis"></th>
+                        <th><button class="Button" type="submit" value="clearDisapproved" name="origin">Clear list</button></th>
                     </tr>
                 </tbody>
             </table>
-            <input type="hidden" name="origin" value="clearDisapproved">
         </form>
         <div id="bottom">
 

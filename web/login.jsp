@@ -19,7 +19,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
 
         <title>Dell login</title>
     </head>
@@ -38,8 +38,7 @@
                     Password:
                     <br><input type="password" name="password" >
                 </div>
-                <button class="button" name="login" value="" id="login">Login</button>
-                <input type="hidden" name="origin" value="login">
+                <button class="button" name="loorigingin" value="login" id="login">Login</button>
             </form>
         </div>
         <div id="bottom">

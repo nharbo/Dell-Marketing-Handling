@@ -19,7 +19,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -33,8 +33,7 @@
             CampaignID: <input type="text" name="CampaignID">
 
             Attach POE FILE: <input type="file" name="POEFile">
-            <input type="submit" value="Send">
-            <input type="hidden" name="origin" value="POEUpload">
+            <button type="submit" name="origin" value="SePOEUploadnd">Submit</button>
             </div>
             <div id="bottom">
                 

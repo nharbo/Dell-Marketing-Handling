@@ -20,7 +20,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
 
         <title>Partner Dashboard</title>
     </head>
@@ -30,29 +30,17 @@
             <p><%=session.getAttribute("message")%></p>
         </h1>
         </div>
+        
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
         <div id="middle">
-            <input class="Button" type="submit" value="Request a new campaign" name="Ansøgning" onclick="location.href = 'campaignRequest.jsp'"/>
+            <button class="Button" name="Ansøgning" onclick="location.href = 'campaignRequest.jsp'"/>Request a new campaign</button>
 
             <form action="Control" method="POST">
-                <input class="Button" type="submit" value="Show all campaigns" name="Campaigns"/>
-                <input type="hidden" name="origin" value="showPartnerCampaigns">
+                <button class="Button" value="showPartnerCampaigns" name="origin"/>Show all campaigns</button>
             </form>
         </div>
         <div id="bottom">
             
         </div>
-
-            <%--   <input class="Button" type="submit" value="Igangværende kampagner" name="IK" onclick="location.href='activeCampaigns.jsp'" />
-              
-               <input class="Button" type="submit" value="Tilføj ny partner" name="Ny" onclick="location.href='registration.jsp'" />
-            --%>
-            <%--       
-              <input class="Button" type="submit" value="Rediger/Slet partner" name="RDP" onclick="location.href='NæsteSide'" />
-              </div>
-            
-            --%>
-
-
     </body>
 </html>

@@ -21,7 +21,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
         <title>Awaiting campaign requests</title>
     </head>
     <body> 
@@ -78,11 +78,10 @@
                     <tr>
                         <th> <input type="text" name="acceptCampaignid" value="Type campaign id here" />
                         </th>
-                        <th><input class="DButton" type="submit" value="Accept campaign!" name="acceptCampaign"></th>
+                        <th><button class="DButton" type="submit" value="acceptCampaignRequest" name="origin">Accept campaign!</button</th>
                     </tr>
                 </tbody>
             </table>
-            <input type="hidden" name="origin" value="acceptCampaignRequest">
         </form>
         <form action="Control" method="POST">
             <table border="0">
@@ -90,11 +89,10 @@
                     <tr>
                         <th> <input type="text" name="disapproveCampaignid" value="Type campaign id here" />
                         </th>
-                        <th><input class="DButton" type="submit" value="Disapprove campaign!" name="disapproveCampaign"></th>
+                        <th><button class="DButton" type="submit" value="disapproveCampaignRequest" name="origin">Disapprove campaign!</button></th>
                     </tr>
                 </tbody>
             </table>
-            <input type="hidden" name="origin" value="disapproveCampaignRequest">
         </form>
         <div id="bottom">
 

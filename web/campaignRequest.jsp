@@ -19,7 +19,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
 
         <title>Campaign request</title>
     </head>
@@ -91,8 +91,7 @@
                         <br><input type="text" name="partnerId">
                     </div>
 
-                    <button class="button" id="currencyField" name="campaignRequest" value="">Request campaign!</button>
-                    <input type="hidden" name="origin" value="campaignRequest">
+                    <button class="button" id="currencyField" name="origin" value="campaignRequest">Request campaign!</button>
                     </form>
                 </div>
 

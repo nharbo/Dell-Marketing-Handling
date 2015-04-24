@@ -1,0 +1,75 @@
+
+@font-face { /* declare fonts */
+    font-family: "MuseoLight";
+    src: url("fonts/Museo300-Regular.eot");
+    src: local("Museo 300"), local("Museo-300"),
+        url("fonts/Museo300-Regular.woff") format("woff"),
+        url("fonts/Museo300-Regular.otf") format("opentype"),
+        url("fonts/Museo300-Regular.svg#Museo-300") format("svg");
+}
+
+h1 { 
+    color: #0066cc;
+    font: 30px/1 MuseoLight, Verdana, sans-serif; 
+}
+
+#header {
+
+    text-align: center;
+    border-top: 4px solid #0066cc;
+    font: 14px/1 MuseoLight, Verdana, sans-serif;
+}
+
+#middle {
+    text-align: center;
+    margin-top: 2.5em;
+    font: 14px/1 MuseoLight, Verdana, sans-serif;
+}
+
+#bottom {
+    margin-top: 5em;
+    border-bottom: 4px solid #0066cc;
+    font: 14px/1 MuseoLight, Verdana, sans-serif;
+}
+
+#login {
+    margin-top: 1em;
+    font: 14px/1 MuseoLight, Verdana, sans-serif;
+}
+
+.button {
+    width: 12.5em;
+    height: 1.875em;
+    font: 14px/1 MuseoLight, Verdana, sans-serif;
+}
+
+#username {
+    margin: 1em;
+    font: 14px/1 MuseoLight, Verdana, sans-serif;
+}
+
+#password { 
+    margin: 1em;
+    font: 14px/1 MuseoLight, Verdana, sans-serif;
+}
+
+table {
+    border: 1px solid #0066cc;
+    margin: 0 auto;
+    font: 14px/1 MuseoLight, Verdana, sans-serif;
+}
+
+th {
+    color: white;
+    background-color: #0066cc;
+}
+
+.campaignInputs {
+    text-align: center;
+}
+
+.tinput{
+    text-align: center;
+    
+}
+

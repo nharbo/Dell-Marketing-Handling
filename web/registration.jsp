@@ -19,7 +19,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="HillerStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
 
         <title>Partner registration</title>
     </head>
@@ -73,12 +73,11 @@
                             <td><input type="password" name="retype_password"></td>
                         </tr>
                         <tr>
-                            <td><button name="signup" value="">Create</button></td>
+                            <td><button name="origin" value="registration">Create</button></td>
                         </tr>
 
                     </tbody>
-                </table>
-                <input type="hidden" name="origin" value="registration">         
+                </table>        
             </form>
         </div>
         <div id="bottom">
