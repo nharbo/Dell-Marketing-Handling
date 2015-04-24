@@ -496,8 +496,9 @@ public class DBfacade {
             System.out.println(e.getMessage());
             // trycatch i catchen, hvis der opstår exception, 
             // som laver en rollback, så der ikke laves noget rod i DB
-            try (Connection con = DriverManager.getConnection(URL, ID, PW)) {
+            try {
                 con.rollback();
+                con.close();
                 System.out.println("Transaction rolled back..");
             } catch (Exception f) {
                 System.out.println("Fail doing rollback");
