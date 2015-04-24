@@ -5,7 +5,10 @@
  */
 package Presentation;
 
+import Domain.POE;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -32,20 +35,20 @@ public class ImgServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        response.getOutputStream().
         
+        String id = request.getParameter("poeid");
+        POE poe = controller.getPoe(id);
+        InputStream in = poe.getIn();
+        OutputStream out = response.getOutputStream();
+        byte[] buffer = new byte[1024];
+        int counter = 0;
         
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ImgServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ImgServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        do{
+            counter = in.read(buffer);
+            out.write(buffer, 0, counter);
+        } while (counter == 1024);
+        
+
         }
     }
 

@@ -108,8 +108,8 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public List<POE> getPOE(int campaignid) {
-       return db.getPOE(campaignid);
+    public void getPOE(int campaignid) {
+      throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

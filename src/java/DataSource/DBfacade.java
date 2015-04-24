@@ -426,24 +426,24 @@ public class DBfacade {
         }
     }
 
-    public List<POE> getPOE(int campaignid) {
-
-        try {
-            String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
-            statement = con.createStatement();
-            rs = statement.executeQuery(SQLpoe);
-            
-        while(rs.next()){
-            poe.put(rs.getString("poeid"), new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img")));
-        }
-
-        } catch (Exception e) {
-            System.out.println("Fail in DBMapper - getPOE");
-            System.out.println(e.getMessage());
-        }
-
-        return new ArrayList<POE>(poe.values());
-
-    }
+//    public List<POE> getPOE(int campaignid) {
+//
+//        try {
+//            String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
+//            statement = con.createStatement();
+//            rs = statement.executeQuery(SQLpoe);
+//            
+//        while(rs.next()){
+//            poe.put(rs.getString("poeid"), new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img")));
+//        }
+//
+//        } catch (Exception e) {
+//            System.out.println("Fail in DBMapper - getPOE");
+//            System.out.println(e.getMessage());
+//        }
+//
+//        return new ArrayList<POE>(poe.values());
+//
+//    }
 
 }
