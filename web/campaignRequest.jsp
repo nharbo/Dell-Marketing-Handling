@@ -44,18 +44,43 @@
                         <br><input type="text" name="budget">
                     </div>
                     <div>
+                        <script type="text/javascript">
+                            function changeValue() {
+                                var option = document.getElementById('country').value;
+
+                                if (option == "Norge") {
+                                    document.getElementById('currencyField').value = "NOK";
+                                }
+                                else if (option == "Danmark") {
+                                    document.getElementById('currencyField').value = "DKK";
+                                }
+                                else if (option == "Sverige") {
+                                    document.getElementById('currencyField').value = "SEK";
+                                }
+                                else if (option == "Island") {
+                                    document.getElementById('currencyField').value = "Islaaandsk mønt";
+                                }
+                                else if (option == "Finland") {
+                                    document.getElementById('currencyField').value = "Finska mønt";
+                                }
+                                else if (option == "USA") {
+                                    document.getElementById('currencyField').value = "USD";
+                                }
+
+                            }
+                        </script>
                         Country:
-                        <br><select id="Country">
-                            <option value="Norge">Norge</option>
-                            <option value="Danmark">Danmark</option>
-                            <option value="Sverige">Sverige</option>
-                            <option value="Island">Island</option>
-                            <option value="Finland">Finland</option>
-                            <option value="USA">USA</option>
+                        <br><select name="country" id="country" onchange="changeValue();">
+                            <option id="Norge" value="Norge">Norge</option>
+                            <option id="Danmark" value="Danmark">Danmark</option>
+                            <option id="Sverige" value="Sverige">Sverige</option>
+                            <option id="Island" value="Island">Island</option>
+                            <option id="Finland" value="Finland">Finland</option>
+                            <option id="USA" value="USA">USA</option>
                         </select>
                     </div>
                     <div>
-                        Currency: <br><input type="text" name="currency" readonly="readonly">
+                        Currency: <br><input type="text" id="currencyField" name="currency" readonly="readonly" value="NOK">
                     </div>
                     <div>
                         Campaign Id:
@@ -66,7 +91,7 @@
                         <br><input type="text" name="partnerId">
                     </div>
 
-                    <button class="button" name="campaignRequest" value="">Request campaign!</button>
+                    <button class="button" id="currencyField" name="campaignRequest" value="">Request campaign!</button>
                     <input type="hidden" name="origin" value="campaignRequest">
                     </form>
                 </div>
