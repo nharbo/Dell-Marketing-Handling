@@ -21,6 +21,14 @@ import javax.servlet.http.Part;
 public class Controller implements ControllerInterface {
     
     DBfacade db = new DBfacade();
+//    Facade db = new DBfacade();
+//    
+//    public Controller() {}
+//    
+//    public Controller(Facade facade) {
+//        this.db = facade;
+//    }
+    
     
     public static final boolean inDebugMode = false;
 
