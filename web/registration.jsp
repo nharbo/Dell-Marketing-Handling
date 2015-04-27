@@ -26,7 +26,9 @@
     <body>
         <div id="header">
             <h1>Partner registration</h1>
-            <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>
+            <form action="Control" method="POST">
+                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
+            </form>
         </div>
         <div id="middle">
             <form action="Control" method="POST">

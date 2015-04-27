@@ -7,12 +7,14 @@ package Domain;
 
 import DataSource.DBfacade;
 import Interface.ControllerInterface;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -94,7 +96,7 @@ public class Controller implements ControllerInterface {
     }
    
 @Override
-    public void addPoe(String poeid, int c_id, String status, Blob poe) {
+    public void addPoe(String poeid, int c_id, String status, InputStream poe) {
         
         db.addPoe(poeid, c_id, status, poe);
     }
@@ -115,7 +117,7 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public ArrayList<POE> getPOE(int campaignid) {
+    public POE getPOE(int campaignid) {
       return db.getPOE(campaignid);
     }
     

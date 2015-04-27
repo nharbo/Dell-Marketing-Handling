@@ -27,7 +27,9 @@
     <body> 
         <div id="header">
             <h1>Active campaigns</h1>
-            <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>          
+            <form action="Control" method="POST">
+                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
+            </form>          
         </div>
         <div id="middle">
             <h1><c:out value=""></c:out></h1>
@@ -68,7 +70,7 @@
 
             <form action="ImgServlet" method="POST">
 
-                <select name="">
+                <select name="campaignid">
                     <c:forEach var="campaign" items="${campaignList}">
 
                         <option>${campaign.campaignId}</option>
@@ -77,7 +79,7 @@
                 </select>
                 Campaign ID: 
                 <button value="ImgServlet" name="ImgServlet">Show POE</button>
-                
+
             </form>
         </div>
         <div id="bottom">

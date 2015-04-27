@@ -26,7 +26,9 @@
     <body>
         <div id="header">
             <h1>Campaign request</h1>
-            <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>
+            <form action="Control" method="POST">
+                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebuttonPartner"/>
+            </form>
         </div>
         <div id="middle">
             <form action="Control" method="POST">
@@ -92,12 +94,12 @@
                     </div>
 
                     <button class="button" id="currencyField" name="origin" value="campaignRequest">Request campaign!</button>
-                    </form>
-                </div>
+            </form>
+        </div>
 
 
-                <div id="bottom">
+        <div id="bottom">
 
-                </div>
-                </body>
-                </html>
+        </div>
+    </body>
+</html>

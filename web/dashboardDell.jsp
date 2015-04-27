@@ -26,9 +26,12 @@
     </head>
     <body>
         <div id="header">
-        <h1> <img src="dell round logo.png" width="150" height="150" alt="dell-logo"/>
-            <p><%=session.getAttribute("message")%></p>
-        </h1>
+            <h1> 
+                <form action="Control" method="POST">
+                    <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
+                </form>
+                <p><%=session.getAttribute("message")%></p>
+            </h1>
         </div>
 
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
@@ -47,15 +50,15 @@
 
             <button class="Button" name="Ny" onclick="location.href = 'registration.jsp'" />Add new partner</button>
 
-            <form action="Control" metohd="POST">
-                <button class="Button" value="showPartners" name="origin"/>Edit/Delete partner</button>
-            </form>
-        </div>
+        <form action="Control" metohd="POST">
+            <button class="Button" value="showPartners" name="origin"/>Edit/Delete partner</button>
+        </form>
+    </div>
 
-        <%----%>
-        <div id="bottom">
-            
-        </div>
+    <%----%>
+    <div id="bottom">
 
-    </body>
+    </div>
+
+</body>
 </html>

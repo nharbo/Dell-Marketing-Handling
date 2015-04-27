@@ -27,79 +27,70 @@
     </head>
     <body>
         <div id="header">
-            
+
+            <form action="Control" method="POST">
+                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
+            </form>
+
         </div>
         <div id="middle">
-        <h1><c:out value="Partner"></c:out></h1>
+            <h1><c:out value="Partner"></c:out></h1>
 
-            <table style="border: 1px solid #0066cc">
+                <table style="border: 1px solid #0066cc">
 
-                <thead>
-                <th>
-                    User id
-                </th>
-                <th>
-                    Partner id
-                </th>
-                <th>
-                    Partner name
-                </th>
-                <th>
-                    Address
-                </th>
-                <th>
-                    CVR-number
-                </th>
-                <th>
-                    Phone
-                </th>
-                <th>
-                    Zip
-                </th>
-            </thead>
-
-
-
-        <c:forEach var="partners" items="${partnerList}">
-            <tr>
-                <td style="border: 1px solid #0066CC">${partners.userid}</td>
-                <td style="border: 1px solid #0066CC">${partners.partnerid}</td>
-                <td style="border: 1px solid #0066CC">${partners.partnername}</td>
-                <td style="border: 1px solid #0066CC">${partners.address}</td>
-                <td style="border: 1px solid #0066CC">${partners.cvr}</td>
-                <td style="border: 1px solid #0066CC">${partners.phone}</td>
-                <td style="border: 1px solid #0066CC">${partners.zip}</td>
-            </tr>
-
-        </c:forEach>
-    </table>
-    <form action="Control" method="POST">
-        <table border="0">
-            <tbody>
-                <tr>
-                    <th> <input type="text" name="useridDelete" value="Type partner id here" />
+                    <thead>
+                    <th>
+                        User id
                     </th>
-                    <th><input class="DButton" type="submit" value="Delete Partner" name="slet"></th>
-                </tr>
-            </tbody>
-        </table>
-        <input type="hidden" name="origin" value="deletePartner">
-    </form>
-    <form action="Control" method="POST">
-        <table border="0">
-            <tbody>
-                <tr>
-                    <th> <input type="text" name="useridEdit" value="Type partner id here" />
+                    <th>
+                        Partner id
                     </th>
-                    <th><input class="DButton" type="submit" value="editPartnerPage" name="origin"></th>
-                </tr>
-            </tbody>
-        </table>
-    <%--<input type="hidden" name="origin" value="editPartnerPage"> --%>
-    </form>
-        </div>
-        <div id="bottom">
-            
-        </div>
-</body>
+                    <th>
+                        Partner name
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        CVR-number
+                    </th>
+                    <th>
+                        Phone
+                    </th>
+                    <th>
+                        Zip
+                    </th>
+                    </thead>
+
+
+
+                <c:forEach var="partners" items="${partnerList}">
+                    <tr>
+                        <td style="border: 1px solid #0066CC">${partners.userid}</td>
+                        <td style="border: 1px solid #0066CC">${partners.partnerid}</td>
+                        <td style="border: 1px solid #0066CC">${partners.partnername}</td>
+                        <td style="border: 1px solid #0066CC">${partners.address}</td>
+                        <td style="border: 1px solid #0066CC">${partners.cvr}</td>
+                        <td style="border: 1px solid #0066CC">${partners.phone}</td>
+                        <td style="border: 1px solid #0066CC">${partners.zip}</td>
+                    </tr>
+
+                </c:forEach>
+            </table>
+            <form action="Control" method="POST">
+                <select name="userid">
+                    <c:forEach var="partners" items="${partnerList}">
+
+                        <option>${partners.userid}</option>
+
+                    </c:forEach>
+                </select> 
+                <button value="deletePartner" name="origin">Delete partner</button>
+                <button value="editPartnerPage" name="origin">Edit partner</button>
+            </form>
+
+            <div id="bottom">
+
+            </div>
+    </body>
 </html>

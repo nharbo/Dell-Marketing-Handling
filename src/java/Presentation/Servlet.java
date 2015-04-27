@@ -10,6 +10,7 @@ import Domain.Controller;
 import Domain.Partner;
 import Domain.User;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.Blob;
 import java.sql.Date;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -45,7 +47,7 @@ public class Servlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         Controller control;
-        
+
         //Nedenstående opretter en session, hvis der ikke allerede findes en, som efterfølgende
         //kan bruges til at fører oplysninger om brugeren videre i programmet.
         HttpSession session = request.getSession(true);
@@ -110,15 +112,15 @@ public class Servlet extends HttpServlet {
                     try {
                         User user = new User();
                         String username = request.getParameter("username");
-                        
+
                         // Her gemmes username ned i en session-variabel, så vi kan bruge den i en anden case.
                         session.setAttribute("username", username);
-                        
+
                         user.setUserId(request.getParameter("username"));
                         user.setPassword(request.getParameter("password"));
                         user = DBfacade.login(user);
                         if (user.isValid()) {
-                            
+
                             session.setAttribute("message", user);
 
                             // I tilfælde af del login.
@@ -143,9 +145,9 @@ public class Servlet extends HttpServlet {
                     return;
 
                 case "showPartnerCampaigns":
-                    String user = (String)session.getAttribute("username");
+                    String user = (String) session.getAttribute("username");
                     request.getSession().setAttribute("partnercampaigns", control.getPartnerCampaigns(user));
-                    
+
                     response.sendRedirect("PartnerCampaigns.jsp");
                     return;
 
@@ -155,7 +157,7 @@ public class Servlet extends HttpServlet {
                     return;
 
                 case "deletePartner":
-                    String user_idDelete = request.getParameter("useridDelete");
+                    String user_idDelete = request.getParameter("userid");
                     // lav som boolean, så der kan gives feedback på, om det er gået godt eller ej.
                     control.deletePartner(user_idDelete);
                     request.getSession().setAttribute("message", "You have succesfully deleted " + user_idDelete + " as a partner.");
@@ -163,7 +165,7 @@ public class Servlet extends HttpServlet {
                     return;
 
                 case "editPartnerPage":
-                    String user_idEdit = request.getParameter("useridEdit");
+                    String user_idEdit = request.getParameter("userid");
                     request.getSession().setAttribute("partner", control.getPartner(user_idEdit));
                     response.sendRedirect("editPartner.jsp");
                     break;
@@ -210,14 +212,14 @@ public class Servlet extends HttpServlet {
                     break;
 
                 case "acceptCampaignRequest":
-                    int accept_c_id = Integer.parseInt(request.getParameter("acceptCampaignid"));
+                    int accept_c_id = Integer.parseInt(request.getParameter("Campaignid"));
                     control.acceptCampaignRequest(accept_c_id);
                     request.getSession().setAttribute("message", "You have succesfully accepted the request");
                     response.sendRedirect("dashboardDell.jsp");
                     break;
 
                 case "disapproveCampaignRequest":
-                    int disapprove_c_id = Integer.parseInt(request.getParameter("disapproveCampaignid"));
+                    int disapprove_c_id = Integer.parseInt(request.getParameter("Campaignid"));
                     control.disapproveCampaignRequest(disapprove_c_id);
                     request.getSession().setAttribute("message", "You have succesfully disapproved the request!");
                     response.sendRedirect("dashboardDell.jsp");
@@ -235,29 +237,37 @@ public class Servlet extends HttpServlet {
                     break;
 
                 case "POEUpload":
-                  
+
                     String POEID = request.getParameter("POEID");
                     int POE_C_ID = Integer.parseInt(request.getParameter("CampaignID"));
                     String PStatus = "Pending";
-                    //Blob POEimg = request.getInputStream("POEFile");
-                    
-                    //control.addPoe(POEID, POE_C_ID, PStatus, POEimg);
-                    //control.addPoe(POEID, POE_C_ID, PStatus, POEimg);
+                    Part POEimg = request.getPart("POEFile");
+                    InputStream input = POEimg.getInputStream();
+
+                    control.addPoe(POEID, POE_C_ID, PStatus, input);
+
                     request.getSession().setAttribute("message", "You have succesfully sent your POE ");
                     response.sendRedirect("dashboardPartner.jsp");
                     break;
 
-                    
                 case "AcceptDeclinePOE":
-                    
+
+                    break;
+
+                case "homebutton":
+                    request.getSession().setAttribute("message", "");
+                    response.sendRedirect("dashboardDell.jsp");
+                    break;
+
+                case "homebuttonPartner":
+                    request.getSession().setAttribute("message", "");
+                    response.sendRedirect("dashboardPartner.jsp");
                     break;
 
             }
 
         }
     }
-
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

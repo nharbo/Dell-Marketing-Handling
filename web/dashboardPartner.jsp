@@ -26,21 +26,24 @@
     </head>
     <body>
         <div id="header">
-        <h1> <img src="dell round logo.png" width="150" height="150" alt="dell-logo"/>
-            <p><%=session.getAttribute("message")%></p>
-        </h1>
+            <h1>                 
+                <form action="Control" method="POST">
+                    <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebuttonPartner"/>
+                </form>
+                <p><%=session.getAttribute("message")%></p>
+            </h1>
         </div>
-        
+
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
         <div id="middle">
             <button class="Button" name="Ansøgning" onclick="location.href = 'campaignRequest.jsp'"/>Request a new campaign</button>
 
-            <form action="Control" method="POST">
-                <button class="Button" value="showPartnerCampaigns" name="origin"/>Show all campaigns</button>
-            </form>
-        </div>
-        <div id="bottom">
-            
-        </div>
-    </body>
+        <form action="Control" method="POST">
+            <button class="Button" value="showPartnerCampaigns" name="origin"/>Show all campaigns</button>
+        </form>
+    </div>
+    <div id="bottom">
+
+    </div>
+</body>
 </html>

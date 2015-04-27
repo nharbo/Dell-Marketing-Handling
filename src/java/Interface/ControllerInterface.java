@@ -8,11 +8,13 @@ package Interface;
 import Domain.Campaign;
 import Domain.POE;
 import Domain.Partner;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -44,7 +46,7 @@ public interface ControllerInterface {
     
     public void acceptCampaignRequest(int campaignid);
     
-    public void addPoe(String poeid, int c_id, String status, Blob poe);
+    public void addPoe(String poeid, int c_id, String status, InputStream poe);
     
     public List<Campaign> getDisapprovedCampaigns();
     
@@ -52,6 +54,6 @@ public interface ControllerInterface {
     
     public void clearDisapprovedCampaigns();
     
-    public ArrayList<POE> getPOE(int campaignid);
+    public POE getPOE(int campaignid);
 }
 

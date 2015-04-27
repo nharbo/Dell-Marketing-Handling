@@ -37,27 +37,30 @@ public class ImgServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
 
         Controller controller = new Controller();
 
-        int id = Integer.parseInt(request.getParameter("poeid"));
-        ArrayList<POE> poe = controller.getPOE(id);
-        POE p = poe.get(0);
+        int id = Integer.parseInt(request.getParameter("campaignid"));
+        POE poe = controller.getPOE(id);
+        //POE p = poe.get(0);
         
-        InputStream in = (InputStream)p.getPoe();
+        InputStream in = poe.getPoe();
+        //OutputStream outputStream = new FileOutputStream(filePath);
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
-        int counter = 0;
+        int counter = -1;
+        System.out.println("inden do!");
 
-        do {
-            counter = in.read(buffer);
-            out.write(buffer, 0, counter);
-        } while (counter == 1024);
+      while ((counter = in.read(buffer)) != -1) {
+                    out.write(buffer, 0, counter);
+                }
         
-        request.getSession().setAttribute("image", in);
+        request.getSession().setAttribute("image", out);
         response.sendRedirect("showPOE.jsp");
 
     }
+    
 
 
 

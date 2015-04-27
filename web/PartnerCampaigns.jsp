@@ -28,7 +28,9 @@
     <body>
         <div id="header">
             <h1>Partner campaigns</h1>
-            <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>
+            <form action="Control" method="POST">
+                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
+            </form>
         </div>
         <h1><c:out value=""></c:out></h1>
             <table>
@@ -62,6 +64,20 @@
 
         </c:forEach>
     </table>
+
+    <form action="Control" method="POST">
+
+        <select name="campaignid">
+            <c:forEach var="campaign" items="${campaignList}">
+
+                <option>${campaign.campaignId}</option>
+
+            </c:forEach>
+        </select>
+        Campaign ID: 
+        <button value="origin" name="sendPOEPage">Upload POE</button>
+
+    </form>
 </div>
 <div id="bottom">
 

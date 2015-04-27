@@ -24,18 +24,23 @@
     </head>
     <body>
         <div id="header">
-            
+
         </div>
         <div id="middle">
-        <h1><%=session.getAttribute("message")%></h1>
-        
-        <img src="ImgServlet?poeID=?${image.poe}"/>
-        
+            <h1>
+                <form action="Control" method="POST">
+                    <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
+                </form>
+                <%=session.getAttribute("message")%>
+            </h1>
+
+            <img src="ImgServlet?poeID=?${image.poe}"/>
+
         </div>
         <div id="bottom">
-            
-            
-            
+
+
+
         </div>
     </body>
 </html>

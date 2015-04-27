@@ -23,22 +23,27 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <h1>
+            <form action="Control" method="POST">
+                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebuttonPartner"/>
+            </form>
+        </h1>
         <div id="header">
-            
+
         </div>
         <div id="middle">
-        <form action="Control" method="POST" enctype="multipart/form-data" name="Poeup">
-            <%-- Campaign ID skal helst selv fyldes ud når du kommer ind på denne side, indtil videre skal det gøres manuelt --%>
-            POEID: <input type="text" name="POEID">
-            CampaignID: <input type="text" name="CampaignID">
+            <form action="Control" method="POST" enctype="multipart/form-data" name="Poeup">
+                <%-- Campaign ID skal helst selv fyldes ud når du kommer ind på denne side, indtil videre skal det gøres manuelt --%>
+                POEID: <input type="text" name="POEID">
+                CampaignID: <input type="text" name="CampaignID">
 
-            Attach POE FILE: <input type="file" name="POEFile">
-            <button type="submit" name="origin" value="SePOEUploadnd">Submit</button>
-            </div>
-            <div id="bottom">
-                
-            </div>
+                Attach POE FILE: <input type="file" name="POEFile">
+                <button type="submit" name="origin" value="POEUpload">Submit</button>
+        </div>
+        <div id="bottom">
 
-        </form>
-    </body>
+        </div>
+
+    </form>
+</body>
 </html>

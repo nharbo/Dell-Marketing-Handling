@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -134,10 +135,10 @@ public class DBfacade {
         ArrayList<Campaign> partnercampaigns = new ArrayList();
         ResultSet rs;
 
-        try  {
-            
+        try {
+
             con = DBConnector.getInstance().getConnection();
-            
+
             //Her laves en inner join, da campaign ikke inderholder et user_id, 
             //men kun p_id - derfor skal tabellerne sammensmeltes med en join..
             PreparedStatement sqlGPC = con.prepareStatement("SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = ?");
@@ -169,9 +170,9 @@ public class DBfacade {
     // Denne metode tilføjer en ny user til user-tabellen.
     public void addUser(String userid, String password, String status) {
 
-        try  {
+        try {
             con = DBConnector.getInstance().getConnection();
-            
+
             PreparedStatement sqlAdd = con.prepareStatement("insert into cphnh127.users values (?,?,?)");
             //String sqlAdd = "insert into cphnh127.users values ('" + userid + "', '" + password + "')";
             sqlAdd.setString(1, userid);
@@ -195,7 +196,7 @@ public class DBfacade {
 
         try {
             con = DBConnector.getInstance().getConnection();
-            
+
             PreparedStatement sqlAC = con.prepareStatement("insert into cphnh127.campaign values (?,?, to_date(?, 'YYYY-MM-DD'), to_date(?, 'YYYY-MM-DD'),?,?,?)");
             // String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
             sqlAC.setInt(1, c_id);
@@ -218,7 +219,7 @@ public class DBfacade {
 
     //Denne metode tilføjer en ny partner til partner-tabellen.
     public void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip) {
-        try  {
+        try {
             con = DBConnector.getInstance().getConnection();
             PreparedStatement sqlAdd = con.prepareStatement("insert into cphnh127.partners values (?,?,?,?,?,?,?)");
             //String sqlAdd = "insert into cphnh127.partners values ('" + userid + "', " + partnerid + ", '" + partnername + "', '" + adress + "', " + cvr + ", " + phone + ", " + zip + ")";
@@ -241,17 +242,15 @@ public class DBfacade {
 //        }
     }
 
-
-
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
     public ArrayList<Partner> getPartners() {
 
         ArrayList<Partner> partners = new ArrayList();
         ResultSet rs;
 
-        try  {
+        try {
             con = DBConnector.getInstance().getConnection();
-            
+
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM partners";
 
@@ -288,14 +287,18 @@ public class DBfacade {
     // Denne metode sletter en partner fra databasen, både i partner og user-tabellen, ud fra partnerid'et.
     // Lav som boolean, så der kan returners om det er gået godt eller ej.
     public void deletePartner(String userid) {
-        try  {
+        try {
             con = DBConnector.getInstance().getConnection();
-            
+
+            PreparedStatement sqldelC = con.prepareStatement("DELETE FROM campaign WHERE p_id IN (SELECT p_id FROM partners WHERE user_id = ?)");
             PreparedStatement sqldelP = con.prepareStatement("DELETE FROM partners WHERE user_id = ?");
             PreparedStatement sqldelU = con.prepareStatement("DELETE FROM users WHERE user_id = ?");
+
             //String sqlDelete1 = "DELETE FROM partners WHERE user_id = '" + userid + "'";
             //String sqlDelete2 = "DELETE FROM users WHERE user_id = '" + userid + "'";
-            sqldelP.setString(1, userid); 
+            sqldelC.setString(1, userid);
+            sqldelC.executeQuery();
+            sqldelP.setString(1, userid);
             sqldelP.executeQuery();
             sqldelU.setString(1, userid);
             sqldelU.executeQuery();
@@ -317,9 +320,9 @@ public class DBfacade {
         ResultSet rs;
         Partner partner = null;
 
-        try  {
+        try {
             con = DBConnector.getInstance().getConnection();
-            
+
             PreparedStatement sqlDel = con.prepareStatement("SELECT * FROM partners WHERE user_id = ?");
             //String sqlDelete1 = "SELECT * FROM partners WHERE user_id = '" + userid + "'";
             sqlDel.setString(1, userid);
@@ -347,7 +350,7 @@ public class DBfacade {
 
         try {
             con = DBConnector.getInstance().getConnection();
-            
+
             PreparedStatement sqlEdit = con.prepareCall("UPDATE partners SET user_id = ?, p_id = ?, p_name = ?, address = ?, cvr = ?, phone = ?, zip = ? WHERE user_id = ?");
             //"UPDATE partners SET user_id = '" + partner.getUserid() + "', p_id = '" + partner.getPartnerid() + "', p_name = '" + partner.getPartnername() + "', address = '" + partner.getAddress() + "', cvr = '" + partner.getCvr() + "', phone = '" + partner.getPhone() + "', zip = '" + partner.getZip() + "' WHERE user_id = '" + partner.getUserid() + "'";
             sqlEdit.setString(1, partner.getUserid());
@@ -359,7 +362,7 @@ public class DBfacade {
             sqlEdit.setInt(7, partner.getZip());
             sqlEdit.setString(8, partner.getUserid());
             sqlEdit.executeUpdate();
-            
+
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - UpdatePartner");
             System.out.println(e.getMessage());
@@ -378,7 +381,7 @@ public class DBfacade {
 
         try {
             con = DBConnector.getInstance().getConnection();
-            
+
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign WHERE status = 'pending'";
 
@@ -412,7 +415,7 @@ public class DBfacade {
 
         try {
             con = DBConnector.getInstance().getConnection();
-            
+
             PreparedStatement sqlACR = con.prepareStatement("UPDATE campaign SET status = 'ongoing' WHERE c_id = ?");
             //String sqlEdit = "UPDATE campaign SET status = 'ongoing' WHERE c_id = '" + campaignid + "'";
             sqlACR.setInt(1, campaignid);
@@ -428,17 +431,17 @@ public class DBfacade {
 //        }
     }
 
-    public void addPoe(String poeid, int c_id, String status, Blob poe) {
+    public void addPoe(String poeid, int c_id, String status, InputStream poe) {
 
         try {
-            
+
             con = DBConnector.getInstance().getConnection();
 
             PreparedStatement sqlPoe = con.prepareStatement("insert into cphnh127.poe values (?,?,?,?)");
             sqlPoe.setString(1, poeid);
             sqlPoe.setInt(2, c_id);
             sqlPoe.setString(3, status);
-            sqlPoe.setBlob(4, poe.getBinaryStream());
+            sqlPoe.setBlob(4, poe);
             sqlPoe.executeQuery();
 
         } catch (Exception e) {
@@ -460,7 +463,7 @@ public class DBfacade {
 
         try {
             con = DBConnector.getInstance().getConnection();
-            
+
             String sqlDis = "SELECT * FROM campaign WHERE status = 'disapproved'";
             statement = con.createStatement();
             rs = statement.executeQuery(sqlDis);
@@ -488,7 +491,7 @@ public class DBfacade {
 
         try {
             con = DBConnector.getInstance().getConnection();
-            
+
             PreparedStatement sqlDis = con.prepareStatement("UPDATE campaign SET status = 'disapproved' WHERE c_id = ?");
             //String sqlDisapprove = "UPDATE campaign SET status = 'disapproved' WHERE c_id = '" + campaignid + "'";
             sqlDis.setInt(1, campaignid);
@@ -511,9 +514,9 @@ public class DBfacade {
     // OBS!! DETTE ER EN TRANSACTION!
     public void clearDisapprovedCampaigns() {
 
-        try  {
+        try {
             con = DBConnector.getInstance().getConnection();
-            
+
             //Autocommit slåes fra.
             con.setAutoCommit(false);
 
@@ -551,28 +554,26 @@ public class DBfacade {
         }
     }
 
-    public ArrayList<POE> getPOE(int campaignid) {
-        
-//        POE poe2;
+    public POE getPOE(int campaignid) {
 
-        ArrayList poe = new ArrayList();
+        POE poe2 = null;
+//        ArrayList poe = new ArrayList();
         ResultSet rs;
 
         try {
             con = DBConnector.getInstance().getConnection();
-            
+
             PreparedStatement sqlpoe = con.prepareStatement("SELECT * FROM poe WHERE c_id = ?");
             //String SQLpoe = "SELECT * FROM poe WHERE c_id = '" + campaignid + "'";
             sqlpoe.setInt(1, campaignid);
             rs = sqlpoe.executeQuery();
-            
-//            if(rs.next()){
-//                poe2 = new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img"));
-//            }
 
-            while (rs.next()) {
-                poe.add(new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBlob("img")));
+            if(rs.next()){
+                poe2 = new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBinaryStream("img"));
             }
+//            while (rs.next()) {
+//                poe.add(new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBinaryStream("img")));
+//            }
 
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getPOE");
@@ -583,10 +584,9 @@ public class DBfacade {
 //        } catch (Exception e) {
 //            System.out.println(e);
 //        }
-        return poe;
-//        return poe2;
+//        return poe;
+        return poe2;
 
     }
 
 }
-

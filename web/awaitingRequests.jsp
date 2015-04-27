@@ -27,7 +27,9 @@
     <body> 
         <div id="header">
             <h1>Awaiting campaign requests</h1>
-            <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>          
+            <form action="Control" method="POST">
+                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
+            </form>         
         </div>
         <div id="middle">
             <h1><c:out value=""></c:out></h1>
@@ -73,27 +75,18 @@
 
         </div>
         <form action="Control" method="POST">
-            <table border="0">
-                <tbody>
-                    <tr>
-                        <th> <input type="text" name="acceptCampaignid" value="Type campaign id here" />
-                        </th>
-                        <th><button class="DButton" type="submit" value="acceptCampaignRequest" name="origin">Accept campaign!</button</th>
-                    </tr>
-                </tbody>
-            </table>
+            <select name="Campaignid">
+                <c:forEach var="campaign" items="${campaignReqList}">
+
+                    <option>${campaign.campaignId}</option>
+
+                </c:forEach>
+            </select> 
+            <button value="disapproveCampaignRequest" name="origin">Diaspprove campaign!</button>
+            <button value="acceptCampaignRequest" name="origin">Accept campaign!</button>
         </form>
-        <form action="Control" method="POST">
-            <table border="0">
-                <tbody>
-                    <tr>
-                        <th> <input type="text" name="disapproveCampaignid" value="Type campaign id here" />
-                        </th>
-                        <th><button class="DButton" type="submit" value="disapproveCampaignRequest" name="origin">Disapprove campaign!</button></th>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
+
+
         <div id="bottom">
 
         </div>
