@@ -124,7 +124,7 @@ public class Servlet extends HttpServlet {
                             session.setAttribute("message", user);
 
                             // I tilfælde af del login.
-                            if (username.equalsIgnoreCase("Dell")) {
+                            if (username.equalsIgnoreCase("Dell")   ) {
                                 response.sendRedirect("dashboardDell.jsp"); //logged-in page for Dell 
                             } else if (username.equalsIgnoreCase("Elgiganten100") || username.equalsIgnoreCase("Elgiganten200")) { // I tilfælde af partner login. 
                                 response.sendRedirect("dashboardPartner.jsp"); // Logged-in page for partners (Hard-coded).
