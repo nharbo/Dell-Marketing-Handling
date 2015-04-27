@@ -139,6 +139,20 @@ public class Servlet extends HttpServlet {
 
                     return;
 
+                case "logout":
+                    try {
+                        User user = new User();
+                        user.removeUserId();
+                        user.removePassword();
+                        HttpSession sessionLogout = request.getSession(false);
+                        sessionLogout.removeAttribute("message");
+                        sessionLogout.invalidate();
+                        response.sendRedirect("login.jsp");
+                        
+                    } catch (Exception e) {
+                    }
+                break;
+
                 case "showActiveCampaigns":
                     request.getSession().setAttribute("campaignList", control.getAllCampaigns());
                     response.sendRedirect("activeCampaigns.jsp");

@@ -41,6 +41,10 @@
         <form action="Control" method="POST">
             <button class="Button" value="showPartnerCampaigns" name="origin"/>Show all campaigns</button>
         </form>
+        
+        <form action="Control" method="POST">
+        <button class="Button" value="logout" name="origin">Logout!</button>
+        </form>
     </div>
     <div id="bottom">
 

@@ -35,6 +35,10 @@ public class User {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    
+    public void removeUserId() {
+        userId = null;
+    }
 
     public String getPassword() {
         return password;
@@ -42,6 +46,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    
+    public void removePassword () {
+        password = null;
     }
     
     public boolean isValid() {

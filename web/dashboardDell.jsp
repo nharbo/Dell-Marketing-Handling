@@ -38,27 +38,25 @@
         <div id="middle">
             <form action="Control" method="POST">
                 <button class="Button" value="awaitingRequests" name="origin">Awaiting requests</button>
-            </form>
 
-            <form action="Control" method="POST">
                 <button class="Button" value="showActiveCampaigns" name="origin"/>Active campaigns</button>
-            </form>
 
-            <form action="Control" method="POST">
                 <button class="Button" value="showInactiveCampaigns" name="origin"/>Inactive campaigns</button>
+
+                <button class="Button" value="showPartners" name="origin">Edit/Delete partner</button>
             </form>
 
             <button class="Button" name="Ny" onclick="location.href = 'registration.jsp'" />Add new partner</button>
-
-        <form action="Control" metohd="POST">
-            <button class="Button" value="showPartners" name="origin"/>Edit/Delete partner</button>
+        
+        <form action="Control" method="POST">
+        <button class="Button" value="logout" name="origin">Logout!</button>
         </form>
-    </div>
+        </div>
 
-    <%----%>
-    <div id="bottom">
+        <%----%>
+        <div id="bottom">
 
-    </div>
+        </div>
 
-</body>
+    </body>
 </html>
