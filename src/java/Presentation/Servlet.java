@@ -222,7 +222,7 @@ public class Servlet extends HttpServlet {
                 case "showCampaignReqSite":
                     user = (String) session.getAttribute("username");
                     request.getSession().setAttribute("partner", control.getPartner(user));
-                    response.sendRedirect("editPartner.jsp");
+                    response.sendRedirect("campaignRequest.jsp");
                     break;
 
                 case "awaitingRequests":

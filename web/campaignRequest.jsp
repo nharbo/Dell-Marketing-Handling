@@ -89,7 +89,7 @@
                         <br><input type="text" name="campaignId">
                     </div>
                     <div>
-                        Partner Id:
+                        Partner Id:                      
                         <br><input type="text" name="partnerId" value="${partner.partnerid}" readonly="readonly">
                     </div>
 
