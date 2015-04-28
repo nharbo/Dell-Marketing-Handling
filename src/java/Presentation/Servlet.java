@@ -85,17 +85,16 @@ public class Servlet extends HttpServlet {
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
                     String userStatus = "pending";
-
+                    if(password.equals(re_password)){
                     control.addUser(userid, password, userStatus);
                     control.addPartner(userid, partnerid, partnername, address, cvr, phone, zip);
-
-                    // "message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
-                    // partnername er afhængig af, hvad der blev tastet ind i formularen
                     request.getSession().setAttribute("message", "You have succesfully created " + userid + " as a new partner.");
-
-                    // response objektet sender dig videre til dashboardet, hvor den ovenstående "message" vises, afhængig af
-                    // hvilken side du kommer fra.
                     response.sendRedirect("dashboardDell.jsp");
+                    }else{
+                    request.getSession().setAttribute("message", "please make sure the password is the same");
+                    response.sendRedirect("registration.jsp");
+                    
+                    }
                     break;
 
                 case "login":
@@ -203,6 +202,7 @@ public class Servlet extends HttpServlet {
                     break;
 
                 case "campaignRequest":
+                    
                     Date startDate = Date.valueOf(request.getParameter("startDate"));
                     Date stopDate = Date.valueOf(request.getParameter("stopDate"));
                     int budget = Integer.parseInt(request.getParameter("budget"));
@@ -211,13 +211,18 @@ public class Servlet extends HttpServlet {
                     int partnerId = Integer.parseInt(request.getParameter("partnerId"));//Denne skal autoudfyldes.
                     //Status fastlåst til "Pending" her, fordi det er et request, som skal godkendes, og derefter ændres status.
                     String status = "pending";
-                    //String campaignType = ...
-                    //String comment = request.getParameter("comment");
-                    //System.out.println("Startdate: " + startDate + " - stopdate: " + stopDate);
+                  
+                    
                     control.addCampaign(campaignId, partnerId, startDate, stopDate, budget, status, country);
 
                     request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
                     response.sendRedirect("dashboardPartner.jsp");
+                    break;
+                    
+                case "showCampaignReqSite":
+                    user = (String) session.getAttribute("username");
+                    request.getSession().setAttribute("partner", control.getPartner(user));
+                    response.sendRedirect("editPartner.jsp");
                     break;
 
                 case "awaitingRequests":

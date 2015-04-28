@@ -98,7 +98,7 @@ public class DBfacade {
         try {
 
             // SQLString hiver alle elementer ud med status "ongoing"
-            String SQLString1 = "SELECT * FROM campaign WHERE status = 'ongoing'";
+            String SQLString1 = "SELECT * FROM campaign INNER JOIN partners ON partners.p_id = campaign.p_id WHERE status = 'ongoing'";
 
             // Gør connection klar til at modtage et statement.
             statement = con.createStatement();
@@ -112,7 +112,7 @@ public class DBfacade {
                     System.out.println("ResultSet: " + rs.getString("c_id"));
                 }
 
-                campaigns.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                campaigns.add(new Campaign(rs.getString("user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -149,7 +149,7 @@ public class DBfacade {
             System.out.println(sqlGPC);
 
             while (rs.next()) {
-                partnercampaigns.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                partnercampaigns.add(new Campaign(rs.getString("user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -383,7 +383,7 @@ public class DBfacade {
             con = DBConnector.getInstance().getConnection();
 
             // SQLString hiver alle elementer ud med status "ongoing"
-            String SQLString1 = "SELECT * FROM campaign WHERE status = 'pending'";
+            String SQLString1 = "SELECT * FROM campaign INNER JOIN partners ON partners.p_id = campaign.p_id WHERE status = 'pending'";
 
             // Gør connection klar til at modtage et statement.
             statement = con.createStatement();
@@ -393,7 +393,7 @@ public class DBfacade {
 
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
             while (rs.next()) {
-                campaignReq.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                campaignReq.add(new Campaign(rs.getString("user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -469,7 +469,7 @@ public class DBfacade {
             rs = statement.executeQuery(sqlDis);
 
             while (rs.next()) {
-                disCampaign.add(new Campaign(rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                disCampaign.add(new Campaign(rs.getString("user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
 
             rs.close();

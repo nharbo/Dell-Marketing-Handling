@@ -36,18 +36,20 @@
 
         <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
         <div id="middle">
-            <button class="Button" name="Ansøgning" onclick="location.href = 'campaignRequest.jsp'"/>Request a new campaign</button>
+            <form action="Control" method="POST">
+                <button class="Button" value="showCampaignReqSite" name="origin"/>Request a new campaign</button>
+            </form>
 
-        <form action="Control" method="POST">
-            <button class="Button" value="showPartnerCampaigns" name="origin"/>Show all campaigns</button>
-        </form>
-        
-        <form action="Control" method="POST">
-        <button class="Button" value="logout" name="origin">Logout!</button>
-        </form>
-    </div>
-    <div id="bottom">
+            <form action="Control" method="POST">
+                <button class="Button" value="showPartnerCampaigns" name="origin"/>Show all campaigns</button>
+            </form>
 
-    </div>
-</body>
+            <form action="Control" method="POST">
+                <button class="Button" value="logout" name="origin">Logout!</button>
+            </form>
+        </div>
+        <div id="bottom">
+
+        </div>
+    </body>
 </html>
