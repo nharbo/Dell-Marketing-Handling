@@ -28,18 +28,18 @@
             <h1>Welcome to Dell login page</h1>
             <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>          
         </div>
-        <div id="middle">
-            <form action="Control" method="POST">
-                <div id="username">
-                    Username:
-                    <br><input type="text" name="username">
-                </div>
-                <div id="password">
-                    Password:
-                    <br><input type="password" name="password" >
-                </div>
-                <button class="button" name="origin" value="login" id="login">Login</button>
+        
+        <div class="container">
+            
+            <form class="form-signin" action="Control" method="POST">
+                <h3 class="form-signin-heading">Please sign in</h3>
+                <label for="inputUsername" class="sr-only">Username</label>
+                <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Username" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                <button type="submit" class="btn btn-lg btn-primary btn-block" name="origin" value="login">Login</button>
             </form>
+            
         </div>
         <div id="bottom">
 
