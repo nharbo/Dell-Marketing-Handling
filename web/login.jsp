@@ -8,14 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <%-- Link til CSS style filen. --%>
@@ -28,18 +21,18 @@
             <h1>Welcome to Dell login page</h1>
             <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>          
         </div>
-        <div id="middle">
-            <form action="Control" method="POST">
-                <div id="username">
-                    Username:
-                    <br><input type="text" name="username">
-                </div>
-                <div id="password">
-                    Password:
-                    <br><input type="password" name="password" >
-                </div>
-                <button class="button" name="origin" value="login" id="login">Login</button>
+
+        <div class="container">
+
+            <form class="form-signin" action="Control" method="POST">
+                <h3 class="form-signin-heading">Please sign in</h3>
+                <label for="inputUsername" class="sr-only">Username</label>
+                <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Username" required autofocus>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
+                <button type="submit" class="btn btn-lg btn-primary btn-block" name="origin" value="login">Login</button>
             </form>
+
         </div>
         <div id="bottom">
 
