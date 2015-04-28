@@ -85,17 +85,16 @@ public class Servlet extends HttpServlet {
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
                     String userStatus = "pending";
-
+                    if(password.equals(re_password)){
                     control.addUser(userid, password, userStatus);
                     control.addPartner(userid, partnerid, partnername, address, cvr, phone, zip);
-
-                    // "message" fanger den efterfølgende besked, som sendes med videre i et reguest til næste side.
-                    // partnername er afhængig af, hvad der blev tastet ind i formularen
                     request.getSession().setAttribute("message", "You have succesfully created " + userid + " as a new partner.");
-
-                    // response objektet sender dig videre til dashboardet, hvor den ovenstående "message" vises, afhængig af
-                    // hvilken side du kommer fra.
                     response.sendRedirect("dashboardDell.jsp");
+                    }else{
+                    request.getSession().setAttribute("message", "please make sure the password is the same");
+                    response.sendRedirect("registration.jsp");
+                    
+                    }
                     break;
 
                 case "login":
