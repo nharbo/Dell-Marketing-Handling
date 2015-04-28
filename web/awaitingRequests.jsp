@@ -36,6 +36,9 @@
                 <table>
                     <thead>
                     <th>
+                        Partner
+                    </th>
+                    <th>
                         Campaign id
                     </th>
                     <th>
@@ -61,6 +64,7 @@
 
                 <c:forEach var="campaign" items="${campaignReqList}">
                     <tr>
+                        <td style="border: 1px solid #0066CC">${campaign.user}</td>
                         <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
                         <td style="border: 1px solid #0066CC">${campaign.partnerId}</td>
                         <td style="border: 1px solid #0066CC">${campaign.startDate}</td>

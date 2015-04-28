@@ -13,6 +13,7 @@ import java.sql.Date;
  */
 public class Campaign {
 
+    String user;
     int campaignId;
     int partnerId;
     Date startDate;
@@ -30,7 +31,8 @@ public class Campaign {
 
     
     // Constructor til at "fange" data og lave det om til objekter, fra DBMapperen.
-    public Campaign(int campaignId, int partnerId, Date startDate, Date stopDate, int budget, String status, String country) {
+    public Campaign(String user, int campaignId, int partnerId, Date startDate, Date stopDate, int budget, String status, String country) {
+        this.user = user;
         this.campaignId = campaignId;
         this.partnerId = partnerId;
         this.startDate = startDate;
@@ -38,6 +40,14 @@ public class Campaign {
         this.budget = budget;
         this.status = status;
         this.country = country;
+    }
+    
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public int getCampaignId() {

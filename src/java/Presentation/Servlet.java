@@ -203,6 +203,7 @@ public class Servlet extends HttpServlet {
                     break;
 
                 case "campaignRequest":
+                    user = (String) session.getAttribute("username");
                     Date startDate = Date.valueOf(request.getParameter("startDate"));
                     Date stopDate = Date.valueOf(request.getParameter("stopDate"));
                     int budget = Integer.parseInt(request.getParameter("budget"));
@@ -211,9 +212,8 @@ public class Servlet extends HttpServlet {
                     int partnerId = Integer.parseInt(request.getParameter("partnerId"));//Denne skal autoudfyldes.
                     //Status fastlåst til "Pending" her, fordi det er et request, som skal godkendes, og derefter ændres status.
                     String status = "pending";
-                    //String campaignType = ...
-                    //String comment = request.getParameter("comment");
-                    //System.out.println("Startdate: " + startDate + " - stopdate: " + stopDate);
+                  
+                    request.getSession().setAttribute("partner", control.getPartner(user));
                     control.addCampaign(campaignId, partnerId, startDate, stopDate, budget, status, country);
 
                     request.getSession().setAttribute("message", "You have succesfully requested a new campaign");

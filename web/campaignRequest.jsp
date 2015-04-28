@@ -90,7 +90,7 @@
                     </div>
                     <div>
                         Partner Id:
-                        <br><input type="text" name="partnerId">
+                        <br><input type="text" name="partnerId" value="${partner.partnerid}" readonly="readonly">
                     </div>
 
                     <button class="button" id="currencyField" name="origin" value="campaignRequest">Request campaign!</button>
