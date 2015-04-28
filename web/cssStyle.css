@@ -13,43 +13,20 @@ h1 {
     font: 30px/1 MuseoLight, Verdana, sans-serif; 
 }
 
-#header {
-
+#header {   
     text-align: center;
     border-top: 4px solid #0066cc;
-    font: 14px/1 MuseoLight, Verdana, sans-serif;
-}
-
-#middle {
-    text-align: center;
-    margin-top: 2.5em;
     font: 14px/1 MuseoLight, Verdana, sans-serif;
 }
 
 #bottom {
     margin-top: 5em;
     border-bottom: 4px solid #0066cc;
-    font: 14px/1 MuseoLight, Verdana, sans-serif;
-}
-
-#login {
-    margin-top: 1em;
-    font: 14px/1 MuseoLight, Verdana, sans-serif;
 }
 
 .button {
     width: 12.5em;
     height: 1.875em;
-    font: 14px/1 MuseoLight, Verdana, sans-serif;
-}
-
-#username {
-    margin: 1em;
-    font: 14px/1 MuseoLight, Verdana, sans-serif;
-}
-
-#password { 
-    margin: 1em;
     font: 14px/1 MuseoLight, Verdana, sans-serif;
 }
 
@@ -70,6 +47,4 @@ th {
 
 .tinput{
     text-align: center;
-    
 }
-

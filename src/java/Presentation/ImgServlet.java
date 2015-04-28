@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 /**
  *
@@ -37,30 +38,29 @@ public class ImgServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
 
         Controller controller = new Controller();
 
         int id = Integer.parseInt(request.getParameter("campaignid"));
         POE poe = controller.getPOE(id);
-        
+
+
         InputStream in = poe.getImage();
+        response.setContentType("application/octet-stream");
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
         int counter = -1;
         System.out.println("inden do!");
 
-      while ((counter = in.read(buffer)) != -1) {
-                    out.write(buffer, 0, counter);
-                }
-        
+        while ((counter = in.read(buffer)) != -1) {
+            out.write(buffer, 0, counter);
+        }
+
         request.getSession().setAttribute("image", out);
+        
         response.sendRedirect("showPOE.jsp");
 
     }
-    
-
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

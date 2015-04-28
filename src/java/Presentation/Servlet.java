@@ -84,7 +84,7 @@ public class Servlet extends HttpServlet {
                     int zip = Integer.parseInt(request.getParameter("zip"));
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
-                    String userStatus = "pending";
+                    String userStatus = "partner";
                     
 //                    if(!request.getParameter("password").compareTo(request.getParameter("re_password"))){
 //                    request.getSession().setAttribute("message", "please make sure the password is the same");
@@ -111,17 +111,20 @@ public class Servlet extends HttpServlet {
                         user = DBfacade.login(user);
                         if (user.isValid()) {
 
-                            session.setAttribute("message", user);
+                            session.setAttribute("message", "Velkommen" + user);
 
-                            // I tilfælde af del login.
-                            if (username.equalsIgnoreCase("Dell")   ) {
+                            //System.out.println("------" + user.getStatus() + " " + user.getPassword());
+                            
+                            // Her checkes om status på brugeren er admin eller partner,
+                            // og sender derefter brugeren til den rette side.
+                            if (user.getStatus().equalsIgnoreCase("admin")) {
                                 response.sendRedirect("dashboardDell.jsp"); //logged-in page for Dell 
-                            } else if (username.equalsIgnoreCase("Elgiganten100") || username.equalsIgnoreCase("Elgiganten200")) { // I tilfælde af partner login. 
+                            } else if (user.getStatus().equalsIgnoreCase("partner")) { // I tilfælde af partner login. 
                                 response.sendRedirect("dashboardPartner.jsp"); // Logged-in page for partners (Hard-coded).
                             }
 
                         } else {
-                            response.sendRedirect("invalidLogin.jsp"); //error page 
+                            response.sendRedirect("invalidLogin.jsp"); //error page, hvis brugernavn ell. pw er forkert.  
 
                         }
                     } catch (Exception e) {

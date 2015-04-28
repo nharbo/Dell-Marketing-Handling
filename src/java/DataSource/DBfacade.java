@@ -30,7 +30,6 @@ import javax.servlet.http.Part;
  */
 public class DBfacade implements Facade {
 
-
     private static Connection con;
     private static Statement statement = null;
 
@@ -44,32 +43,32 @@ public class DBfacade implements Facade {
 
     // Authentication check.
     public static User login(User bean) {
-        // Henter UserId og Password fra "User" class. 
+        // Henter UserId, Password og status fra "User" class. 
         String username = bean.getUserId();
         String password = bean.getPassword();
         ResultSet rs;
-//        con = DBConnector.getInstance().getConnection();
-
-        // SQL-streng der finder alle users der passer med oplyste user_id og pwd. 
-        String SQLString = "select * from users where user_id='" + username + "' AND pwd = '" + password + "'";
 
         try {
+            // SQL-streng der finder alle users der passer med oplyste user_id og pwd. 
+            PreparedStatement SQLString = con.prepareStatement("select * from users where user_id= ? AND pwd = ?");
 
-            // Gør connection klar til at modtage et statement.
-            statement = con.createStatement();
+            SQLString.setString(1, username);
+            SQLString.setString(2, password);
 
-            // Eksikverer de SQL-statements som er gjort klar, og gemmer dem i en rs-variabel af typen ResultSet
-            rs = statement.executeQuery(SQLString);
+            rs = SQLString.executeQuery();
 
-            // 
             boolean more = rs.next();
 
             // If user does not exist, set isValid variable in user class to false. 
             if (!more) {
                 bean.setValid(false);
-            } // If user exists, set isValid variable in user class to true.
+            } // If user exists, set isValid variable in user class to true, 
+            // and status is set to whatever fetched from resultset.
             else if (more) {
+                //Status hentes ind fra result-settet
+                String status = rs.getString("status");
                 bean.setValid(true);
+                bean.setStatus(status);
             }
             rs.close();
             statement.close();
@@ -77,11 +76,7 @@ public class DBfacade implements Facade {
         } catch (Exception e) {
             System.out.println("Log-in failed: An exception has occured - " + e);
         }
-//        try {
-//            con.close();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
+
         return bean;
     }
 
@@ -583,7 +578,7 @@ public class DBfacade implements Facade {
             sqlpoe.setInt(1, campaignid);
             rs = sqlpoe.executeQuery();
 
-            if(rs.next()){
+            if (rs.next()) {
                 poe2 = new POE(rs.getString("poeid"), rs.getInt("c_id"), rs.getString("status"), rs.getBinaryStream("img"));
             }
 //            while (rs.next()) {
