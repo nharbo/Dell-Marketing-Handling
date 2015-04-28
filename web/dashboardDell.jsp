@@ -5,22 +5,19 @@
 --%>
 
 <%@page import="Domain.User"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>  
+<html lang="en">
     <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+        <!-- Bootstrap core CSS -->
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
+        <link type="text/css" rel="stylesheet" href="StyleDashboard.css"/>
 
         <title>Dell Dashboard</title>
     </head>
@@ -34,7 +31,24 @@
             </h1>
         </div>
 
-        <%-- "onclick" skal vÃ¦re den side du vil over til nÃ¥r knappen trykkes--%>
+        <div class="container">
+
+            <div class="masthead">
+                <h3 class="text-muted">Dell</h3>
+                <nav>
+                    <form action="Control" method="POST">
+                        <ul class="nav nav-justified">
+                            <li><a href="awaitingRequests.jsp" value="awaitingRequests" name="origin">Awaiting requets</a></button></li>
+                            <li><button class="Button" value="showActiveCampaigns" name="origin"/>Active campaigns</button></li>
+                            <li><button class="Button" value="showInactiveCampaigns" name="origin"/>Inactive campaigns</button></li>
+                            <li> <button class="Button" value="showPartners" name="origin">Edit/Delete partner</button></li>
+                        </ul>
+                    </form>
+                </nav>
+            </div>
+        </div>
+
+        <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
         <div id="middle">
             <form action="Control" method="POST">
                 <button class="Button" value="awaitingRequests" name="origin">Awaiting requests</button>
@@ -47,16 +61,16 @@
             </form>
 
             <button class="Button" name="Ny" onclick="location.href = 'registration.jsp'" />Add new partner</button>
-        
+
         <form action="Control" method="POST">
-        <button class="Button" value="logout" name="origin">Logout!</button>
+            <button class="Button" value="logout" name="origin">Logout!</button>
         </form>
-        </div>
+    </div>
 
-        <%----%>
-        <div id="bottom">
+    <%----%>
+    <div id="bottom">
 
-        </div>
+    </div>
 
-    </body>
+</body>
 </html>

@@ -13,10 +13,7 @@
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="LoginStyle.css" rel="stylesheet">
-
-        <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
+        <link href="StyleLogin.css" rel="stylesheet">
 
         <title>Dell sign in page</title>
     </head>
