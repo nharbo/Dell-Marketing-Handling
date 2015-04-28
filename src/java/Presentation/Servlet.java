@@ -84,7 +84,7 @@ public class Servlet extends HttpServlet {
                     int zip = Integer.parseInt(request.getParameter("zip"));
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
-                    String userStatus = "pending";
+                    String userStatus = "partner";
                     
 //                    if(!request.getParameter("password").compareTo(request.getParameter("re_password"))){
 //                    request.getSession().setAttribute("message", "please make sure the password is the same");
