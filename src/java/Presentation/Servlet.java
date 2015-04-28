@@ -208,7 +208,7 @@ public class Servlet extends HttpServlet {
                     int budget = Integer.parseInt(request.getParameter("budget"));
                     String country = request.getParameter("country");
                     int campaignId = Integer.parseInt(request.getParameter("campaignId"));//Campaign id skal countes, så den selv finder et ledigt nummer.
-                    int partnerId = Integer.parseInt(request.getParameter("partnerId"));//Denne skal autoudfyldes.
+                    int partnerId = Integer.parseInt(request.getParameter("partnerId"));
                     //Status fastlåst til "Pending" her, fordi det er et request, som skal godkendes, og derefter ændres status.
                     String status = "pending";
                   
@@ -220,8 +220,8 @@ public class Servlet extends HttpServlet {
                     break;
                     
                 case "showCampaignReqSite":
-                    user = (String) session.getAttribute("username");
-                    request.getSession().setAttribute("partner", control.getPartner(user));
+                    String userReq = (String) session.getAttribute("username");
+                    request.getSession().setAttribute("partner", control.getPartner(userReq));
                     response.sendRedirect("campaignRequest.jsp");
                     break;
 
