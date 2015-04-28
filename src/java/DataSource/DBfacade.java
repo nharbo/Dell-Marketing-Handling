@@ -28,9 +28,8 @@ import javax.servlet.http.Part;
  *
  * @author nicolaiharbo
  */
-public class DBfacade {
+public class DBfacade implements Facade {
 
-    public static final boolean inDebugMode = true;
 
     private static Connection con;
     private static Statement statement = null;
@@ -89,6 +88,7 @@ public class DBfacade {
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Denne metode henter data ned fra databasen, og gemmer det i en liste, som returneres.
     // Listen indeholder aktive/accepterede kampagner (ongoing)
+    @Override
     public ArrayList<Campaign> getCampaigns() {
 
         ArrayList<Campaign> campaigns = new ArrayList();
@@ -130,6 +130,7 @@ public class DBfacade {
         return campaigns;
     }
 
+    @Override
     public ArrayList<Campaign> getPartnerCampaigns(String username) {
 
         ArrayList<Campaign> partnercampaigns = new ArrayList();
@@ -168,6 +169,7 @@ public class DBfacade {
     }
 
     // Denne metode tilføjer en ny user til user-tabellen.
+    @Override
     public void addUser(String userid, String password, String status) {
 
         try {
@@ -192,6 +194,7 @@ public class DBfacade {
     }
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
+    @Override
     public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
 
         try {
@@ -218,6 +221,7 @@ public class DBfacade {
     }
 
     //Denne metode tilføjer en ny partner til partner-tabellen.
+    @Override
     public void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip) {
         try {
             con = DBConnector.getInstance().getConnection();
@@ -243,6 +247,7 @@ public class DBfacade {
     }
 
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
+    @Override
     public ArrayList<Partner> getPartners() {
 
         ArrayList<Partner> partners = new ArrayList();
@@ -286,6 +291,7 @@ public class DBfacade {
 
     // Denne metode sletter en partner fra databasen, både i partner og user-tabellen, ud fra partnerid'et.
     // Lav som boolean, så der kan returners om det er gået godt eller ej.
+    @Override
     public void deletePartner(String userid) {
         try {
             con = DBConnector.getInstance().getConnection();
@@ -315,6 +321,7 @@ public class DBfacade {
     }
 
     // Denne metode henter en enkelt partner ind, og gemmer informationerne ned i et partner-objekt.
+    @Override
     public Partner getPartner(String userid) {
 
         ResultSet rs;
@@ -346,6 +353,7 @@ public class DBfacade {
     }
 
     // Denne metode opdaterer partnerinformationen i partner-tabellen i databasen.
+    @Override
     public void editPartner(Partner partner) {
 
         try {
@@ -374,6 +382,7 @@ public class DBfacade {
 //        }
     }
 
+    @Override
     public ArrayList<Campaign> getCampaignRequests() {
 
         ResultSet rs;
@@ -411,6 +420,7 @@ public class DBfacade {
         return campaignReq;
     }
 
+    @Override
     public void acceptCampaignRequest(int campaignid) {
 
         try {
@@ -431,6 +441,7 @@ public class DBfacade {
 //        }
     }
 
+    @Override
     public void addPoe(String poeid, int c_id, String status, InputStream poe) {
 
         try {
@@ -456,6 +467,7 @@ public class DBfacade {
 
     }
 
+    @Override
     public ArrayList<Campaign> getDisapprovedCampaigns() {
 
         ResultSet rs;
@@ -487,6 +499,7 @@ public class DBfacade {
         return disCampaign;
     }
 
+    @Override
     public void disapproveCampaignRequest(int campaignid) {
 
         try {
@@ -512,6 +525,7 @@ public class DBfacade {
     // Der laves en autocommit, så der ikke går noget galt, når der slettes i to forskellige tabeller.
     // På den måde bliver begge statements kun udført, hvis de går godt. Hvis det ene fejler, bliver det andet ikke udført.
     // OBS!! DETTE ER EN TRANSACTION!
+    @Override
     public void clearDisapprovedCampaigns() {
 
         try {
@@ -554,6 +568,7 @@ public class DBfacade {
         }
     }
 
+    @Override
     public POE getPOE(int campaignid) {
 
         POE poe2 = null;

@@ -44,7 +44,7 @@ public class ImgServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("campaignid"));
         POE poe = controller.getPOE(id);
         
-        InputStream in = poe.getPoe();
+        InputStream in = poe.getImage();
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
         int counter = -1;

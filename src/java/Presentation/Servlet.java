@@ -85,29 +85,20 @@ public class Servlet extends HttpServlet {
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
                     String userStatus = "pending";
-                    if(password.equals(re_password)){
+                    
+//                    if(!request.getParameter("password").compareTo(request.getParameter("re_password"))){
+//                    request.getSession().setAttribute("message", "please make sure the password is the same");
+//                    response.sendRedirect("registration.jsp");
+//                    } else {  
                     control.addUser(userid, password, userStatus);
                     control.addPartner(userid, partnerid, partnername, address, cvr, phone, zip);
                     request.getSession().setAttribute("message", "You have succesfully created " + userid + " as a new partner.");
-                    response.sendRedirect("dashboardDell.jsp");
-                    }else{
-                    request.getSession().setAttribute("message", "please make sure the password is the same");
-                    response.sendRedirect("registration.jsp");
+                    response.sendRedirect("dashboardDell.jsp");                 
                     
-                    }
                     break;
 
                 case "login":
 
-                    //skriv et authCheck som kaldes igennem controlleren her.
-//                    String username = request.getParameter("username");
-                    //Nedenstående afgør om det er Dell eller Partner dashboard som vises ved login. Dette skal nok skrivs ind i en auth i stedet
-//                    if (username.equalsIgnoreCase("Dell")) {
-//                        response.sendRedirect("dashboardDell.jsp");
-//                    } else {
-//                        response.sendRedirect("dashboardPartner.jsp");
-//                    }
-//                    request.getSession().setAttribute("message", "Welcome " + username + "!");
                     try {
                         User user = new User();
                         String username = request.getParameter("username");

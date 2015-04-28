@@ -34,7 +34,7 @@
                 <%=session.getAttribute("message")%>
             </h1>
 
-            <img src="ImgServlet?poeID=?${image.poe}"/>
+            <img src="ImgServlet?poeID=?${image.image}"/>
 
         </div>
         <div id="bottom">

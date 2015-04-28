@@ -18,18 +18,18 @@ public class POE {
     String poeid;
     int c_id;
     String status;
-    InputStream poe;
+    InputStream image;
 
     public POE() {
     }
     
 
-    public POE(String poeid, int c_id, String status, InputStream poe) {
+    public POE(String poeid, int c_id, String status, InputStream image) {
 
         this.poeid = poeid;
         this.c_id = c_id;
         this.status = status;
-        this.poe = poe;
+        this.image = image;
 
     }
 
@@ -57,12 +57,12 @@ public class POE {
         this.poeid = poeid;
     }
 
-    public InputStream getPoe() {
-        return poe;
+    public InputStream getImage() {
+        return image;
     }
 
-    public void setPoe(InputStream poe) {
-        this.poe = poe;
+    public void setImage(InputStream image) {
+        this.image = image;
     }
 
 }
