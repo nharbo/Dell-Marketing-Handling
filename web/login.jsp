@@ -1,48 +1,49 @@
-<%-- 
-    Document   : login
-    Created on : Mar 23, 2015, 10:04:53 AM
-    Author     : nicolaiharbo
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../favicon.ico">
 
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <!-- Bootstrap core CSS -->
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Custom styles for this template -->
+        <link href="LoginStyle.css" rel="stylesheet">
 
-        <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="cssStyle.css"/>
+        <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
-        <title>Dell login</title>
+
+        <title>Dell sign in page</title>
     </head>
     <body>
         <div id="header">
             <h1>Welcome to Dell login page</h1>
             <img src="dell round logo.png" width="150" height="150" alt="dell round logo"/>          
         </div>
-        
+
         <div class="container">
-            
+
             <form class="form-signin" action="Control" method="POST">
                 <h3 class="form-signin-heading">Please sign in</h3>
                 <label for="inputUsername" class="sr-only">Username</label>
-                <input type="text" id="inputUsername" class="form-control" name="username" placeholder="Username" required autofocus>
+                <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
                 <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Password" required>
-                <button type="submit" class="btn btn-lg btn-primary btn-block" name="origin" value="login">Login</button>
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" name="origin" value="login">Login</button>
             </form>
-            
-        </div>
-        <div id="bottom">
+            <div id="bottom">
 
-        </div>
+            </div>
+            <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
     </body>
 </html>
