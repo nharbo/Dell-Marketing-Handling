@@ -202,7 +202,7 @@ public class Servlet extends HttpServlet {
                     break;
 
                 case "campaignRequest":
-                    user = (String) session.getAttribute("username");
+                    
                     Date startDate = Date.valueOf(request.getParameter("startDate"));
                     Date stopDate = Date.valueOf(request.getParameter("stopDate"));
                     int budget = Integer.parseInt(request.getParameter("budget"));
@@ -212,11 +212,17 @@ public class Servlet extends HttpServlet {
                     //Status fastlåst til "Pending" her, fordi det er et request, som skal godkendes, og derefter ændres status.
                     String status = "pending";
                   
-                    request.getSession().setAttribute("partner", control.getPartner(user));
+                    
                     control.addCampaign(campaignId, partnerId, startDate, stopDate, budget, status, country);
 
                     request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
                     response.sendRedirect("dashboardPartner.jsp");
+                    break;
+                    
+                case "showCampaignReqSite":
+                    user = (String) session.getAttribute("username");
+                    request.getSession().setAttribute("partner", control.getPartner(user));
+                    response.sendRedirect("editPartner.jsp");
                     break;
 
                 case "awaitingRequests":
