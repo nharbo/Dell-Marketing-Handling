@@ -19,40 +19,36 @@
         <%-- Link til CSS style filen. --%>
         <link type="text/css" rel="stylesheet" href="StyleDashboard.css"/>
 
+
         <title>Dell Dashboard</title>
     </head>
     <body>
-        
+
 
         <div class="container">
 
             <div class="masthead">
                 <h3 class="text-muted">Dell</h3>
                 <nav>
-                    <form action="Control" method="POST">
                         <ul class="nav nav-justified">
-                            <li><a href="awaitingRequests.jsp" value="awaitingRequests" name="origin">Awaiting requets</a></button></li>
-                            <li><a href="activeCampaigns.jsp" value="showActiveCampaigns" name="origin"/>Active campaigns</a></button></li>
-                            <li><a href="disapprovedCampaigns.jsp" value="showInactiveCampaigns" name="origin"/>Inactive campaigns</a></button></li>
-                            <li><a href="showPartner.jsp" value="showPartners" name="origin">Edit/Delete partner</a></button></li>
+                            <li><a href="Control?origin=awaitingRequests">Awaiting requests</a></li>
+                            <li><a href="Control?origin=showActiveCampaigns"/>Active campaigns</a></li>
+                            <li><a href="Control?origin=showInactiveCampaigns"/>Inactive campaigns</a></li>
+                            <li><a href="Control?origin=showPartners">Edit/Delete partner</a></li>
                         </ul>
-                    </form>
                 </nav>
             </div>
-            
+
             <!-- Jumbotron -->
             <div class="jumbotron">
-                
+                <h1>Dell marketing</h1>
+                <p class="lead"></p>
             </div>
         </div>
-        
-        
+        <%----%>
+        <div id="bottom">
 
+        </div>
 
-    <%----%>
-    <div id="bottom">
-
-    </div>
-
-</body>
+    </body>
 </html>
