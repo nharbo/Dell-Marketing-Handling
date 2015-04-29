@@ -80,7 +80,7 @@
                 </c:forEach>
             </table>
 
-            <form action="ImgServlet" method="POST">
+            <form action="Control" method="POST">
                 Campaign ID: 
                 <select name="campaignid">
                     <c:forEach var="campaign" items="${campaignList}">
@@ -89,7 +89,7 @@
 
                     </c:forEach>
                 </select>
-                <button class="btn btn-primary" value="ImgServlet" name="ImgServlet">Show POE</button>
+                <button class="btn btn-primary" value="showPOE" name="origin">Show POE</button>
 
             </form>
 

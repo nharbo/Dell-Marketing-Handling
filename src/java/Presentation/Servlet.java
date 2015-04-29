@@ -85,7 +85,7 @@ public class Servlet extends HttpServlet {
                     String password = request.getParameter("password");
                     String re_password = request.getParameter("re_password");
                     String userStatus = "partner";
-                    
+
 //                    if(!request.getParameter("password").compareTo(request.getParameter("re_password"))){
 //                    request.getSession().setAttribute("message", "please make sure the password is the same");
 //                    response.sendRedirect("registration.jsp");
@@ -93,8 +93,8 @@ public class Servlet extends HttpServlet {
                     control.addUser(userid, password, userStatus);
                     control.addPartner(userid, partnerid, partnername, address, cvr, phone, zip);
                     request.getSession().setAttribute("message", "You have succesfully created " + userid + " as a new partner.");
-                    response.sendRedirect("dashboardDell.jsp");                 
-                    
+                    response.sendRedirect("dashboardDell.jsp");
+
                     break;
 
                 case "login":
@@ -114,7 +114,6 @@ public class Servlet extends HttpServlet {
                             session.setAttribute("message", "Velkommen" + user);
 
                             //System.out.println("------" + user.getStatus() + " " + user.getPassword());
-                            
                             // Her checkes om status på brugeren er admin eller partner,
                             // og sender derefter brugeren til den rette side.
                             if (user.getStatus().equalsIgnoreCase("admin")) {
@@ -141,10 +140,10 @@ public class Servlet extends HttpServlet {
                         sessionLogout.removeAttribute("message");
                         sessionLogout.invalidate();
                         response.sendRedirect("login.jsp");
-                        
+
                     } catch (Exception e) {
                     }
-                break;
+                    break;
 
                 case "showActiveCampaigns":
                     request.getSession().setAttribute("campaignList", control.getAllCampaigns());
@@ -196,7 +195,7 @@ public class Servlet extends HttpServlet {
                     break;
 
                 case "campaignRequest":
-                    
+
                     Date startDate = Date.valueOf(request.getParameter("startDate"));
                     Date stopDate = Date.valueOf(request.getParameter("stopDate"));
                     int budget = Integer.parseInt(request.getParameter("budget"));
@@ -205,14 +204,13 @@ public class Servlet extends HttpServlet {
                     int partnerId = Integer.parseInt(request.getParameter("partnerId"));
                     //Status fastlåst til "Pending" her, fordi det er et request, som skal godkendes, og derefter ændres status.
                     String status = "pending";
-                  
-                    
+
                     control.addCampaign(campaignId, partnerId, startDate, stopDate, budget, status, country);
 
                     request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
                     response.sendRedirect("dashboardPartner.jsp");
                     break;
-                    
+
                 case "showCampaignReqSite":
                     String userReq = (String) session.getAttribute("username");
                     request.getSession().setAttribute("partner", control.getPartner(userReq));
@@ -265,6 +263,12 @@ public class Servlet extends HttpServlet {
 
                 case "AcceptDeclinePOE":
 
+                    break;
+
+                case "showPOE":
+                    request.getSession().setAttribute("campaignid", request.getParameter("campaignid"));
+                    request.getSession().setAttribute("message", "Now showing POE for campaign id: .....");
+                    response.sendRedirect("showPOE.jsp");
                     break;
 
                 case "homebutton":
