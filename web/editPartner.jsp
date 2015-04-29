@@ -26,7 +26,7 @@
         <div class="container">
 
             <div class="masthead">
-                <h3 class="text-muted"><%=session.getAttribute("message")%></h3>
+                <h3 class="text-muted">Dell marketing</h3>
                 <nav>
                     <form action="Control" method="POST">
                         <ul class="nav nav-justified">
@@ -34,6 +34,7 @@
                             <li><a href="activeCampaigns.jsp" value="showActiveCampaigns" name="origin"/>Active campaigns</a></button></li>
                             <li><a href="disapprovedCampaigns.jsp" value="showInactiveCampaigns" name="origin"/>Inactive campaigns</a></button></li>
                             <li><a href="showPartner.jsp" value="showPartners" name="origin">Edit/Delete partner</a></button></li>
+                            <li><a href="Control?origin=logout"/>Logout</a></li>
                         </ul>
                     </form>
                 </nav>
@@ -43,19 +44,9 @@
                 <p class="lead">    
                 </p>
             </div>
-        </div>
-        <div id="header">
-            <h1>Partner edit</h1>
-            <form action="Control" method="POST">
-                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
-            </form>
-        </div>
-        <div id="middle">
-
-            <h1></h1>
-
             <%--partner.userid - partner kommer fra servletten, under den case som sender videre til editPartnersiden,
             og userid kommer fra Partner klassen, som er lavet som en bean, og derfor kan vi få fat i getters/setters..--%>
+            <h1>Edit partner</h1>
             <form action="Control" method="POST">              
                 <table border="0" width="1" cellspacing="1">
                     <tbody>
@@ -100,15 +91,17 @@
                             <td><input type="password" name="retype_password" value=""></td>
                         </tr>
                         <tr>
-                            <td><button name="origin" value="editPartnerDB">Edit</button></td>
+                            <td><button class="btn btn-primary" name="origin" value="editPartnerDB">Edit</button></td>
                         </tr>
 
                     </tbody>
                 </table>       
             </form>
-        </div>
-        <div id="bottom">
 
-        </div>
+            <!-- Site footer -->
+            <footer class="footer">
+                <p>&copy; Dell 2015</p>
+            </footer>
+        </div>       
     </body>
 </html>
