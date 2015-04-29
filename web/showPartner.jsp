@@ -45,7 +45,7 @@
 
             <h1><c:out value="Partner"></c:out></h1>
 
-                <table style="border: 1px solid #0066cc">
+                <table>
 
                     <thead>
                     <th>
