@@ -111,7 +111,7 @@ public class Servlet extends HttpServlet {
                         user = DBfacade.login(user);
                         if (user.isValid()) {
 
-                            session.setAttribute("message", "Velkommen" + user);
+                            session.setAttribute("message", "Welcome " + user);
 
                             //System.out.println("------" + user.getStatus() + " " + user.getPassword());
                             // Her checkes om status på brugeren er admin eller partner,
@@ -266,8 +266,9 @@ public class Servlet extends HttpServlet {
                     break;
 
                 case "showPOE":
+                    String campaignid = request.getParameter("campaignid");
                     request.getSession().setAttribute("campaignid", request.getParameter("campaignid"));
-                    request.getSession().setAttribute("message", "Now showing POE for campaign id: .....");
+                    request.getSession().setAttribute("message", "Now showing POE for campaign id: " + campaignid);
                     response.sendRedirect("showPOE.jsp");
                     break;
 

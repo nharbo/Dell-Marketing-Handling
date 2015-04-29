@@ -56,16 +56,16 @@
                             function changeValue() {
                                 var option = document.getElementById('country').value;
 
-                                if (option == "Danmark") {
+                                if (option == "Denmark") {
                                     document.getElementById('currencyField').value = "DKK";
                                 }
-                                else if (option == "Norge") {
+                                else if (option == "Norway") {
                                     document.getElementById('currencyField').value = "NOK";
                                 }
-                                else if (option == "Sverige") {
+                                else if (option == "Sweden") {
                                     document.getElementById('currencyField').value = "SEK";
                                 }
-                                else if (option == "Island") {
+                                else if (option == "Iceland") {
                                     document.getElementById('currencyField').value = "Islaaandsk mønt";
                                 }
                                 else if (option == "Finland") {
@@ -79,10 +79,10 @@
                         </script>
                         Country:
                         <br><select name="country" id="country" onchange="changeValue();">
-                            <option id="Danmark" value="Danmark">Danmark</option>
-                            <option id="Norge" value="Norge">Norge</option>
-                            <option id="Sverige" value="Sverige">Sverige</option>
-                            <option id="Island" value="Island">Island</option>
+                            <option id="Danmark" value="Denmark">Denmark</option>
+                            <option id="Norge" value="Norway">Norway</option>
+                            <option id="Sverige" value="Sweden">Sweden</option>
+                            <option id="Island" value="Iceland">Iceland</option>
                             <option id="Finland" value="Finland">Finland</option>
                             <option id="USA" value="USA">USA</option>
                         </select>
