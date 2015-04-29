@@ -45,9 +45,8 @@ public class ImgServlet extends HttpServlet {
         POE poe = controller.getPOE(id);
 
 
-        response.setContentType("application/octet-stream");
-
         InputStream in = poe.getImage();
+        response.setContentType("application/octet-stream");
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
         int counter = -1;
@@ -58,6 +57,7 @@ public class ImgServlet extends HttpServlet {
         }
 
         request.getSession().setAttribute("image", out);
+        
         response.sendRedirect("showPOE.jsp");
 
     }
