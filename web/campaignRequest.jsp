@@ -8,30 +8,36 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="StyleGeneral.css"/>
+        <!-- Bootstrap core CSS -->
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <title>Campaign request</title>
+        <%-- Link til CSS style filen. --%>
+        <link type="text/css" rel="stylesheet" href="StyleDashboard.css"/>
+
+        <title>Partner Dashboard</title>
     </head>
     <body>
-        <div id="header">
-            <h1>Campaign request</h1>
-            <form action="Control" method="POST">
-                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebuttonPartner"/>
-            </form>
-        </div>
-        <div id="middle">
-            <form action="Control" method="POST">
+        <div class="container">
+
+            <div class="masthead">
+                <h3 class="text-muted">Dell</h3>
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li><a href="Control?origin=showCampaignReqSite">Request a new campaign</a></li>
+                        <li><a href="Control?origin=showPartnerCampaigns"/>Show your campaigns</a></li>
+                        <li><a href="Control?origin=logout"/>Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Jumbotron -->
+            <div class="jumbotron">
+                <form action="Control" method="POST">
                 <div class="campaignInputs">
                     <div>
                         Startdate:
@@ -50,11 +56,11 @@
                             function changeValue() {
                                 var option = document.getElementById('country').value;
 
-                                if (option == "Norge") {
-                                    document.getElementById('currencyField').value = "NOK";
-                                }
-                                else if (option == "Danmark") {
+                                if (option == "Danmark") {
                                     document.getElementById('currencyField').value = "DKK";
+                                }
+                                else if (option == "Norge") {
+                                    document.getElementById('currencyField').value = "NOK";
                                 }
                                 else if (option == "Sverige") {
                                     document.getElementById('currencyField').value = "SEK";
@@ -73,8 +79,8 @@
                         </script>
                         Country:
                         <br><select name="country" id="country" onchange="changeValue();">
-                            <option id="Norge" value="Norge">Norge</option>
                             <option id="Danmark" value="Danmark">Danmark</option>
+                            <option id="Norge" value="Norge">Norge</option>
                             <option id="Sverige" value="Sverige">Sverige</option>
                             <option id="Island" value="Island">Island</option>
                             <option id="Finland" value="Finland">Finland</option>
@@ -82,7 +88,7 @@
                         </select>
                     </div>
                     <div>
-                        Currency: <br><input type="text" id="currencyField" name="currency" readonly="readonly" value="NOK">
+                        Currency: <br><input type="text" id="currencyField" name="currency" readonly="readonly" value="DKK">
                     </div>
                     <div>
                         Campaign Id:
@@ -95,6 +101,10 @@
 
                     <button class="button" id="currencyField" name="origin" value="campaignRequest">Request campaign!</button>
             </form>
+            </div>
+        </div>
+        <div id="middle">
+            
         </div>
 
 

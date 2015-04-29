@@ -24,6 +24,29 @@
         <title>Partner registration</title>
     </head>
     <body>
+        <div class="container">
+
+            <div class="masthead">
+                <h3 class="text-muted"><%=session.getAttribute("message")%></h3>
+                <nav>
+                    <form action="Control" method="POST">
+                        <ul class="nav nav-justified">
+                            <li><a href="awaitingRequests.jsp" value="awaitingRequests" name="origin">Awaiting requets</a></button></li>
+                            <li><a href="activeCampaigns.jsp" value="showActiveCampaigns" name="origin"/>Active campaigns</a></button></li>
+                            <li><a href="disapprovedCampaigns.jsp" value="showInactiveCampaigns" name="origin"/>Inactive campaigns</a></button></li>
+                            <li><a href="showPartner.jsp" value="showPartners" name="origin">Edit/Delete partner</a></button></li>
+                        </ul>
+                    </form>
+                </nav>
+                <img src="banner-dell.jpg" alt="banner-dell"/>
+            </div>
+
+
+            <!-- Jumbotron -->
+            <div class="jumbotron">
+
+            </div>
+        </div>
         <div id="header">
             <h1>Partner registration</h1>
             <form action="Control" method="POST">
