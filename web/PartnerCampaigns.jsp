@@ -10,81 +10,94 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="StyleGeneral.css"/>
+        <!-- Bootstrap core CSS -->
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <title>Campaigns</title>
+        <%-- Link til CSS style filen. --%>
+        <link type="text/css" rel="stylesheet" href="StyleDashboard.css"/>
+
+        <title>Partner Dashboard</title>
     </head>
     <body>
-        <div id="header">
-            <h1>Partner campaigns</h1>
-            <form action="Control" method="POST">
-                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
-            </form>
+        <div class="container">
+
+            <div class="masthead">
+                <h3 class="text-muted">Dell</h3>
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li><a href="Control?origin=showCampaignReqSite">Request a new campaign</a></li>
+                        <li><a href="Control?origin=showPartnerCampaigns"/>Show your campaigns</a></li>
+                        <li><a href="Control?origin=logout"/>Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Jumbotron -->
+            <div class="jumbotron">
+                <h1>Dell marketing</h1>
+                <p class="lead"></p>
+                <h1><c:out value=""></c:out></h1>
+                    <table>
+                        <thead>
+                        <th>
+                            Partner
+                        </th>
+                        <th>
+                            Campaign id
+                        </th>
+                        <th>
+                            Startdate
+                        </th>
+                        <th>
+                            Stopdate
+                        </th>
+                        <th>
+                            Campaignbudget
+                        </th>
+                        <th>
+                            Status
+                        </th>
+                        </thead>
+
+
+                    <c:forEach var="campaign" items="${partnercampaigns}">
+                        <tr>
+                            <td style="border: 1px solid #0066CC">${campaign.user}</td>
+                            <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
+                            <td style="border: 1px solid #0066CC">${campaign.startDate}</td>
+                            <td style="border: 1px solid #0066CC">${campaign.stopDate}</td>
+                            <td style="border: 1px solid #0066CC">${campaign.budget}</td>
+                            <td style="border: 1px solid #0066CC">${campaign.status}</td>
+                        </tr>
+
+                    </c:forEach>
+                </table>
+
+                <form action="Control" method="POST">
+
+                    <select name="campaignid">
+                        <c:forEach var="campaign" items="${partnercampaigns}">
+
+                            <option>${campaign.campaignId}</option>
+
+                        </c:forEach>
+                    </select>
+                    Campaign ID: 
+                    <button value="origin" name="sendPOEPage">Upload POE</button>
+
+                </form>
+            </div>
+            <div id="bottom">
+
+            </div>
         </div>
-        <h1><c:out value=""></c:out></h1>
-            <table>
-                <thead>
-                <th>
-                    Partner
-                </th>
-                <th>
-                    Campaign id
-                </th>
-                <th>
-                    Startdate
-                </th>
-                <th>
-                    Stopdate
-                </th>
-                <th>
-                    Campaignbudget
-                </th>
-                <th>
-                    Status
-                </th>
-            </thead>
+    </div>
 
 
-        <c:forEach var="campaign" items="${partnercampaigns}">
-            <tr>
-                <td style="border: 1px solid #0066CC">${campaign.user}</td>
-                <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
-                <td style="border: 1px solid #0066CC">${campaign.startDate}</td>
-                <td style="border: 1px solid #0066CC">${campaign.stopDate}</td>
-                <td style="border: 1px solid #0066CC">${campaign.budget}</td>
-                <td style="border: 1px solid #0066CC">${campaign.status}</td>
-            </tr>
-
-        </c:forEach>
-    </table>
-
-    <form action="Control" method="POST">
-
-        <select name="campaignid">
-            <c:forEach var="campaign" items="${campaignList}">
-
-                <option>${campaign.campaignId}</option>
-
-            </c:forEach>
-        </select>
-        Campaign ID: 
-        <button value="origin" name="sendPOEPage">Upload POE</button>
-
-    </form>
-</div>
-<div id="bottom">
-
-</div>
 </body>
 </html>

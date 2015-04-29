@@ -9,7 +9,6 @@
 <!DOCTYPE html>
 <html>  
     <head>
-        <!-- Latest compiled and minified CSS -->
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,29 +23,26 @@
         <title>Partner Dashboard</title>
     </head>
     <body>
-        <div id="header">
-            <h1>                 
-                <form action="Control" method="POST">
-                    <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebuttonPartner"/>
-                </form>
-                <p><%=session.getAttribute("message")%></p>
-            </h1>
+        <div class="container">
+
+            <div class="masthead">
+                <h3 class="text-muted">Dell</h3>
+                <nav>
+                    <ul class="nav nav-justified">
+                        <li><a href="Control?origin=showCampaignReqSite">Request a new campaign</a></li>
+                        <li><a href="Control?origin=showPartnerCampaigns"/>Show your campaigns</a></li>
+                        <li><a href="Control?origin=logout"/>Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Jumbotron -->
+            <div class="jumbotron">
+                <h1>Dell marketing</h1>
+                <p class="lead"></p>
+            </div>
         </div>
 
-        <%-- "onclick" skal være den side du vil over til når knappen trykkes--%>
-        <div id="middle">
-            <form action="Control" method="POST">
-                <button class="Button" value="showCampaignReqSite" name="origin"/>Request a new campaign</button>
-            </form>
-
-            <form action="Control" method="POST">
-                <button class="Button" value="showPartnerCampaigns" name="origin"/>Show all campaigns</button>
-            </form>
-
-            <form action="Control" method="POST">
-                <button class="Button" value="logout" name="origin">Logout!</button>
-            </form>
-        </div>
         <div id="bottom">
 
         </div>
