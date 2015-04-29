@@ -38,7 +38,7 @@
 
             <!-- Jumbotron -->
             <div class="jumbotron">
-                <h1>Dell marketing</h1>
+                <h2><%=session.getAttribute("message")%></h2>
                 <p class="lead"></p>
             </div>
         </div>
