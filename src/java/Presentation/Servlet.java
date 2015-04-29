@@ -111,7 +111,7 @@ public class Servlet extends HttpServlet {
                         user = DBfacade.login(user);
                         if (user.isValid()) {
 
-                            session.setAttribute("message", "Velkommen" + user);
+                            session.setAttribute("message", "Welcome " + user);
 
                             //System.out.println("------" + user.getStatus() + " " + user.getPassword());
                             // Her checkes om status på brugeren er admin eller partner,
