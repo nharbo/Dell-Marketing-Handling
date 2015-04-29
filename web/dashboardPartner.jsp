@@ -29,6 +29,7 @@
                 <h3 class="text-muted">Dell</h3>
                 <nav>
                     <ul class="nav nav-justified">
+                        <li><a href="Control?origin=homebuttonPartner">Home</a></li>
                         <li><a href="Control?origin=showCampaignReqSite">Request a new campaign</a></li>
                         <li><a href="Control?origin=showPartnerCampaigns"/>Show your campaigns</a></li>
                         <li><a href="Control?origin=logout"/>Logout</a></li>
@@ -41,10 +42,11 @@
                 <h2><%=session.getAttribute("message")%></h2>
                 <p class="lead"></p>
             </div>
-        </div>
 
-        <div id="bottom">
-
+            <!-- Site footer -->
+            <footer class="footer">
+                <p>&copy; Dell 2015</p>
+            </footer>
         </div>
     </body>
 </html>

@@ -21,15 +21,16 @@
         <%-- Link til CSS style filen. --%>
         <link type="text/css" rel="stylesheet" href="StyleDashboard.css"/>
 
-        <title>Partner Dashboard</title>
+        <title>Partner campaigns</title>
     </head>
     <body>
         <div class="container">
 
             <div class="masthead">
-                <h3 class="text-muted">Dell</h3>
+                <h3 class="text-muted">Dell marketing</h3>
                 <nav>
                     <ul class="nav nav-justified">
+                        <li><a href="Control?origin=homebuttonPartner">Home</a></li>
                         <li><a href="Control?origin=showCampaignReqSite">Request a new campaign</a></li>
                         <li><a href="Control?origin=showPartnerCampaigns"/>Show your campaigns</a></li>
                         <li><a href="Control?origin=logout"/>Logout</a></li>
@@ -39,65 +40,65 @@
 
             <!-- Jumbotron -->
             <div class="jumbotron">
-                <h1>Dell marketing</h1>
-                <p class="lead"></p>
-                <h1><c:out value=""></c:out></h1>
-                    <table>
-                        <thead>
-                        <th>
-                            Partner
-                        </th>
-                        <th>
-                            Campaign id
-                        </th>
-                        <th>
-                            Startdate
-                        </th>
-                        <th>
-                            Stopdate
-                        </th>
-                        <th>
-                            Campaignbudget
-                        </th>
-                        <th>
-                            Status
-                        </th>
-                        </thead>
+                <p class="lead">    
+                </p>
+            </div>
+            <h1>Campaigns</h1>
+            <h1><c:out value=""></c:out></h1>
+                <table>
+                    <thead>
+                    <th>
+                        Partner
+                    </th>
+                    <th>
+                        Campaign id
+                    </th>
+                    <th>
+                        Startdate
+                    </th>
+                    <th>
+                        Stopdate
+                    </th>
+                    <th>
+                        Campaignbudget
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    </thead>
 
 
+                <c:forEach var="campaign" items="${partnercampaigns}">
+                    <tr>
+                        <td style="border: 1px solid #0066CC">${campaign.user}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.startDate}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.stopDate}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.budget}</td>
+                        <td style="border: 1px solid #0066CC">${campaign.status}</td>
+                    </tr>
+
+                </c:forEach>
+            </table>
+
+            <form action="Control" method="POST">
+
+                <select name="campaignid">
                     <c:forEach var="campaign" items="${partnercampaigns}">
-                        <tr>
-                            <td style="border: 1px solid #0066CC">${campaign.user}</td>
-                            <td style="border: 1px solid #0066CC">${campaign.campaignId}</td>
-                            <td style="border: 1px solid #0066CC">${campaign.startDate}</td>
-                            <td style="border: 1px solid #0066CC">${campaign.stopDate}</td>
-                            <td style="border: 1px solid #0066CC">${campaign.budget}</td>
-                            <td style="border: 1px solid #0066CC">${campaign.status}</td>
-                        </tr>
+
+                        <option>${campaign.campaignId}</option>
 
                     </c:forEach>
-                </table>
+                </select>
+                Campaign ID: 
+                <button class="btn btn-primary" value="sendPOEPage" name="origin">Upload POE</button>
 
-                <form action="Control" method="POST">
+            </form>
 
-                    <select name="campaignid">
-                        <c:forEach var="campaign" items="${partnercampaigns}">
-
-                            <option>${campaign.campaignId}</option>
-
-                        </c:forEach>
-                    </select>
-                    Campaign ID: 
-                    <button value="origin" name="sendPOEPage">Upload POE</button>
-
-                </form>
-            </div>
-            <div id="bottom">
-
-            </div>
+            <!-- Site footer -->
+            <footer class="footer">
+                <p>&copy; Dell 2015</p>
+            </footer>
         </div>
-    </div>
-
-
-</body>
+    </body>
 </html>

@@ -28,6 +28,7 @@
                 <h3 class="text-muted">Dell</h3>
                 <nav>
                     <ul class="nav nav-justified">
+                        <li><a href="Control?origin=homebuttonPartner">Home</a></li>
                         <li><a href="Control?origin=showCampaignReqSite">Request a new campaign</a></li>
                         <li><a href="Control?origin=showPartnerCampaigns"/>Show your campaigns</a></li>
                         <li><a href="Control?origin=logout"/>Logout</a></li>
@@ -37,79 +38,84 @@
 
             <!-- Jumbotron -->
             <div class="jumbotron">
-                <form action="Control" method="POST">
-                <div class="campaignInputs">
-                    <div>
-                        Startdate:
-                        <br><input type="date" name="startDate">
-                    </div>
-                    <div class="campaignInputs">
-                        Enddate:
-                        <br><input type="date" name="stopDate">
-                    </div>
-                    <div>
-                        Budget:
-                        <br><input type="text" name="budget">
-                    </div>
-                    <div>
-                        <script type="text/javascript">
-                            function changeValue() {
-                                var option = document.getElementById('country').value;
-
-                                if (option == "Denmark") {
-                                    document.getElementById('currencyField').value = "DKK";
-                                }
-                                else if (option == "Norway") {
-                                    document.getElementById('currencyField').value = "NOK";
-                                }
-                                else if (option == "Sweden") {
-                                    document.getElementById('currencyField').value = "SEK";
-                                }
-                                else if (option == "Iceland") {
-                                    document.getElementById('currencyField').value = "Islaaandsk mønt";
-                                }
-                                else if (option == "Finland") {
-                                    document.getElementById('currencyField').value = "Finska mønt";
-                                }
-                                else if (option == "USA") {
-                                    document.getElementById('currencyField').value = "USD";
-                                }
-
-                            }
-                        </script>
-                        Country:
-                        <br><select name="country" id="country" onchange="changeValue();">
-                            <option id="Danmark" value="Denmark">Denmark</option>
-                            <option id="Norge" value="Norway">Norway</option>
-                            <option id="Sverige" value="Sweden">Sweden</option>
-                            <option id="Island" value="Iceland">Iceland</option>
-                            <option id="Finland" value="Finland">Finland</option>
-                            <option id="USA" value="USA">USA</option>
-                        </select>
-                    </div>
-                    <div>
-                        Currency: <br><input type="text" id="currencyField" name="currency" readonly="readonly" value="DKK">
-                    </div>
-                    <div>
-                        Campaign Id:
-                        <br><input type="text" name="campaignId">
-                    </div>
-                    <div>
-                        Partner Id:                      
-                        <br><input type="text" name="partnerId" value="${partner.partnerid}" readonly="readonly">
-                    </div>
-
-                    <button class="button" id="currencyField" name="origin" value="campaignRequest">Request campaign!</button>
-            </form>
+                <p class="lead">    
+                </p>
             </div>
-        </div>
-        <div id="middle">
             
-        </div>
+            <h1>Campaign request</h1>
+            <form action="Control" method="POST">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Startdate</td>
+                            <td><input type="date" name="startDate"></td>
+                        </tr>
+                        <tr>
+                            <td>Enddate</td>
+                            <td><input type="date" name="stopDate"></td>
+                        </tr>
+                        <tr>
+                            <td>Budget</td>
+                            <td><input type="text" name="budget"></td>
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td><select name="country" id="country" onchange="changeValue();">
+                                    <option id="Danmark" value="Danmark">Danmark</option>
+                                    <option id="Norge" value="Norge">Norge</option>
+                                    <option id="Sverige" value="Sverige">Sverige</option>
+                                    <option id="Island" value="Island">Island</option>
+                                    <option id="Finland" value="Finland">Finland</option>
+                                    <option id="USA" value="USA">USA</option></td>
+                        </tr>
+                        <tr>
+                            <td>Currency</td>
+                            <td><input type="text" id="currencyField" name="currency" readonly="readonly" value="DKK"></td>
+                        </tr>
+                        <tr>
+                            <td>Campaign ID</td>
+                            <td><input type="text" name="campaignId"></td>
+                        </tr>
+                        <tr>
+                            <td>Partner ID</td>
+                            <td><input type="text" name="partnerId" value="${partner.partnerid}" readonly="readonly"></td>
+                        </tr>
 
+                    </tbody>
+                </table>
+            </form>
+            <button class="btn btn-primary" id="currencyField" name="origin" value="campaignRequest">Request campaign!</button>
 
-        <div id="bottom">
+            <script type="text/javascript">
+                function changeValue() {
+                    var option = document.getElementById('country').value;
 
+                    if (option == "Danmark") {
+                        document.getElementById('currencyField').value = "DKK";
+                    }
+                    else if (option == "Norge") {
+                        document.getElementById('currencyField').value = "NOK";
+                    }
+                    else if (option == "Sverige") {
+                        document.getElementById('currencyField').value = "SEK";
+                    }
+                    else if (option == "Island") {
+                        document.getElementById('currencyField').value = "Islaaandsk mønt";
+                    }
+                    else if (option == "Finland") {
+                        document.getElementById('currencyField').value = "Finska mønt";
+                    }
+                    else if (option == "USA") {
+                        document.getElementById('currencyField').value = "USD";
+                    }
+
+                }
+            </script>
+
+            <!-- Site footer -->
+            <footer class="footer">
+                <p>&copy; Dell 2015</p>
+            </footer>
         </div>
     </body>
 </html>

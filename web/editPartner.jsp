@@ -30,10 +30,11 @@
                 <nav>
                     <form action="Control" method="POST">
                         <ul class="nav nav-justified">
-                            <li><a href="awaitingRequests.jsp" value="awaitingRequests" name="origin">Awaiting requests</a></button></li>
-                            <li><a href="activeCampaigns.jsp" value="showActiveCampaigns" name="origin"/>Active campaigns</a></button></li>
-                            <li><a href="disapprovedCampaigns.jsp" value="showInactiveCampaigns" name="origin"/>Inactive campaigns</a></button></li>
-                            <li><a href="showPartner.jsp" value="showPartners" name="origin">Edit/Delete partner</a></button></li>
+                            <li><a href="Control?origin=homebutton">Home</a></li>
+                            <li><a href="Control?origin=awaitingRequests">Awaiting requests</a></li>
+                            <li><a href="Control?origin=showActiveCampaigns"/>Active campaigns</a></li>
+                            <li><a href="Control?origin=showInactiveCampaigns"/>Inactive campaigns</a></li>
+                            <li><a href="Control?origin=showPartners">Edit/Delete partner</a></li>
                             <li><a href="Control?origin=logout"/>Logout</a></li>
                         </ul>
                     </form>
@@ -48,7 +49,7 @@
             og userid kommer fra Partner klassen, som er lavet som en bean, og derfor kan vi få fat i getters/setters..--%>
             <h1>Edit partner</h1>
             <form action="Control" method="POST">              
-                <table border="0" width="1" cellspacing="1">
+                <table>
                     <tbody>
                         <tr>
                             <td><label>UserID</label></td>

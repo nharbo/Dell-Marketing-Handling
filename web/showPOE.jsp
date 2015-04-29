@@ -26,11 +26,12 @@
                 <h3 class="text-muted">Dell marketing</h3>
                 <nav>
                     <ul class="nav nav-justified">
-                        <li><a href="Control?origin=awaitingRequests">Awaiting requests</a></li>
-                        <li><a href="Control?origin=showActiveCampaigns"/>Active campaigns</a></li>
-                        <li><a href="Control?origin=showInactiveCampaigns"/>Inactive campaigns</a></li>
-                        <li><a href="Control?origin=showPartners">Edit/Delete partner</a></li>
-                        <li><a href="Control?origin=logout"/>Logout</a></li>
+                        <li><a href="Control?origin=homebutton">Home</a></li>
+                            <li><a href="Control?origin=awaitingRequests">Awaiting requests</a></li>
+                            <li><a href="Control?origin=showActiveCampaigns"/>Active campaigns</a></li>
+                            <li><a href="Control?origin=showInactiveCampaigns"/>Inactive campaigns</a></li>
+                            <li><a href="Control?origin=showPartners">Edit/Delete partner</a></li>
+                            <li><a href="Control?origin=logout"/>Logout</a></li>
                     </ul>
                 </nav>
             </div>
