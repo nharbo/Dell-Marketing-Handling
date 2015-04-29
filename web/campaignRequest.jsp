@@ -37,12 +37,7 @@
 
             <!-- Jumbotron -->
             <div class="jumbotron">
-                <h1>Dell marketing</h1>
-                <p class="lead"></p>
-            </div>
-        </div>
-        <div id="middle">
-            <form action="Control" method="POST">
+                <form action="Control" method="POST">
                 <div class="campaignInputs">
                     <div>
                         Startdate:
@@ -106,6 +101,10 @@
 
                     <button class="button" id="currencyField" name="origin" value="campaignRequest">Request campaign!</button>
             </form>
+            </div>
+        </div>
+        <div id="middle">
+            
         </div>
 
 
