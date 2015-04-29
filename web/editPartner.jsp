@@ -32,7 +32,7 @@
                 <nav>
                     <form action="Control" method="POST">
                         <ul class="nav nav-justified">
-                            <li><a href="awaitingRequests.jsp" value="awaitingRequests" name="origin">Awaiting requets</a></button></li>
+                            <li><a href="awaitingRequests.jsp" value="awaitingRequests" name="origin">Awaiting requests</a></button></li>
                             <li><a href="activeCampaigns.jsp" value="showActiveCampaigns" name="origin"/>Active campaigns</a></button></li>
                             <li><a href="disapprovedCampaigns.jsp" value="showInactiveCampaigns" name="origin"/>Inactive campaigns</a></button></li>
                             <li><a href="showPartner.jsp" value="showPartners" name="origin">Edit/Delete partner</a></button></li>

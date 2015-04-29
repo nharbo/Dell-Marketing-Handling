@@ -1,62 +1,48 @@
-<%-- 
-    Document   : showPartner
-    Created on : 14-04-2015, 09:12:49
-    Author     : Florent
---%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List, java.util.ArrayList, java.util.Iterator, java.util.Enumeration"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+        <!-- Bootstrap core CSS -->
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="StyleGeneral.css"/>
+        <link type="text/css" rel="stylesheet" href="StyleDashboard.css"/>
         <title>Partners</title>
     </head>
     <body>
         <div class="container">
 
             <div class="masthead">
-                <h3 class="text-muted"><%=session.getAttribute("message")%></h3>
+                <h3 class="text-muted">Dell marketing</h3>
                 <nav>
                     <form action="Control" method="POST">
                         <ul class="nav nav-justified">
-                            <li><a href="awaitingRequests.jsp" value="awaitingRequests" name="origin">Awaiting requets</a></button></li>
+                            <li><a href="awaitingRequests.jsp" value="awaitingRequests" name="origin">Awaiting requests</a></button></li>
                             <li><a href="activeCampaigns.jsp" value="showActiveCampaigns" name="origin"/>Active campaigns</a></button></li>
                             <li><a href="disapprovedCampaigns.jsp" value="showInactiveCampaigns" name="origin"/>Inactive campaigns</a></button></li>
                             <li><a href="showPartner.jsp" value="showPartners" name="origin">Edit/Delete partner</a></button></li>
+                            <li><a href="Control?origin=logout"/>Logout</a></li>
                         </ul>
                     </form>
                 </nav>
-                <img src="banner-dell.jpg" alt="banner-dell"/>
             </div>
 
 
             <!-- Jumbotron -->
             <div class="jumbotron">
-
+                <p class="lead">    
+                </p>
             </div>
-        </div>
-        <div id="header">
 
-            <form action="Control" method="POST">
-                <input type="image" id="myimage" src="dell round logo.png" width="150" height="150" alt="dell-logo" name="origin" value="homebutton"/>
-            </form>
-
-        </div>
-        <div id="middle">
             <h1><c:out value="Partner"></c:out></h1>
 
                 <table style="border: 1px solid #0066cc">
@@ -108,12 +94,14 @@
 
                     </c:forEach>
                 </select> 
-                <button value="deletePartner" name="origin">Delete partner</button>
-                <button value="editPartnerPage" name="origin">Edit partner</button>
+                <button class="btn btn-primary" value="deletePartner" name="origin">Delete partner</button>
+                <button class="btn btn-primary" value="editPartnerPage" name="origin">Edit partner</button>
             </form>
 
-            <div id="bottom">
-
-            </div>
+            <!-- Site footer -->
+            <footer class="footer">
+                <p>&copy; Dell 2015</p>
+            </footer>
+        </div>
     </body>
 </html>
