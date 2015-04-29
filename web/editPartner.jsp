@@ -7,20 +7,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-        <!-- Latest compiled JavaScript -->
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+        <!-- Bootstrap core CSS -->
+        <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
         <%-- Link til CSS style filen. --%>
-        <link type="text/css" rel="stylesheet" href="StyleGeneral.css"/>
+        <link type="text/css" rel="stylesheet" href="StyleDashboard.css"/>
 
         <title>Partner edit</title>
     </head>
@@ -39,13 +37,11 @@
                         </ul>
                     </form>
                 </nav>
-                <img src="banner-dell.jpg" alt="banner-dell"/>
             </div>
-
-
             <!-- Jumbotron -->
             <div class="jumbotron">
-
+                <p class="lead">    
+                </p>
             </div>
         </div>
         <div id="header">
