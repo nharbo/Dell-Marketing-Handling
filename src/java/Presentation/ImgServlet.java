@@ -50,7 +50,7 @@ public class ImgServlet extends HttpServlet {
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
         int counter = -1;
-        System.out.println("inden do!");
+        
 
         while ((counter = in.read(buffer)) != -1) {
             out.write(buffer, 0, counter);
