@@ -41,7 +41,7 @@
                 <p class="lead">    
                 </p>
             </div>
-            
+
             <h1>Campaign request</h1>
             <form action="Control" method="POST">
                 <table>
@@ -61,10 +61,10 @@
                         <tr>
                             <td>Country</td>
                             <td><select name="country" id="country" onchange="changeValue();">
-                                    <option id="Danmark" value="Danmark">Danmark</option>
-                                    <option id="Norge" value="Norge">Norge</option>
-                                    <option id="Sverige" value="Sverige">Sverige</option>
-                                    <option id="Island" value="Island">Island</option>
+                                    <option id="Denmark" value="Denmark">Denmark</option>
+                                    <option id="Norway" value="Norway">Norway</option>
+                                    <option id="Sweden" value="Sweden">Sweden</option>
+                                    <option id="Iceland" value="Iceland">Iceland</option>
                                     <option id="Finland" value="Finland">Finland</option>
                                     <option id="USA" value="USA">USA</option></td>
                         </tr>
@@ -83,23 +83,24 @@
 
                     </tbody>
                 </table>
+                <button class="btn btn-primary" id="currencyField" name="origin" value="campaignRequest">Request campaign!</button>
             </form>
-            <button class="btn btn-primary" id="currencyField" name="origin" value="campaignRequest">Request campaign!</button>
+
 
             <script type="text/javascript">
                 function changeValue() {
                     var option = document.getElementById('country').value;
 
-                    if (option == "Danmark") {
+                    if (option == "Denmark") {
                         document.getElementById('currencyField').value = "DKK";
                     }
-                    else if (option == "Norge") {
+                    else if (option == "Norway") {
                         document.getElementById('currencyField').value = "NOK";
                     }
-                    else if (option == "Sverige") {
+                    else if (option == "Sweden") {
                         document.getElementById('currencyField').value = "SEK";
                     }
-                    else if (option == "Island") {
+                    else if (option == "Iceland") {
                         document.getElementById('currencyField').value = "ISK";
                     }
                     else if (option == "Finland") {
