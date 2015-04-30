@@ -35,29 +35,20 @@
                     </ul>
                 </nav>
             </div>
-        </head>
-        <body>
-            <div id="header">
+            <h1>
+                <%=session.getAttribute("message")%>
+            </h1>
 
-            </div>
-            <div id="middle">
-                <h1>
-                    <%=session.getAttribute("message")%>
-                </h1>
+            <img src="ImgServlet?campaignid=${campaignid}"/>
 
-                <img src="ImgServlet?campaignid=${campaignid}"/>
+            <form action="Control" method="POST">
 
-                <form action="Control" method="POST">
-                    
-                    <button class="btn btn-primary" value="approvePOE" name="origin">Approve POE</button>
-                    <button class="btn btn-primary" value="disapprovePOE" name="origin">Disapprove POE</button>
-                </form>
-
-            </div>
-            <div id="bottom">
-
-
-
-            </div>
-        </body>
+                <button class="btn btn-primary" value="approvePOE" name="origin">Approve POE</button>
+                <button class="btn btn-primary" value="disapprovePOE" name="origin">Disapprove POE</button>
+            </form>
+            <footer class="footer">
+                <p>&copy; Dell 2015</p>
+            </footer>
+        </div>
+    </body>
 </html>
