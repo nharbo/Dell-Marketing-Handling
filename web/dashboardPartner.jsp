@@ -40,7 +40,7 @@
             <!-- Jumbotron -->
             <div class="jumbotron">
                 <h2><%=session.getAttribute("message")%></h2>
-                <p class="lead"><img src="DellBanner.jpg" width="700" height="450" alt="DellBanner"/>
+                <p class="lead"><img src="DellBanner.jpg" width="700" height="380" alt="DellBanner"/>
                 </p>
             </div>
 
