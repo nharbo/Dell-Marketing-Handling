@@ -601,12 +601,12 @@ public class DBfacade implements Facadeinterface {
     }
 
     @Override
-    public void approvePOE(int campaignid) {
+    public void approvePOE(String campaignid) {
         try {
             con = DBConnector.getInstance().getConnection();
 
             PreparedStatement sqlApprovePOE = con.prepareStatement("UPDATE campaign SET status = 'finished' WHERE c_id = ?");
-            sqlApprovePOE.setInt(1, campaignid);
+            sqlApprovePOE.setString(1, campaignid);
             sqlApprovePOE.executeQuery();
 
         } catch (Exception e) {
@@ -616,12 +616,11 @@ public class DBfacade implements Facadeinterface {
     }
 
     @Override
-    public void disapprovePOE(int campaignid) {
+    public void disapprovePOE(String campaignid) {
         try {
             con = DBConnector.getInstance().getConnection();
-
-            PreparedStatement sqlApprovePOE = con.prepareStatement("DELETE * FROM poe WHERE c_id = ?");
-            sqlApprovePOE.setInt(1, campaignid);
+            PreparedStatement sqlApprovePOE = con.prepareStatement("DELETE FROM poe WHERE c_id = ?");
+            sqlApprovePOE.setString(1, campaignid);
             sqlApprovePOE.executeQuery();
         } catch (Exception e) {
             System.out.println("Failed in DBFacade - disapprovePOE");

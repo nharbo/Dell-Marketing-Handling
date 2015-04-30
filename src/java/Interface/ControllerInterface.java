@@ -57,8 +57,8 @@ public interface ControllerInterface {
     
     public POE getPOE(int campaignid);
     
-    public void approvePOE(int campaignid);
+    public void approvePOE(String campaignid);
     
-    public void disapprovePOE(int campaignid);
+    public void disapprovePOE(String campaignid);
 }
 

@@ -269,21 +269,21 @@ public class Servlet extends HttpServlet {
 
                 case "showPOE":
                     String campaignid = request.getParameter("campaignid");
-                    request.setAttribute("campaignid", request.getParameter("campaignid"));
-                    request.setAttribute("message", "Now showing POE for campaign id: " + campaignid);
+                    request.getSession().setAttribute("campaignid", request.getParameter("campaignid"));
+                    request.getSession().setAttribute("message", "Now showing POE for campaign id: " + campaignid);
                     response.sendRedirect("showPOE.jsp");
                     break;
                     
                 case "approvePOE":
-                    int campaignidPOE = Integer.parseInt(request.getParameter("campaignid"));
+                    String campaignidPOE = (String) session.getAttribute("campaignid");
                     control.approvePOE(campaignidPOE);
                     request.getSession().setAttribute("message", "Succesfully approved POE for campaign id: " + campaignidPOE);
                     response.sendRedirect("dashboardDell.jsp");
                     break;
                     
                 case "disapprovePOE":
-                    int campaignidDisPOE = Integer.parseInt(request.getParameter("campaignid"));
-                    control.approvePOE(campaignidDisPOE);
+                    String campaignidDisPOE = (String) session.getAttribute("campaignid");
+                    control.disapprovePOE(campaignidDisPOE);
                     request.getSession().setAttribute("message", "Succesfully disapproved POE for campaign id: " + campaignidDisPOE);
                     response.sendRedirect("dashboardDell.jsp");
                     break;

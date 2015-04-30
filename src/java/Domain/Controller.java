@@ -123,14 +123,15 @@ public class Controller implements ControllerInterface {
     }
 
     @Override
-    public void approvePOE(int campaignid) {
+    public void approvePOE(String campaignid) {
         db.approvePOE(campaignid);
     }
 
     @Override
-    public void disapprovePOE(int campaignid) {
+    public void disapprovePOE(String campaignid) {
         db.disapprovePOE(campaignid);
     }
+
     
     
 

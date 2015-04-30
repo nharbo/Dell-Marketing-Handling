@@ -66,8 +66,8 @@ public interface Facadeinterface {
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
     ArrayList<Partner> getPartners();
     
-    public void approvePOE(int campaignid);
+    public void approvePOE(String campaignid);
     
-    public void disapprovePOE(int campaignid);
+    public void disapprovePOE(String campaignid);
     
 }

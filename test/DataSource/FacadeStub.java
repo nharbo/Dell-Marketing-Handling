@@ -8,6 +8,7 @@ package DataSource;
 import Domain.Campaign;
 import Domain.POE;
 import Domain.Partner;
+import Interface.Facadeinterface;
 import java.io.InputStream;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  *
  * @author nicolaiharbo
  */
-public class FacadeStub implements Facade {
+public class FacadeStub implements Facadeinterface {
 
     @Override
     public void acceptCampaignRequest(int campaignid) {
@@ -98,6 +99,16 @@ public class FacadeStub implements Facade {
         ArrayList<Partner> partners = new ArrayList<>();
         partners.add(new Partner("7", 17, "Kurt", "Hjemme", 1234567891, 123456, 8000));
         return partners;
+    }
+
+    @Override
+    public void approvePOE(String campaignid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void disapprovePOE(String campaignid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
