@@ -29,7 +29,8 @@
                             <li><a href="Control?origin=awaitingRequests">Awaiting requests</a></li>
                             <li><a href="Control?origin=showActiveCampaigns"/>Active campaigns</a></li>
                             <li><a href="Control?origin=showInactiveCampaigns"/>Inactive campaigns</a></li>
-                            <li><a href="Control?origin=showPartners">Edit/Delete partner</a></li>
+                            <li><a href="Control?origin=registration">Create partner</a></li>
+                            <li><a href="Control?origin=showPartners">Partner list</a></li>
                             <li><a href="Control?origin=logout"/>Logout</a></li>
                         </ul>
                     </form>

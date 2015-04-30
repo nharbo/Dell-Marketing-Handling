@@ -100,10 +100,10 @@
                         document.getElementById('currencyField').value = "SEK";
                     }
                     else if (option == "Island") {
-                        document.getElementById('currencyField').value = "Islaaandsk mønt";
+                        document.getElementById('currencyField').value = "ISK";
                     }
                     else if (option == "Finland") {
-                        document.getElementById('currencyField').value = "Finska mønt";
+                        document.getElementById('currencyField').value = "EUR";
                     }
                     else if (option == "USA") {
                         document.getElementById('currencyField').value = "USD";
