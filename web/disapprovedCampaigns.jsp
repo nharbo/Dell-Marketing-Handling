@@ -20,7 +20,7 @@
 
         <%-- Link til CSS style filen. --%>
         <link type="text/css" rel="stylesheet" href="StyleDashboard.css"/>
-        <title>Disapproved campaigns</title>
+        <title>Inactive campaigns</title>
     </head>
     <body> 
         <div class="container">
@@ -47,7 +47,7 @@
                 <p class="lead">    
                 </p>
             </div>
-            <h1><c:out value="Disaproved Campaigns"></c:out></h1>
+            <h1><c:out value="Inactive campaigns"></c:out></h1>
                 <table>
                     <thead>
                     <th>

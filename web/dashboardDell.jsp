@@ -28,19 +28,19 @@
                 <nav>
                     <ul class="nav nav-justified">
                         <li><a href="Control?origin=homebutton">Home</a></li>
-                            <li><a href="Control?origin=awaitingRequests">Awaiting requests</a></li>
-                            <li><a href="Control?origin=showActiveCampaigns"/>Active campaigns</a></li>
-                            <li><a href="Control?origin=showInactiveCampaigns"/>Inactive campaigns</a></li>
-                            <li><a href="registration.jsp">Create partner</a></li>
-                            <li><a href="Control?origin=showPartners">Partner list</a></li>
-                            <li><a href="Control?origin=logout"/>Logout</a></li>
+                        <li><a href="Control?origin=awaitingRequests">Awaiting requests</a></li>
+                        <li><a href="Control?origin=showActiveCampaigns"/>Active campaigns</a></li>
+                        <li><a href="Control?origin=showInactiveCampaigns"/>Inactive campaigns</a></li>
+                        <li><a href="registration.jsp">Create partner</a></li>
+                        <li><a href="Control?origin=showPartners">Partner list</a></li>
+                        <li><a href="Control?origin=logout"/>Logout</a></li>
                     </ul>
                 </nav>
             </div>
             <!-- Jumbotron -->
             <div class="jumbotron">
                 <h2><%=session.getAttribute("message")%></h2>
-                <p class="lead"><img src="DellBanner.jpg" width="900" height="650" alt="DellBanner"/></p>
+                <p class="lead"><img src="DellBanner.jpg" width="700" height="450" alt="DellBanner"/></p>
             </div>
             <!-- Site footer -->
             <footer class="footer">
