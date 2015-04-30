@@ -5,6 +5,7 @@
  */
 package DataSource;
 
+import Interface.Facadeinterface;
 import Domain.Campaign;
 import Domain.POE;
 import Domain.Partner;
@@ -28,7 +29,7 @@ import javax.servlet.http.Part;
  *
  * @author nicolaiharbo
  */
-public class DBfacade implements Facade {
+public class DBfacade implements Facadeinterface {
 
     private static Connection con;
     private static Statement statement = null;
@@ -597,6 +598,35 @@ public class DBfacade implements Facade {
 //        return poe;
         return poe2;
 
+    }
+
+    @Override
+    public void approvePOE(int campaignid) {
+        try {
+            con = DBConnector.getInstance().getConnection();
+
+            PreparedStatement sqlApprovePOE = con.prepareStatement("UPDATE campaign SET status = 'finished' WHERE c_id = ?");
+            sqlApprovePOE.setInt(1, campaignid);
+            sqlApprovePOE.executeQuery();
+
+        } catch (Exception e) {
+            System.out.println("Failed in DBFacede - approvePOE");
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public void disapprovePOE(int campaignid) {
+        try {
+            con = DBConnector.getInstance().getConnection();
+
+            PreparedStatement sqlApprovePOE = con.prepareStatement("DELETE * FROM poe WHERE c_id = ?");
+            sqlApprovePOE.setInt(1, campaignid);
+            sqlApprovePOE.executeQuery();
+        } catch (Exception e) {
+            System.out.println("Failed in DBFacade - disapprovePOE");
+            System.out.println(e);
+        }
     }
 
 }

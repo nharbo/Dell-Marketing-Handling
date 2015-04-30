@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DataSource;
+package Interface;
 
 import Domain.Campaign;
 import Domain.POE;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  *
  * @author nicolaiharbo
  */
-public interface Facade {
+public interface Facadeinterface {
     boolean inDebugMode = true;
 
     void acceptCampaignRequest(int campaignid);
@@ -65,5 +65,9 @@ public interface Facade {
 
     //Denne metode henter alle partnere ind, og lægger dem ind i en liste.
     ArrayList<Partner> getPartners();
+    
+    public void approvePOE(int campaignid);
+    
+    public void disapprovePOE(int campaignid);
     
 }

@@ -41,13 +41,22 @@ public class ImgServlet extends HttpServlet {
 
         Controller controller = new Controller();
 
+        // campaignid hentes ind fra active campaigns sidens dropdown.
         int id = Integer.parseInt(request.getParameter("campaignid"));
+        
+        // Objektet med det rigtige poe id hentes og gemmes i poe-variablen
         POE poe = controller.getPOE(id);
 
-
+        // Billedet fra objektet hentes ud, og gemmes ned i en inputStream variabel.
         InputStream in = poe.getImage();
       
+        //Her kan kun indlæses jpeg filer. Vi kunne godt lave en if-statement som checker hvilket filformt content er
+        // så vi kan lave en if(jpeg) set contenttype image/jpeg, else if (pdf) setcontenttype..... bla bla..
+        // Dette vil kræve at vi laver en tabel i databasen, som gemmer navnet på filformatet, hvor vi så
+        // efterfølgende kan hente det ind, så vi ved hvilket format filen har, inden vi går ind i en if/else.
         response.setContentType("image/jpeg");
+        
+        //?? Hvad sker der her? Find ud af det :)
         OutputStream out = response.getOutputStream();
         byte[] buffer = new byte[1024];
         int counter = -1;

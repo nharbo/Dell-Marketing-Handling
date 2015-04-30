@@ -6,7 +6,7 @@
 package Domain;
 
 import DataSource.DBfacade;
-import DataSource.Facade;
+import Interface.Facadeinterface;
 import Interface.ControllerInterface;
 import java.io.InputStream;
 import java.sql.Blob;
@@ -24,11 +24,11 @@ import javax.servlet.http.Part;
 public class Controller implements ControllerInterface {
     
 //    DBfacade db = new DBfacade();
-    Facade db = new DBfacade();
+    Facadeinterface db = new DBfacade();
     
     public Controller() {}
     
-    public Controller(Facade facade) {
+    public Controller(Facadeinterface facade) {
         this.db = facade;
     }
     
