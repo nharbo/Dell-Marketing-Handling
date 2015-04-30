@@ -38,8 +38,8 @@ public class DBfacade implements Facadeinterface {
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
     // så der kun oprettes 1 forbindelse til DB-serveren.
     public DBfacade() {
-
-        con = DBConnector.getInstance().getConnection();
+//
+//        con = DBConnector.getInstance().getConnection();
     }
 
     // Authentication check.
@@ -48,8 +48,10 @@ public class DBfacade implements Facadeinterface {
         String username = bean.getUserId();
         String password = bean.getPassword();
         ResultSet rs;
+        con = DBConnector.getInstance().getConnection();
 
         try {
+           
             // SQL-streng der finder alle users der passer med oplyste user_id og pwd. 
             PreparedStatement SQLString = con.prepareStatement("select * from users where user_id= ? AND pwd = ?");
 
@@ -94,10 +96,10 @@ public class DBfacade implements Facadeinterface {
 
         ArrayList<Campaign> campaigns = new ArrayList();
         ResultSet rs;
-        //con = DBConnector.getInstance().getConnection();
-
+        con = DBConnector.getInstance().getConnection();
         try {
-
+            
+            
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign INNER JOIN partners ON partners.p_id = campaign.p_id WHERE status = 'ongoing'";
 
@@ -135,12 +137,14 @@ public class DBfacade implements Facadeinterface {
     @Override
     public ArrayList<Campaign> getPartnerCampaigns(String username) {
 
+        
         ArrayList<Campaign> partnercampaigns = new ArrayList();
         ResultSet rs;
-
+        con = DBConnector.getInstance().getConnection();
+    
         try {
 
-            con = DBConnector.getInstance().getConnection();
+            
 
             //Her laves en inner join, da campaign ikke inderholder et user_id, 
             //men kun p_id - derfor skal tabellerne sammensmeltes med en join..
@@ -175,8 +179,10 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void addUser(String userid, String password, String status) {
 
+        con = DBConnector.getInstance().getConnection();
+        
         try {
-            con = DBConnector.getInstance().getConnection();
+           
 
             PreparedStatement sqlAdd = con.prepareStatement("insert into cphnh127.users values (?,?,?)");
             //String sqlAdd = "insert into cphnh127.users values ('" + userid + "', '" + password + "')";
@@ -201,8 +207,10 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
 
+        con = DBConnector.getInstance().getConnection();
+        
         try {
-            con = DBConnector.getInstance().getConnection();
+            
 
             PreparedStatement sqlAC = con.prepareStatement("insert into cphnh127.campaign values (?,?, to_date(?, 'YYYY-MM-DD'), to_date(?, 'YYYY-MM-DD'),?,?,?)");
             // String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
@@ -229,8 +237,10 @@ public class DBfacade implements Facadeinterface {
     //Denne metode tilføjer en ny partner til partner-tabellen.
     @Override
     public void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip) {
+        
+        con = DBConnector.getInstance().getConnection();
         try {
-            con = DBConnector.getInstance().getConnection();
+            
             PreparedStatement sqlAdd = con.prepareStatement("insert into cphnh127.partners values (?,?,?,?,?,?,?)");
             //String sqlAdd = "insert into cphnh127.partners values ('" + userid + "', " + partnerid + ", '" + partnername + "', '" + adress + "', " + cvr + ", " + phone + ", " + zip + ")";
             sqlAdd.setString(1, userid);
@@ -260,8 +270,10 @@ public class DBfacade implements Facadeinterface {
         ArrayList<Partner> partners = new ArrayList();
         ResultSet rs;
 
+        con = DBConnector.getInstance().getConnection();
+        
         try {
-            con = DBConnector.getInstance().getConnection();
+           
 
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM partners";
@@ -298,8 +310,9 @@ public class DBfacade implements Facadeinterface {
     // Lav som boolean, så der kan returners om det er gået godt eller ej.
     @Override
     public void deletePartner(String userid) {
+        con = DBConnector.getInstance().getConnection();
         try {
-            con = DBConnector.getInstance().getConnection();
+            
 
             PreparedStatement sqldelC = con.prepareStatement("DELETE FROM campaign WHERE p_id IN (SELECT p_id FROM partners WHERE user_id = ?)");
             PreparedStatement sqldelP = con.prepareStatement("DELETE FROM partners WHERE user_id = ?");
@@ -330,9 +343,9 @@ public class DBfacade implements Facadeinterface {
 
         ResultSet rs;
         Partner partner = null;
-
+        con = DBConnector.getInstance().getConnection();
         try {
-            con = DBConnector.getInstance().getConnection();
+           
 
             PreparedStatement sqlDel = con.prepareStatement("SELECT * FROM partners WHERE user_id = ?");
             //String sqlDelete1 = "SELECT * FROM partners WHERE user_id = '" + userid + "'";
@@ -361,8 +374,9 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void editPartner(Partner partner) {
 
+        con = DBConnector.getInstance().getConnection();
         try {
-            con = DBConnector.getInstance().getConnection();
+            
 
             PreparedStatement sqlEdit = con.prepareCall("UPDATE partners SET user_id = ?, p_id = ?, p_name = ?, address = ?, cvr = ?, phone = ?, zip = ? WHERE user_id = ?");
             //"UPDATE partners SET user_id = '" + partner.getUserid() + "', p_id = '" + partner.getPartnerid() + "', p_name = '" + partner.getPartnername() + "', address = '" + partner.getAddress() + "', cvr = '" + partner.getCvr() + "', phone = '" + partner.getPhone() + "', zip = '" + partner.getZip() + "' WHERE user_id = '" + partner.getUserid() + "'";
@@ -393,9 +407,10 @@ public class DBfacade implements Facadeinterface {
 
         ResultSet rs;
         ArrayList<Campaign> campaignReq = new ArrayList();
-
+        con = DBConnector.getInstance().getConnection();
+        
         try {
-            con = DBConnector.getInstance().getConnection();
+           
 
             // SQLString hiver alle elementer ud med status "ongoing"
             String SQLString1 = "SELECT * FROM campaign INNER JOIN partners ON partners.p_id = campaign.p_id WHERE status = 'pending'";
@@ -429,9 +444,11 @@ public class DBfacade implements Facadeinterface {
 
     @Override
     public void acceptCampaignRequest(int campaignid) {
+        
+        con = DBConnector.getInstance().getConnection();
 
         try {
-            con = DBConnector.getInstance().getConnection();
+            
 
             PreparedStatement sqlACR = con.prepareStatement("UPDATE campaign SET status = 'ongoing' WHERE c_id = ?");
             //String sqlEdit = "UPDATE campaign SET status = 'ongoing' WHERE c_id = '" + campaignid + "'";
@@ -452,9 +469,10 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void addPoe(String poeid, int c_id, String status, InputStream poe) {
 
+        con = DBConnector.getInstance().getConnection();
         try {
 
-            con = DBConnector.getInstance().getConnection();
+         
 
             PreparedStatement sqlPoe = con.prepareStatement("insert into cphnh127.poe values (?,?,?,?)");
             sqlPoe.setString(1, poeid);
@@ -481,9 +499,10 @@ public class DBfacade implements Facadeinterface {
 
         ResultSet rs;
         ArrayList<Campaign> disCampaign = new ArrayList();
+        con = DBConnector.getInstance().getConnection();
 
         try {
-            con = DBConnector.getInstance().getConnection();
+           
 
             String sqlDis = "SELECT * FROM campaign WHERE status = 'disapproved' or status = 'finished'";
             statement = con.createStatement();
@@ -511,9 +530,11 @@ public class DBfacade implements Facadeinterface {
 
     @Override
     public void disapproveCampaignRequest(int campaignid) {
+        
+        con = DBConnector.getInstance().getConnection();
 
         try {
-            con = DBConnector.getInstance().getConnection();
+           
 
             PreparedStatement sqlDis = con.prepareStatement("UPDATE campaign SET status = 'disapproved' WHERE c_id = ?");
             //String sqlDisapprove = "UPDATE campaign SET status = 'disapproved' WHERE c_id = '" + campaignid + "'";
@@ -539,8 +560,9 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void clearDisapprovedCampaigns() {
 
+        con = DBConnector.getInstance().getConnection();
         try {
-            con = DBConnector.getInstance().getConnection();
+           
 
             //Autocommit slåes fra.
             con.setAutoCommit(false);
@@ -585,10 +607,10 @@ public class DBfacade implements Facadeinterface {
         POE poe2 = null;
 
         ResultSet rs;
+        con = DBConnector.getInstance().getConnection();
 
         try {
-            con = DBConnector.getInstance().getConnection();
-
+           
             PreparedStatement sqlpoe = con.prepareStatement("SELECT * FROM poe WHERE c_id = ?");
 
             sqlpoe.setInt(1, campaignid);
@@ -615,9 +637,10 @@ public class DBfacade implements Facadeinterface {
 
     @Override
     public void approvePOE(String campaignid) {
+        
+        con = DBConnector.getInstance().getConnection();
         try {
-            con = DBConnector.getInstance().getConnection();
-
+         
             PreparedStatement sqlApprovePOE = con.prepareStatement("UPDATE campaign SET status = 'finished' WHERE c_id = ?");
             sqlApprovePOE.setString(1, campaignid);
             sqlApprovePOE.executeQuery();
@@ -635,8 +658,9 @@ public class DBfacade implements Facadeinterface {
 
     @Override
     public void disapprovePOE(String campaignid) {
+        con = DBConnector.getInstance().getConnection();
         try {
-            con = DBConnector.getInstance().getConnection();
+            
             PreparedStatement sqlApprovePOE = con.prepareStatement("DELETE FROM poe WHERE c_id = ?");
             sqlApprovePOE.setString(1, campaignid);
             sqlApprovePOE.executeQuery();
