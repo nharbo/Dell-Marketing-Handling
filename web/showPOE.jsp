@@ -27,11 +27,11 @@
                 <nav>
                     <ul class="nav nav-justified">
                         <li><a href="Control?origin=homebutton">Home</a></li>
-                            <li><a href="Control?origin=awaitingRequests">Awaiting requests</a></li>
-                            <li><a href="Control?origin=showActiveCampaigns"/>Active campaigns</a></li>
-                            <li><a href="Control?origin=showInactiveCampaigns"/>Inactive campaigns</a></li>
-                            <li><a href="Control?origin=showPartners">Edit/Delete partner</a></li>
-                            <li><a href="Control?origin=logout"/>Logout</a></li>
+                        <li><a href="Control?origin=awaitingRequests">Awaiting requests</a></li>
+                        <li><a href="Control?origin=showActiveCampaigns"/>Active campaigns</a></li>
+                        <li><a href="Control?origin=showInactiveCampaigns"/>Inactive campaigns</a></li>
+                        <li><a href="Control?origin=showPartners">Edit/Delete partner</a></li>
+                        <li><a href="Control?origin=logout"/>Logout</a></li>
                     </ul>
                 </nav>
             </div>
@@ -46,6 +46,12 @@
                 </h1>
 
                 <img src="ImgServlet?campaignid=${campaignid}"/>
+
+                <form action="Control" method="POST">
+                    
+                    <button class="btn btn-primary" value="approvePOE" name="origin">Approve POE</button>
+                    <button class="btn btn-primary" value="disapprovePOE" name="origin">Disapprove POE</button>
+                </form>
 
             </div>
             <div id="bottom">

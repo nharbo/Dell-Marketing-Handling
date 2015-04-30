@@ -121,6 +121,16 @@ public class Controller implements ControllerInterface {
     public POE getPOE(int campaignid) {
       return db.getPOE(campaignid);
     }
+
+    @Override
+    public void approvePOE(int campaignid) {
+        db.approvePOE(campaignid);
+    }
+
+    @Override
+    public void disapprovePOE(int campaignid) {
+        db.disapprovePOE(campaignid);
+    }
     
     
 

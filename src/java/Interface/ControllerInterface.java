@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -55,5 +56,9 @@ public interface ControllerInterface {
     public void clearDisapprovedCampaigns();
     
     public POE getPOE(int campaignid);
+    
+    public void approvePOE(int campaignid);
+    
+    public void disapprovePOE(int campaignid);
 }
 

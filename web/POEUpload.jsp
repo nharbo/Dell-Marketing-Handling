@@ -45,7 +45,7 @@
                     </tr>
                     <tr>
                         <td>Campaign ID</td>
-                        <td><input type="text" name="CampaignID"></td>
+                        <td><input type="text" name="CampaignID" value="<%=session.getAttribute("campaignid")%>" readonly></td>
                     </tr>
                     <tr>
                         <td>Attach file</td>
