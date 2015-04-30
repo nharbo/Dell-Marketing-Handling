@@ -38,8 +38,8 @@ public class DBfacade implements Facadeinterface {
     // Vi bruger getInstance metoden, fordi forbindelsen er oprettet som en singleton,
     // så der kun oprettes 1 forbindelse til DB-serveren.
     public DBfacade() {
-//
-//        con = DBConnector.getInstance().getConnection();
+
+        con = DBConnector.getInstance().getConnection();
     }
 
     // Authentication check.
@@ -48,7 +48,7 @@ public class DBfacade implements Facadeinterface {
         String username = bean.getUserId();
         String password = bean.getPassword();
         ResultSet rs;
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
 
         try {
            
@@ -78,12 +78,13 @@ public class DBfacade implements Facadeinterface {
 
         } catch (Exception e) {
             System.out.println("Log-in failed: An exception has occured - " + e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//            finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
         return bean;
     }
@@ -96,7 +97,7 @@ public class DBfacade implements Facadeinterface {
 
         ArrayList<Campaign> campaigns = new ArrayList();
         ResultSet rs;
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         try {
             
             
@@ -123,12 +124,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - getCampaign");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return campaigns;
@@ -140,7 +142,7 @@ public class DBfacade implements Facadeinterface {
         
         ArrayList<Campaign> partnercampaigns = new ArrayList();
         ResultSet rs;
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
     
         try {
 
@@ -164,12 +166,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getPartnerCampaign");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
         return partnercampaigns;
 
@@ -179,7 +182,7 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void addUser(String userid, String password, String status) {
 
-        con = DBConnector.getInstance().getConnection();
+       // con = DBConnector.getInstance().getConnection();
         
         try {
            
@@ -194,12 +197,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - addUser");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
     }
 
@@ -207,7 +211,7 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
 
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         
         try {
             
@@ -225,12 +229,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - addCampaign");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
     }
 
@@ -238,7 +243,7 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip) {
         
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         try {
             
             PreparedStatement sqlAdd = con.prepareStatement("insert into cphnh127.partners values (?,?,?,?,?,?,?)");
@@ -254,12 +259,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - addPartner");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
     }
 
@@ -270,7 +276,7 @@ public class DBfacade implements Facadeinterface {
         ArrayList<Partner> partners = new ArrayList();
         ResultSet rs;
 
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         
         try {
            
@@ -295,12 +301,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - getPartner");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
         //listen med partner-objekter returneres.
         return partners;
@@ -310,7 +317,7 @@ public class DBfacade implements Facadeinterface {
     // Lav som boolean, så der kan returners om det er gået godt eller ej.
     @Override
     public void deletePartner(String userid) {
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         try {
             
 
@@ -327,12 +334,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - deletePartner");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
 
     }
@@ -343,7 +351,7 @@ public class DBfacade implements Facadeinterface {
 
         ResultSet rs;
         Partner partner = null;
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         try {
            
 
@@ -360,12 +368,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - deletePartner");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
         return partner;
     }
@@ -374,7 +383,7 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void editPartner(Partner partner) {
 
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         try {
             
 
@@ -393,12 +402,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - UpdatePartner");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
     }
 
@@ -407,7 +417,7 @@ public class DBfacade implements Facadeinterface {
 
         ResultSet rs;
         ArrayList<Campaign> campaignReq = new ArrayList();
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         
         try {
            
@@ -431,12 +441,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - getCampaignRequests");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
         // Mappet laves om til en liste (da vi ikke skal bruge key-funktionen), og listen med campaign-objekter returneres.
         return campaignReq;
@@ -445,7 +456,7 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void acceptCampaignRequest(int campaignid) {
         
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
 
         try {
             
@@ -457,19 +468,20 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - acceptCampaignRequest");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
     }
 
     @Override
     public void addPoe(String poeid, int c_id, String status, InputStream poe) {
 
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         try {
 
          
@@ -484,12 +496,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - addPoe");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
 
 
     }
@@ -499,7 +512,7 @@ public class DBfacade implements Facadeinterface {
 
         ResultSet rs;
         ArrayList<Campaign> disCampaign = new ArrayList();
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
 
         try {
            
@@ -518,12 +531,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - getDisapprovedCampaigns");
             System.out.println(e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
         return disCampaign;
  
     }
@@ -531,7 +545,7 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void disapproveCampaignRequest(int campaignid) {
         
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
 
         try {
            
@@ -543,12 +557,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - disapproveCampaignRequest");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
         
 
     }
@@ -560,7 +575,7 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void clearDisapprovedCampaigns() {
 
-        con = DBConnector.getInstance().getConnection();
+        //con = DBConnector.getInstance().getConnection();
         try {
            
 
@@ -594,7 +609,7 @@ public class DBfacade implements Facadeinterface {
             try {
                 //Autocommit slåes til igen.
                 con.setAutoCommit(true);
-                con.close();
+                //con.close();
             } catch (Exception e) {
             }
 
@@ -624,12 +639,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Fail in DBMapper - getPOE");
             System.out.println(e.getMessage());
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
         
         return poe2;
 
@@ -648,12 +664,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Failed in DBFacede - approvePOE");
             System.out.println(e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
     }
 
     @Override
@@ -667,12 +684,13 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Failed in DBFacade - disapprovePOE");
             System.out.println(e);
-        } finally {
-            try {
-                con.close();
-            } catch (Exception e) {
-            }
-        }
+        } 
+//        finally {
+//            try {
+//                con.close();
+//            } catch (Exception e) {
+//            }
+//        }
     }
 
 }
