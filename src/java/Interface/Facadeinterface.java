@@ -22,7 +22,7 @@ public interface Facadeinterface {
     void acceptCampaignRequest(int campaignid);
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
-    void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country);
+    void addCampaign(String user_id, int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country);
 
     //Denne metode tilføjer en ny partner til partner-tabellen.
     void addPartner(String userid, int partnerid, String partnername, String adress, int cvr, int phone, int zip);

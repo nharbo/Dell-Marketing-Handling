@@ -116,7 +116,7 @@ public class DBfacade implements Facadeinterface {
                     System.out.println("ResultSet: " + rs.getString("c_id"));
                 }
 
-                campaigns.add(new Campaign(rs.getString("user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                campaigns.add(new Campaign(rs.getString("c_user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -158,7 +158,7 @@ public class DBfacade implements Facadeinterface {
             System.out.println(sqlGPC);
 
             while (rs.next()) {
-                partnercampaigns.add(new Campaign(rs.getString("user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                partnercampaigns.add(new Campaign(rs.getString("c_user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -209,22 +209,23 @@ public class DBfacade implements Facadeinterface {
 
     //Denne metode tilføjer en nu kampagne til campaign-tabellen
     @Override
-    public void addCampaign(int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
+    public void addCampaign(String user_id, int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
 
         //con = DBConnector.getInstance().getConnection();
         
         try {
             
 
-            PreparedStatement sqlAC = con.prepareStatement("insert into cphnh127.campaign values (?,?, to_date(?, 'YYYY-MM-DD'), to_date(?, 'YYYY-MM-DD'),?,?,?)");
+            PreparedStatement sqlAC = con.prepareStatement("insert into cphnh127.campaign values (?, ?,?, to_date(?, 'YYYY-MM-DD'), to_date(?, 'YYYY-MM-DD'),?,?,?)");
             // String sqlAddCampaign = "insert into cphnh127.campaign values (" + c_id + ", " + p_id + ", to_date('" + startdate + "', 'YYYY-MM-DD'), to_date('" + stopdate + "', 'YYYY-MM-DD'), " + c_budget + ",  '" + status + "',  '" + country + "')";
-            sqlAC.setInt(1, c_id);
-            sqlAC.setInt(2, p_id);
-            sqlAC.setDate(3, startdate);
-            sqlAC.setDate(4, stopdate);
-            sqlAC.setInt(5, c_budget);
-            sqlAC.setString(6, status);
-            sqlAC.setString(7, country);
+            sqlAC.setString(1, user_id);
+            sqlAC.setInt(2, c_id);
+            sqlAC.setInt(3, p_id);
+            sqlAC.setDate(4, startdate);
+            sqlAC.setDate(5, stopdate);
+            sqlAC.setInt(6, c_budget);
+            sqlAC.setString(7, status);
+            sqlAC.setString(8, country);
             sqlAC.executeQuery();
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - addCampaign");
@@ -433,7 +434,7 @@ public class DBfacade implements Facadeinterface {
 
             // Så længe der er indhold i tabellen, hives den ud, og gemmes ned i c, som er en liste af objekter.
             while (rs.next()) {
-                campaignReq.add(new Campaign(rs.getString("user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                campaignReq.add(new Campaign(rs.getString("c_user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
             rs.close();
             statement.close();
@@ -517,12 +518,12 @@ public class DBfacade implements Facadeinterface {
         try {
            
 
-            String sqlDis = "SELECT * FROM campaign WHERE status = 'disapproved' or status = 'finished'";
+            String sqlDis = "SELECT * FROM campaign WHERE campaign.status = 'disapproved' or campaign.status = 'finished'";
             statement = con.createStatement();
             rs = statement.executeQuery(sqlDis);
 
             while (rs.next()) {
-                disCampaign.add(new Campaign(rs.getString("user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
+                disCampaign.add(new Campaign(rs.getString("c_user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }
 
             rs.close();
