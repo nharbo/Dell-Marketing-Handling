@@ -45,7 +45,7 @@
                 </p>
             </div>
 
-            <h1><c:out value="Partner"></c:out></h1>
+            <h1><c:out value="Partners"></c:out></h1>
 
                 <table>
 
