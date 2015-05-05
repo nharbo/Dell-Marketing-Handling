@@ -48,44 +48,44 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><label>UserID</label></td>
-                            <td><input type="text" name="userid"></td>
+                            <td><label>User ID</label></td>
+                            <td><input type="text" name="userid" required></td>
                         </tr>
                         <tr>
-                            <td><label>PartnerID</label></td>
-                            <td><input type="text" name="partnerid"></td>
+                            <td><label>Partner ID</label></td>
+                            <td><input type="text" name="partnerid" required></td>
                         </tr>
                         <tr>
                             <td><label>Partner name</label></td>
-                            <td><input type="text" name="partnername"></td>
+                            <td><input type="text" name="partnername" required></td>
                         </tr>
                         <tr>
                             <td><label>Address</label></td>
-                            <td><input type="text" name="address"></td>
+                            <td><input type="text" name="address" required></td>
                         </tr>
                         <tr>
                             <td><label>Zip</label></td>
-                            <td><input type="text" name="zip"></td>
+                            <td><input type="text" name="zip" required></td>
                         </tr>
                         <tr>
                             <td><label>City</label></td>
-                            <td><input type="text" name="city"></td>
+                            <td><input type="text" name="city" required></td>
                         </tr>
                         <tr>
                             <td><label>CVR-number</label></td>
-                            <td><input type="text" name="cvr"></td>
+                            <td><input type="text" name="cvr" required></td>
                         </tr>
                         <tr>
                             <td><label>Phone number</label></td>
-                            <td><input type="text" name="phone"></td>
+                            <td><input type="text" name="phone" required></td>
                         </tr>
                         <tr>
                             <td><label>Password</label></td>
-                            <td><input type="password" name="password"></td>
+                            <td><input type="password" name="password" required></td>
                         </tr>
                         <tr>
                             <td><label>Retype password</label></td>
-                            <td><input type="password" name="retype_password"></td>
+                            <td><input type="password" name="retype_password" required></td>
                         </tr>
                         <tr>
                             <td><button class="btn btn-primary" name="origin" value="registration">Create</button></td>

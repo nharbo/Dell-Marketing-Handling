@@ -53,11 +53,11 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><label>UserID</label></td>
+                            <td><label>User ID</label></td>
                             <td><input type="text" name="userid" value="${partner.userid}" readonly="readonly"></td>
                         </tr>
                         <tr>
-                            <td><label>PartnerID</label></td>
+                            <td><label>Partner ID</label></td>
                             <td><input type="text" name="partnerid" value="${partner.partnerid}" readonly="readonly"></td>
                         </tr>
                         <tr>

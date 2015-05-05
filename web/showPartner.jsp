@@ -89,7 +89,8 @@
                 </c:forEach>
             </table>
             <form action="Control" method="POST">
-                <select name="userid">
+                User id:
+                <select name="userid" required>
                     <c:forEach var="partners" items="${partnerList}">
 
                         <option>${partners.userid}</option>

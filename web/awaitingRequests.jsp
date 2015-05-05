@@ -94,7 +94,8 @@
             </table>
 
             <form action="Control" method="POST">
-                <select name="Campaignid">
+                Campaign id: 
+                <select name="Campaignid" required>
                     <c:forEach var="campaign" items="${campaignReqList}">
 
                         <option>${campaign.campaignId}</option>

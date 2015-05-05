@@ -41,7 +41,7 @@
                 <table>
                     <tr>
                         <td>POE-ID</td>
-                        <td><input type="text" name="POEID"></td>
+                        <td><input type="text" name="POEID" required></td>
                     </tr>
                     <tr>
                         <td>Campaign ID</td>

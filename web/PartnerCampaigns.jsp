@@ -82,15 +82,15 @@
             </table>
 
             <form action="Control" method="POST">
-
-                <select name="campaignid">
+                Campaign ID:    
+                <select name="campaignid" required>
                     <c:forEach var="campaign" items="${partnercampaigns}">
 
                         <option>${campaign.campaignId}</option>
 
                     </c:forEach>
                 </select>
-                Campaign ID: 
+
                 <button class="btn btn-primary" value="sendPOEPage" name="origin">Upload POE</button>
 
             </form>

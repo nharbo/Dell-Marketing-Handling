@@ -48,15 +48,15 @@
                     <tbody>
                         <tr>
                             <td>Startdate</td>
-                            <td><input type="date" name="startDate"></td>
+                            <td><input type="date" name="startDate" required></td>
                         </tr>
                         <tr>
                             <td>Enddate</td>
-                            <td><input type="date" name="stopDate"></td>
+                            <td><input type="date" name="stopDate" required></td>
                         </tr>
                         <tr>
                             <td>Budget</td>
-                            <td><input type="text" name="budget"></td>
+                            <td><input type="text" name="budget" required></td>
                         </tr>
                         <tr>
                             <td>Country</td>
@@ -74,7 +74,7 @@
                         </tr>
                         <tr>
                             <td>Campaign ID</td>
-                            <td><input type="text" name="campaignId"></td>
+                            <td><input type="text" name="campaignId" required></td>
                         </tr>
                         <tr>
                             <td>Partner ID</td>
