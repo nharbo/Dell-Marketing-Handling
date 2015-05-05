@@ -113,17 +113,19 @@ public class Servlet extends HttpServlet {
 
                             session.setAttribute("message", "Welcome " + user);
 
-                            //System.out.println("------" + user.getStatus() + " " + user.getPassword());
-                            // Her checkes om status på brugeren er admin eller partner,
-                            // og sender derefter brugeren til den rette side.
+                            // Here is a check if the user is a partner or an admin,
+                            // and then redirects the user to the right dashboard page.
+                                 // if an admin logs in:
                             if (user.getStatus().equalsIgnoreCase("admin")) {
-                                response.sendRedirect("dashboardDell.jsp"); //logged-in page for Dell 
-                            } else if (user.getStatus().equalsIgnoreCase("partner")) { // I tilfælde af partner login. 
-                                response.sendRedirect("dashboardPartner.jsp"); // Logged-in page for partners (Hard-coded).
+                                response.sendRedirect("dashboardDell.jsp"); 
+                                 // If a partner logs in:
+                            } else if (user.getStatus().equalsIgnoreCase("partner")) { 
+                                response.sendRedirect("dashboardPartner.jsp");
                             }
 
                         } else {
-                            response.sendRedirect("invalidLogin.jsp"); //error page, hvis brugernavn ell. pw er forkert.  
+                            //error page, hvis brugernavn ell. pw er forkert.  
+                            response.sendRedirect("invalidLogin.jsp"); 
 
                         }
                     } catch (Exception e) {
@@ -208,7 +210,7 @@ public class Servlet extends HttpServlet {
 
                     control.addCampaign(useridAC, campaignId, partnerId, startDate, stopDate, budget, status, country);
 
-                    request.getSession().setAttribute("message", "You have succesfully requested a new campaign");
+                    request.getSession().setAttribute("message", "You have succesfully requested a new campaign - please wait for Dell to accept/decline it.");
                     response.sendRedirect("dashboardPartner.jsp");
                     break;
 
@@ -226,7 +228,7 @@ public class Servlet extends HttpServlet {
                 case "acceptCampaignRequest":
                     int accept_c_id = Integer.parseInt(request.getParameter("Campaignid"));
                     control.acceptCampaignRequest(accept_c_id);
-                    request.getSession().setAttribute("message", "You have succesfully accepted the request");
+                    request.getSession().setAttribute("message", "You have succesfully accepted the request!");
                     response.sendRedirect("dashboardDell.jsp");
                     break;
 
@@ -258,7 +260,7 @@ public class Servlet extends HttpServlet {
 
                     control.addPoe(POEID, POE_C_ID, PStatus, input);
 
-                    request.getSession().setAttribute("message", "You have succesfully sent your POE ");
+                    request.getSession().setAttribute("message", "You have succesfully sent your POE - please wait for Dell to accept/decline!");
                     response.sendRedirect("dashboardPartner.jsp");
                     break;
                     

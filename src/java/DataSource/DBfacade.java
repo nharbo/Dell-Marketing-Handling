@@ -43,16 +43,14 @@ public class DBfacade implements Facadeinterface {
     }
 
     // Authentication check.
-    public static User login(User bean) {
+    public static User login(User user) {
         // Henter UserId, Password og status fra "User" class. 
-        String username = bean.getUserId();
-        String password = bean.getPassword();
+        String username = user.getUserId();
+        String password = user.getPassword();
         ResultSet rs;
-        //con = DBConnector.getInstance().getConnection();
 
         try {
-           
-            // SQL-streng der finder alle users der passer med oplyste user_id og pwd. 
+            // SQL-String finds the user that matches the given user_id and pwd.
             PreparedStatement SQLString = con.prepareStatement("select * from users where user_id= ? AND pwd = ?");
 
             SQLString.setString(1, username);
@@ -64,14 +62,14 @@ public class DBfacade implements Facadeinterface {
 
             // If user does not exist, set isValid variable in user class to false. 
             if (!more) {
-                bean.setValid(false);
+                user.setValid(false);
             } // If user exists, set isValid variable in user class to true, 
             // and status is set to whatever fetched from resultset.
             else if (more) {
-                //Status hentes ind fra result-settet
+                //Status picked up from resultSet
                 String status = rs.getString("status");
-                bean.setValid(true);
-                bean.setStatus(status);
+                user.setValid(true);
+                user.setStatus(status);
             }
             rs.close();
             statement.close();
@@ -79,14 +77,8 @@ public class DBfacade implements Facadeinterface {
         } catch (Exception e) {
             System.out.println("Log-in failed: An exception has occured - " + e);
         } 
-//            finally {
-//            try {
-//                con.close();
-//            } catch (Exception e) {
-//            }
-//        }
 
-        return bean;
+        return user;
     }
 
     // Henter data ned fra databasen, og gemmer det i en liste, som returneres.
@@ -151,7 +143,7 @@ public class DBfacade implements Facadeinterface {
             //Her laves en inner join, da campaign ikke inderholder et user_id, 
             //men kun p_id - derfor skal tabellerne sammensmeltes med en join..
             PreparedStatement sqlGPC = con.prepareStatement("SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = ?");
-            //String SQLString1 = "SELECT * FROM partners INNER JOIN campaign ON campaign.p_id = partners.p_id WHERE user_id = '" + username + "'";
+            
             sqlGPC.setString(1, username);
             rs = sqlGPC.executeQuery();
 
@@ -167,12 +159,6 @@ public class DBfacade implements Facadeinterface {
             System.out.println("Fail in DBMapper - getPartnerCampaign");
             System.out.println(e.getMessage());
         } 
-//        finally {
-//            try {
-//                con.close();
-//            } catch (Exception e) {
-//            }
-//        }
 
         return partnercampaigns;
 
@@ -457,25 +443,17 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void acceptCampaignRequest(int campaignid) {
         
-        //con = DBConnector.getInstance().getConnection();
 
         try {
             
 
             PreparedStatement sqlACR = con.prepareStatement("UPDATE campaign SET status = 'ongoing' WHERE c_id = ?");
-            //String sqlEdit = "UPDATE campaign SET status = 'ongoing' WHERE c_id = '" + campaignid + "'";
             sqlACR.setInt(1, campaignid);
             sqlACR.executeQuery();
         } catch (Exception e) {
             System.out.println("Fail in DBfacade - acceptCampaignRequest");
             System.out.println(e.getMessage());
         } 
-//        finally {
-//            try {
-//                con.close();
-//            } catch (Exception e) {
-//            }
-//        }
 
     }
 
@@ -576,7 +554,6 @@ public class DBfacade implements Facadeinterface {
     @Override
     public void clearDisapprovedCampaigns() {
 
-        //con = DBConnector.getInstance().getConnection();
         try {
            
 
@@ -599,7 +576,6 @@ public class DBfacade implements Facadeinterface {
             // som laver en rollback, så der ikke laves noget rod i DB
             try {
                 con.rollback();
-//                con.close();
                 System.out.println("Transaction rolled back..");
             } catch (Exception f) {
                 System.out.println("Fail doing rollback");
@@ -610,7 +586,6 @@ public class DBfacade implements Facadeinterface {
             try {
                 //Autocommit slåes til igen.
                 con.setAutoCommit(true);
-                //con.close();
             } catch (Exception e) {
             }
 
