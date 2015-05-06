@@ -125,7 +125,6 @@ public class DBfacade implements Facadeinterface {
             sqlGPC.setString(1, username);
             rs = sqlGPC.executeQuery();
 
-
             while (rs.next()) {
                 partnercampaigns.add(new Campaign(rs.getString("c_user_id"), rs.getInt("c_id"), rs.getInt("p_id"), rs.getDate("startdate"), rs.getDate("stopdate"), rs.getInt("c_budget"), rs.getString("status"), rs.getString("country")));
             }

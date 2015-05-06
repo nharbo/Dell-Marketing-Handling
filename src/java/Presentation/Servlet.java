@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentation;
 
 import DataSource.DBfacade;
@@ -25,10 +20,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-/**
- *
- * @author nicolaiharbo
- */
 @WebServlet(name = "Control", urlPatterns = {"/Control"})
 @MultipartConfig
 
@@ -115,17 +106,17 @@ public class Servlet extends HttpServlet {
 
                             // Here is a check if the user is a partner or an admin,
                             // and then redirects the user to the right dashboard page.
-                                 // if an admin logs in:
+                            // if an admin logs in:
                             if (user.getStatus().equalsIgnoreCase("admin")) {
-                                response.sendRedirect("dashboardDell.jsp"); 
-                                 // If a partner logs in:
-                            } else if (user.getStatus().equalsIgnoreCase("partner")) { 
+                                response.sendRedirect("dashboardDell.jsp");
+                                // If a partner logs in:
+                            } else if (user.getStatus().equalsIgnoreCase("partner")) {
                                 response.sendRedirect("dashboardPartner.jsp");
                             }
 
                         } else {
                             //error page, hvis brugernavn ell. pw er forkert.  
-                            response.sendRedirect("invalidLogin.jsp"); 
+                            response.sendRedirect("invalidLogin.jsp");
 
                         }
                     } catch (Exception e) {
@@ -263,8 +254,8 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("message", "You have succesfully sent your POE - please wait for Dell to accept/decline!");
                     response.sendRedirect("dashboardPartner.jsp");
                     break;
-                    
-                    case "sendPOEPage":
+
+                case "sendPOEPage":
                     String campaign_id = request.getParameter("campaignid");
                     request.getSession().setAttribute("campaignid", campaign_id);
                     response.sendRedirect("POEUpload.jsp");
@@ -276,14 +267,14 @@ public class Servlet extends HttpServlet {
                     request.getSession().setAttribute("message", "Now showing POE for campaign id: " + campaignid);
                     response.sendRedirect("showPOE.jsp");
                     break;
-                    
+
                 case "approvePOE":
                     String campaignidPOE = (String) session.getAttribute("campaignid");
                     control.approvePOE(campaignidPOE);
                     request.getSession().setAttribute("message", "Succesfully approved POE for campaign id: " + campaignidPOE);
                     response.sendRedirect("dashboardDell.jsp");
                     break;
-                    
+
                 case "disapprovePOE":
                     String campaignidDisPOE = (String) session.getAttribute("campaignid");
                     control.disapprovePOE(campaignidDisPOE);
