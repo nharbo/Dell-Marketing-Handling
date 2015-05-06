@@ -36,8 +36,6 @@
                     </form>
                 </nav>
             </div>
-
-
             <!-- Jumbotron -->
             <div class="jumbotron">
                 <p class="lead">    

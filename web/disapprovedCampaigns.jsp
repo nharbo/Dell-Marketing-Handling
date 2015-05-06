@@ -76,7 +76,6 @@
                     </th>
                     </thead>
 
-
                 <c:forEach var="campaign" items="${disCampaignList}">
                     <tr>
                         <td style="border: 1px solid #0066CC">${campaign.user}</td>

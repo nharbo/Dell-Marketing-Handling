@@ -1,9 +1,7 @@
-
 package Domain;
 
-
 public class User {
-    
+
     String userId;
     String password;
     String status;
@@ -27,7 +25,7 @@ public class User {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
     public String getUserId() {
         return userId;
     }
@@ -35,7 +33,7 @@ public class User {
     public void setUserId(String userId) {
         this.userId = userId;
     }
-    
+
     public void removeUserId() {
         userId = null;
     }
@@ -47,24 +45,21 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public void removePassword () {
+
+    public void removePassword() {
         password = null;
     }
-    
+
     public boolean isValid() {
         return valid;
     }
 
     public void setValid(boolean valid) {
         this.valid = valid;
-    } 
+    }
 
     @Override
     public String toString() {
         return userId;
     }
-    
-    
-    
 }

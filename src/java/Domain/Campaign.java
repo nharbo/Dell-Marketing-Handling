@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Domain;
 
 import java.sql.Date;
 
-/**
- *
- * @author nicolaiharbo
- */
 public class Campaign {
 
     String user;
@@ -106,12 +98,9 @@ public class Campaign {
         this.country = country;
     }
 
-
     @Override
     public String toString() {
         return "Campaign{" + "campaignId=" + campaignId + ", partnerId=" + partnerId + ", startDate=" + startDate + ", stopDate=" + stopDate + ", budget=" + budget + ", status=" + status + '}';
     }
 
-    
-    
 }

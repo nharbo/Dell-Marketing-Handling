@@ -112,7 +112,6 @@
 
                 }
             </script>
-
             <!-- Site footer -->
             <footer class="footer">
                 <p>&copy; Dell 2015</p>

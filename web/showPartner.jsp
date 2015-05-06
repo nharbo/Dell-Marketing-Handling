@@ -37,14 +37,11 @@
                     </form>
                 </nav>
             </div>
-
-
             <!-- Jumbotron -->
             <div class="jumbotron">
                 <p class="lead">    
                 </p>
             </div>
-
             <h1><c:out value="Partners"></c:out></h1>
 
                 <table>
@@ -72,9 +69,6 @@
                         Zip
                     </th>
                     </thead>
-
-
-
                 <c:forEach var="partners" items="${partnerList}">
                     <tr>
                         <td style="border: 1px solid #0066CC">${partners.userid}</td>

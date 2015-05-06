@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Domain;
 
 import java.io.InputStream;
 import java.sql.Blob;
 import javax.servlet.http.Part;
 
-/**
- *
- * @author nicolaiharbo
- */
 public class POE {
 
     String poeid;
@@ -22,7 +13,6 @@ public class POE {
 
     public POE() {
     }
-    
 
     public POE(String poeid, int c_id, String status, InputStream image) {
 
@@ -66,4 +56,3 @@ public class POE {
     }
 
 }
-

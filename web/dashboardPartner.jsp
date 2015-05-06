@@ -24,7 +24,6 @@
     </head>
     <body>
         <div class="container">
-
             <div class="masthead">
                 <h3 class="text-muted">Dell</h3>
                 <nav>

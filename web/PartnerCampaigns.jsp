@@ -66,8 +66,7 @@
                         Status
                     </th>
                     </thead>
-
-
+                    
                 <c:forEach var="campaign" items="${partnercampaigns}">
                     <tr>
                         <td style="border: 1px solid #0066CC">${campaign.user}</td>
@@ -77,7 +76,6 @@
                         <td style="border: 1px solid #0066CC">${campaign.budget}</td>
                         <td style="border: 1px solid #0066CC">${campaign.status}</td>
                     </tr>
-
                 </c:forEach>
             </table>
 
@@ -94,7 +92,6 @@
                 <button class="btn btn-primary" value="sendPOEPage" name="origin">Upload POE</button>
 
             </form>
-
             <!-- Site footer -->
             <footer class="footer">
                 <p>&copy; Dell 2015</p>

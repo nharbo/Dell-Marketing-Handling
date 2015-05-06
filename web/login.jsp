@@ -20,7 +20,6 @@
         </div>
 
         <div class="container">
-
             <form class="form-signin" action="Control" method="POST">
                 <h3 class="form-signin-heading">Please sign in</h3>
                 <label for="inputUsername" class="sr-only">Username</label>
@@ -34,9 +33,6 @@
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit" name="origin" value="login">Login</button>
             </form>
-            <div id="bottom">
-
-            </div>
         </div>
     </body>
 </html>

@@ -17,13 +17,13 @@
     </head>
     <body>
         <div class="container">
-        <!-- Jumbotron -->
+            <!-- Jumbotron -->
             <div class="jumbotron">
                 <h2>Invalid login</h2>
                 <p class="lead">Username or password was wrong. Try again.  
                 </p>
             </div>
-        <footer class="footer">
+            <footer class="footer">
                 <p>&copy; Dell 2015</p>
             </footer>
         </div>

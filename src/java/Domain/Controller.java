@@ -9,31 +9,20 @@ import DataSource.DBfacade;
 import Interface.Facadeinterface;
 import Interface.ControllerInterface;
 import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.http.Part;
 
-/**
- *
- * @author nicolaiharbo
- */
 public class Controller implements ControllerInterface {
-    
+
 //    DBfacade db = new DBfacade();
     Facadeinterface db = new DBfacade();
-    
-    public Controller() {}
-    
+
+    public Controller() {
+    }
+
     public Controller(Facadeinterface facade) {
         this.db = facade;
     }
-    
-    
-    public static final boolean inDebugMode = false;
 
     @Override
     public void addPartner(String userid, int partnerid, String partnername, String address, int cvr, int phone, int zip) {
@@ -42,7 +31,6 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void addUser(String userid, String password, String status) {
-        if(inDebugMode) {System.out.println("now in addUser");}
         db.addUser(userid, password, status);
     }
 
@@ -59,10 +47,10 @@ public class Controller implements ControllerInterface {
     @Override
     public ArrayList<Campaign> getAllCampaigns() {
         return db.getCampaigns();
-       
+
     }
-    
-    public ArrayList<Campaign> getPartnerCampaigns(String username){
+
+    public ArrayList<Campaign> getPartnerCampaigns(String username) {
         return db.getPartnerCampaigns(username);
     }
 
@@ -83,7 +71,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public void addCampaign(String user_id, int c_id, int p_id, Date startdate, Date stopdate, int c_budget, String status, String country) {
-        db.addCampaign(user_id, c_id, p_id, startdate, stopdate, c_budget, status , country);
+        db.addCampaign(user_id, c_id, p_id, startdate, stopdate, c_budget, status, country);
     }
 
     @Override
@@ -95,10 +83,10 @@ public class Controller implements ControllerInterface {
     public void acceptCampaignRequest(int campaignid) {
         db.acceptCampaignRequest(campaignid);
     }
-   
-@Override
+
+    @Override
     public void addPoe(String poeid, int c_id, String status, InputStream poe) {
-        
+
         db.addPoe(poeid, c_id, status, poe);
     }
 
@@ -119,7 +107,7 @@ public class Controller implements ControllerInterface {
 
     @Override
     public POE getPOE(int campaignid) {
-      return db.getPOE(campaignid);
+        return db.getPOE(campaignid);
     }
 
     @Override
@@ -131,12 +119,4 @@ public class Controller implements ControllerInterface {
     public void disapprovePOE(String campaignid) {
         db.disapprovePOE(campaignid);
     }
-
-    
-    
-
-    
-    
-    
 }
-

@@ -42,7 +42,6 @@
                 </nav>
             </div>
 
-
             <!-- Jumbotron -->
             <div class="jumbotron">
                 <p class="lead">    
@@ -77,7 +76,6 @@
                     </th>
                     </thead>
 
-
                 <c:forEach var="campaign" items="${campaignReqList}">
                     <tr>
                         <td style="border: 1px solid #0066CC">${campaign.user}</td>
@@ -105,7 +103,6 @@
                 <button class="btn btn-primary" name="origin" value="disapproveCampaignRequest">Disapprove campaign!</button>
                 <button class="btn btn-primary" name="origin" value="acceptCampaignRequest">Accept campaign!</button>
             </form>
-
             <!-- Site footer -->
             <footer class="footer">
                 <p>&copy; Dell 2015</p>

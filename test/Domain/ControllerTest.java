@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Domain;
 
 import DataSource.FacadeStub;
@@ -13,10 +9,6 @@ import static org.hamcrest.core.Is.is;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author nicolaiharbo
- */
 public class ControllerTest {
   
  @Test
@@ -39,7 +31,5 @@ public class ControllerTest {
     assertThat(partners.get(0).getZip(), is (8000));
    
  } 
- 
 
-    
 }

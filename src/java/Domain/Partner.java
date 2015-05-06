@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Domain;
 
-/**
- *
- * @author nicolaiharbo
- */
 public class Partner {
     
     String userid;
@@ -22,7 +14,6 @@ public class Partner {
     public Partner() {
         // Tom konstruktør, for at lave klassen til en bean, så den kan fanges i jsp'en.
     }
-    
     
     // Konstruktør som bruges til at oprette objekter med.
     public Partner(String userid, int partnerid, String partnername, String address, int cvr, int phone, int zip) {
@@ -95,8 +86,5 @@ public class Partner {
     public String toString() {
         return "Partner{" + "userid=" + userid + ", partnerid=" + partnerid + ", partnername=" + partnername + ", address=" + address + ", cvr=" + cvr + ", phone=" + phone + ", zip=" + zip + '}';
     }
-    
-    
-
-    
+ 
 }

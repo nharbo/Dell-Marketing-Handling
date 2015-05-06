@@ -23,8 +23,7 @@ public class DBConnector {
             con = DriverManager.getConnection(URL, id, pw);
 
         } catch (Exception e) {
-            System.out.println("\n*** Er brugenavn og password korrekt? ***\n");
-            System.out.println("Fejl i DBConnector.getConnection()");
+            System.out.println("Error in DBConnector");
             System.out.println(e);
         }
     }
@@ -48,8 +47,7 @@ public class DBConnector {
 
             }
         } catch (Exception e) {
-            System.out.println("\n*** Er brugenavn og password korrekt? ***\n");
-            System.out.println("Fejl i DBConnector.getConnection()");
+            System.out.println("Error in DBConnector.getConnection()");
             System.out.println(e);
         }
 

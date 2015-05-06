@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Interface;
 
 import Domain.Campaign;
@@ -12,12 +8,7 @@ import java.io.InputStream;
 import java.sql.Date;
 import java.util.ArrayList;
 
-/**
- *
- * @author nicolaiharbo
- */
 public interface Facadeinterface {
-    boolean inDebugMode = true;
 
     void acceptCampaignRequest(int campaignid);
 
