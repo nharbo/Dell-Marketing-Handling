@@ -37,6 +37,6 @@
             <div id="bottom">
 
             </div>
-            <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        </div>
     </body>
 </html>
