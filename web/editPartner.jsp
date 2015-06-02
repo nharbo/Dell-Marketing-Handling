@@ -66,15 +66,15 @@
                         </tr>
                         <tr>
                             <td><label>Address</label></td>
-                            <td><input type="text" name="address" value="${partner.address}"></td>
+                            <td><input type="text" name="address" value="${partner.address}" required></td>
                         </tr>
                         <tr>
                             <td><label>Zip</label></td>
-                            <td><input type="text" name="zip" value="${partner.zip}"></td>
+                            <td><input type="text" name="zip" value="${partner.zip}" required></td>
                         </tr>
                         <tr>
                             <td><label>City</label></td>
-                            <td><input type="text" name="city" value=""></td>
+                            <td><input type="text" name="city" value="" required></td>
                         </tr>
                         <tr>
                             <td><label>CVR-number</label></td>
@@ -82,15 +82,15 @@
                         </tr>
                         <tr>
                             <td><label>Phone number</label></td>
-                            <td><input type="text" name="phone" value="${partner.phone}"></td>
+                            <td><input type="text" name="phone" value="${partner.phone}" required></td>
                         </tr>
                         <tr>
                             <td><label>Password</label></td>
-                            <td><input type="password" name="password" value=""></td>
+                            <td><input type="password" name="password" value="" required></td>
                         </tr>
                         <tr>
                             <td><label>Retype password</label></td>
-                            <td><input type="password" name="retype_password" value=""></td>
+                            <td><input type="password" name="retype_password" value="" required></td>
                         </tr>
                         <tr>
                             <td><button class="btn btn-primary" name="origin" value="editPartnerDB">Edit</button></td>

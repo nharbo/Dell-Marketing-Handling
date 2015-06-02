@@ -277,10 +277,13 @@ public class DBfacade implements Facadeinterface {
         //con = DBConnector.getInstance().getConnection();
         try {
 
+            PreparedStatement sqldelPoe = con.prepareStatement("DELETE FROM poe WHERE c_id IN (SELECT c_id FROM campaign WHERE c_user_id = ?)");
             PreparedStatement sqldelC = con.prepareStatement("DELETE FROM campaign WHERE p_id IN (SELECT p_id FROM partners WHERE user_id = ?)");
             PreparedStatement sqldelP = con.prepareStatement("DELETE FROM partners WHERE user_id = ?");
             PreparedStatement sqldelU = con.prepareStatement("DELETE FROM users WHERE user_id = ?");
 
+            sqldelPoe.setString(1, userid);
+            sqldelPoe.executeQuery();
             sqldelC.setString(1, userid);
             sqldelC.executeQuery();
             sqldelP.setString(1, userid);
