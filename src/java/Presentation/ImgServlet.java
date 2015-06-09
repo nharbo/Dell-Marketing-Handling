@@ -47,11 +47,17 @@ public class ImgServlet extends HttpServlet {
         // efterfølgende kan hente det ind, så vi ved hvilket format filen har, inden vi går ind i en if/else.
         response.setContentType("image/jpeg");
 
-        //?? Hvad sker der her? Find ud af det :)
+        // Outputtet bliver sat ind i response objektet via GetOutputStream
         OutputStream out = response.getOutputStream();
+        
+        // Der oprettes et bytearray
         byte[] buffer = new byte[1024];
         int counter = -1;
 
+        // Counter er lig med antallet af bytes i inputtet, og loopet kører så længe antallet er forskellig
+        // fra -1.
+        // Så længe det er forskelligt fra -1, skrives til outputStreamet. 
+        // OutputStream lukkes, når counter kommer under 0.
         while ((counter = in.read(buffer)) != -1) {
             out.write(buffer, 0, counter);
         }

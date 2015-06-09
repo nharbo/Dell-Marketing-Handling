@@ -17,6 +17,7 @@ public class DBConnector {
     //-- Singleton, så der kun oprettes 1 forbindelse ---- 
     private static DBConnector instance;
 
+    // Private konstruktør, kan kun tilgåes fra klassen selv (igennem getInstance())..
     private DBConnector() {
         try {
             Class.forName(driver);
@@ -29,6 +30,8 @@ public class DBConnector {
     }
 
     // Giver mulighed for at hente en instans af objektet, så der ikke oprettes et nyt, men bare en instans.
+    // Hvis der findes en instans af DBConnector i forvejen, bruges denne
+    // Ellers oprettes en ny.
     public static DBConnector getInstance() {
         if (instance == null) {
             instance = new DBConnector();
@@ -36,6 +39,7 @@ public class DBConnector {
         return instance;
     }
 
+    // Denne metode kaldes fra konstruktøren
     public Connection getConnection() {
 
         try {

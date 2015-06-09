@@ -272,6 +272,9 @@ public class DBfacade implements Facadeinterface {
 
     // Denne metode sletter en partner fra databasen, både i partner og user-tabellen, ud fra partnerid'et.
     // Lav som boolean, så der kan returners om det er gået godt eller ej.
+    
+    // Her burde have været lavet en transaktion!
+    
     @Override
     public void deletePartner(String userid) {
         //con = DBConnector.getInstance().getConnection();
@@ -557,6 +560,8 @@ public class DBfacade implements Facadeinterface {
 
         ResultSet rs;
         con = DBConnector.getInstance().getConnection();
+        
+        
 
         try {
 
